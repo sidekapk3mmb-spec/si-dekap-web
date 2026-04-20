@@ -204,6 +204,45 @@ footer {
   .footer-topbar {
     padding: 1rem 1.25rem 0;
   }
+
+  /* SOS button adjustments for mobile */
+  .sos-container {
+    bottom: 16px;
+    left: 16px;
+  }
+  .sos-btn {
+    width: 52px;
+    height: 52px;
+  }
+  .sos-btn i {
+    font-size: 1.25rem;
+  }
+  .sos-btn .sos-text {
+    font-size: 0.65rem;
+  }
+  .sos-menu {
+    width: 250px;
+    bottom: 70px;
+  }
+  .sos-header {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  .sos-item {
+    padding: 0.6rem 0.8rem;
+  }
+  .sos-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    margin-right: 0.75rem;
+  }
+  .sos-title {
+    font-size: 0.85rem;
+  }
+  .sos-number {
+    font-size: 0.75rem;
+  }
 }
 
 /* =========================================
