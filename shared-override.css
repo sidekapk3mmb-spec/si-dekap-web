@@ -1,0 +1,244 @@
+/*
+ * shared-override.css
+ * Menyeragamkan design token lama ke design system baru (style.css v2)
+ * Di-link setelah style.css di semua halaman konten
+ */
+
+/* ── Map token lama ke token baru ── */
+:root {
+  --primary-blue: #bac94a;
+  --teal: #6c8cbf;
+  --dark-blue: #105294;
+  --bg-grad-start: #f7fcef;
+  --bg-grad-end: #f0f8e8;
+  --white: #ffffff;
+  --danger: #ef4444;
+  --danger-soft: #fef2f2;
+  --warning: #f59e0b;
+  --success: #22c55e;
+  --gray-50: #fafdf5;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2ecd8;
+  --gray-500: #6b7280;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --muted: #64748b;
+  --card: #ffffff;
+  --text: #0f172a;
+  --border: rgba(15,23,42,0.08);
+  --shadow-sm: 0 4px 16px rgba(15,23,42,0.08);
+  --shadow-md: 0 10px 36px rgba(15,23,42,0.11);
+  --shadow-lg: 0 20px 64px rgba(15,23,42,0.13);
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
+/* ── Global body override ── */
+body {
+  font-family: "DM Sans", "Poppins", system-ui, sans-serif !important;
+  background: #f7fcef !important;
+  color: #1e3a1e !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Sora", "DM Sans", system-ui, sans-serif !important;
+  color: #1a3c1a !important;
+}
+
+/* ── Scroll progress bar → gunakan milik style.css ── */
+.scroll-progress {
+  background: linear-gradient(90deg, var(--lime), var(--blue-mid)) !important;
+  height: 3px !important;
+  box-shadow: 0 0 14px var(--lime-glow) !important;
+}
+
+/* ── Section labels ── */
+.section-label {
+  background: rgba(186,201,74,0.12) !important;
+  border: 1px solid rgba(186,201,74,0.28) !important;
+  color: var(--navy) !important;
+  font-family: "Sora", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+/* ── Hero sections (semua halaman) ── */
+.k3-hero, .p3k-hero, .emergency-hero, .hazard-hero,
+.peraturan-hero, .simbol-hero, .limbah-hero, .msds-hero {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(186,201,74,0.12), transparent 24%),
+    radial-gradient(circle at 85% 22%, rgba(16,82,148,0.08), transparent 22%),
+    linear-gradient(135deg, #f7fcef 0%, #eef6e4 50%, #f8fafc 100%) !important;
+  padding: 7rem 0 5rem !important;
+}
+.k3-hero::before, .p3k-hero::before, .emergency-hero::before,
+.hazard-hero::before, .peraturan-hero::before, .simbol-hero::before,
+.limbah-hero::before, .msds-hero::before {
+  background-image:
+    radial-gradient(circle, rgba(186,201,74,0.12) 1px, transparent 1px) !important;
+  background-size: 28px 28px !important;
+  animation: gridMove 24s linear infinite !important;
+  opacity: 0.6 !important;
+}
+
+/* ── Hero headings ── */
+.hero-copy h1, .hero-inner h1, .hero-copy > h1 {
+  color: #1a3c1a !important;
+  font-family: "Sora", sans-serif !important;
+}
+.hero-copy h1 .accent, .hero-inner h1 .accent, .hero-title .accent-text {
+  color: var(--lime) !important;
+}
+.hero-inner p, .hero-copy p { color: #3d5c3d !important; }
+
+/* ── CTA buttons ── */
+.cta-button.primary {
+  background: linear-gradient(135deg, var(--lime) 0%, var(--lime-dark) 100%) !important;
+  color: var(--navy) !important;
+  box-shadow: 0 8px 28px var(--lime-glow) !important;
+}
+.cta-button.primary:hover { box-shadow: 0 16px 40px rgba(186,201,74,0.45) !important; }
+.cta-button.secondary {
+  background: rgba(255,255,255,0.9) !important;
+  color: var(--navy) !important;
+  border: 1px solid rgba(186,201,74,0.25) !important;
+}
+.cta-button { border-radius: var(--r-full) !important; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease !important; }
+.cta-button:hover { transform: translateY(-3px) scale(1.02) !important; }
+
+/* ── Hero divider ── */
+.hero-divider {
+  background: linear-gradient(90deg, var(--lime), var(--blue-mid)) !important;
+  box-shadow: 0 4px 18px var(--lime-glow) !important;
+}
+
+/* ── Glass panels ── */
+.glass-panel {
+  background: rgba(255,255,255,0.95) !important;
+  border: 1px solid rgba(186,201,74,0.15) !important;
+  border-radius: var(--r-xl) !important;
+  box-shadow: var(--shadow-md) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+/* ── Intro / feature cards ── */
+.intro-card, .feature-card, .obligation-card, .step-card, .info-card {
+  border: 1.5px solid rgba(15,23,42,0.08) !important;
+  border-radius: var(--r-lg) !important;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+.intro-card:hover, .feature-card:hover, .obligation-card:hover, .step-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: var(--shadow-md) !important;
+  border-color: rgba(186,201,74,0.3) !important;
+}
+
+/* Card icon background */
+.intro-card .icon, .feature-icon, .obligation-icon, .step-number,
+.accordion-icon, .service-icon--112, .nested-accordion-badge {
+  background: linear-gradient(135deg, rgba(186,201,74,0.18), rgba(16,82,148,0.1)) !important;
+  color: var(--navy) !important;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.3s !important;
+}
+.intro-card:hover .icon, .feature-card:hover .feature-icon {
+  background: var(--lime) !important;
+  transform: scale(1.1) rotate(-7deg) !important;
+}
+
+/* Card headings */
+.intro-card h3, .obligation-card h3, .step-card h3,
+.accordion-title-text, .emergency-card .card-title { color: #1a3c1a !important; }
+.intro-card p, .obligation-card p, .step-card p,
+.accordion-subtitle, .emergency-card .card-desc { color: #4a6b4a !important; }
+
+/* ── Accordion ── */
+.accordion {
+  border: 1.5px solid rgba(15,23,42,0.08) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: var(--shadow-xs) !important;
+  transition: transform 0.32s ease, box-shadow 0.32s ease !important;
+}
+.accordion:hover { transform: translateY(-3px) !important; box-shadow: var(--shadow-sm) !important; }
+.accordion.open .accordion-toggle { background: var(--lime) !important; color: var(--navy) !important; }
+.accordion-toggle { background: rgba(186,201,74,0.12) !important; color: var(--navy) !important; }
+
+.nested-accordion { border: 1px solid rgba(186,201,74,0.15) !important; border-radius: var(--r-md) !important; }
+.nested-accordion.open .nested-accordion-header { border-bottom: 1px solid rgba(186,201,74,0.15) !important; }
+.nested-steps li::before { background: var(--lime-dark) !important; color: var(--navy) !important; }
+
+/* ── Steps section ── */
+.steps-shell, .obligations-shell {
+  background: rgba(255,255,255,0.95) !important;
+  border: 1px solid rgba(186,201,74,0.15) !important;
+  border-top: 4px solid var(--lime) !important;
+  border-radius: var(--r-xl) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+.step-number { background: linear-gradient(135deg, var(--lime-soft), var(--blue-soft)) !important; color: var(--navy) !important; font-family: "Sora", sans-serif !important; }
+.accordion-steps > li::before { background: var(--navy) !important; color: var(--lime) !important; font-family: "Sora", sans-serif !important; }
+.accordion-steps ul li::before { background: var(--lime) !important; }
+
+/* ── Emergency cards ── */
+.emergency-card {
+  border-left: 4px solid var(--lime) !important;
+  border-radius: var(--r-lg) !important;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease !important;
+}
+.emergency-card:hover { transform: translateY(-5px) !important; box-shadow: var(--shadow-md) !important; }
+.emergency-card.alt-bg { border-left-color: var(--danger) !important; }
+.call-now { background: rgba(186,201,74,0.12) !important; color: var(--navy) !important; border-radius: var(--r-full) !important; }
+.emergency-card.alt-bg .call-now { background: rgba(239,68,68,0.1) !important; color: var(--danger) !important; }
+
+/* ── Benefits / list items ── */
+.benefits-list li {
+  border: 1.5px solid rgba(15,23,42,0.07) !important;
+  border-radius: var(--r-md) !important;
+  transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease !important;
+}
+.benefits-list li:hover { border-color: rgba(186,201,74,0.3) !important; transform: translateY(-3px) !important; }
+.benefits-list i { background: linear-gradient(135deg, rgba(186,201,74,0.18), rgba(16,82,148,0.1)) !important; color: var(--navy) !important; }
+
+/* ── Closing banners / info boxes ── */
+.closing-banner, .info-box, .accent-note {
+  background: linear-gradient(135deg, rgba(186,201,74,0.1), rgba(16,82,148,0.07)) !important;
+  border: 1px solid rgba(186,201,74,0.22) !important;
+  border-radius: var(--r-lg) !important;
+  color: var(--navy) !important;
+}
+
+/* ── Back to top ── */
+.back-to-top {
+  background: linear-gradient(135deg, var(--lime) 0%, var(--lime-dark) 100%) !important;
+  color: var(--navy) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-lime) !important;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease, opacity 0.3s, visibility 0.3s !important;
+}
+.back-to-top:hover { transform: translateY(-5px) scale(1.08) !important; box-shadow: 0 16px 40px rgba(186,201,74,0.45) !important; }
+
+/* ── CTA btn (p3k green) ── */
+.cta-btn {
+  background: linear-gradient(135deg, var(--lime) 0%, var(--lime-dark) 100%) !important;
+  color: var(--navy) !important;
+  border-radius: var(--r-full) !important;
+  box-shadow: var(--shadow-lime) !important;
+  font-family: "Sora", sans-serif !important;
+}
+.cta-btn:hover { background: linear-gradient(135deg, var(--lime-dark), #7a9020) !important; color: var(--navy) !important; transform: translateY(-3px) !important; }
+
+/* ── Progress bar (checklist) ── */
+.progress-fill {
+  background: linear-gradient(90deg, var(--lime) 0%, var(--blue-mid) 100%) !important;
+}
+.check-item.active { border-color: var(--lime) !important; background: rgba(186,201,74,0.1) !important; color: var(--navy) !important; }
+.check-item input { accent-color: var(--navy) !important; }
+
+/* ── Tags / badges ── */
+.search-tag, .mock-badge {
+  background: rgba(186,201,74,0.12) !important;
+  color: var(--blue) !important;
+  border: 1px solid rgba(186,201,74,0.25) !important;
+}
+
+/* ── Reveal animation ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }

@@ -1,0 +1,1331 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulir Pelaporan - SI-DEKAP Laboratorium</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="footer.css" />
+
+    <style>
+      :root {
+        --primary-blue: #bac94a;
+        --teal: #6c8cbf;
+        --bg-grad-start: #eef8d7;
+        --bg-grad-end: #e8f6f0;
+        --dark-blue: #105294;
+
+        --bg: #fbfdf9;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --border: #e9eef2;
+        --white: #ffffff;
+        --gray-50: #f8fafc;
+        --gray-100: #f1f5f9;
+        --gray-200: #e5e7eb;
+        --gray-600: #4b5563;
+
+        --danger: #ef4444;
+        --danger-soft: #fee2e2;
+        --warning: #f59e0b;
+        --success: #16a34a;
+        --success-soft: #dcfce7;
+
+        --shadow-sm: 0 8px 20px rgba(16, 82, 148, 0.05);
+        --shadow-md: 0 18px 40px rgba(16, 82, 148, 0.08);
+        --shadow-lg: 0 28px 60px rgba(16, 82, 148, 0.12);
+
+        --radius-lg: 24px;
+        --radius-xl: 30px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(234, 246, 205, 0.48),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(207, 247, 228, 0.36),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #fbfdf9 0%, #f8fbf8 42%, #ffffff 100%);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.72rem 1.1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 25px rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        z-index: 1200;
+        box-shadow: 0 2px 10px rgba(16, 82, 148, 0.18);
+      }
+
+      /* =============================
+         HERO
+         ============================= */
+      .reporting-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 0 5rem;
+        background:
+          radial-gradient(
+            circle at 12% 20%,
+            rgba(186, 201, 74, 0.16),
+            transparent 22%
+          ),
+          radial-gradient(
+            circle at 85% 22%,
+            rgba(108, 140, 191, 0.12),
+            transparent 20%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(238, 248, 215, 0.95) 0%,
+            rgba(232, 246, 240, 0.95) 48%,
+            rgba(255, 255, 255, 1) 100%
+          );
+      }
+
+      .reporting-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.35),
+          transparent 90%
+        );
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 960px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .hero-inner h1 {
+        font-size: clamp(2.6rem, 5vw, 4.3rem);
+        line-height: 1.04;
+        font-weight: 800;
+        margin: 1.2rem 0 1rem;
+        letter-spacing: -0.04em;
+        color: var(--dark-blue);
+      }
+      .hero-inner p {
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 780px;
+        margin: 0 auto 2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 1rem 1.55rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.98rem;
+        cursor: pointer;
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          background 0.28s ease;
+        border: none;
+      }
+      .cta-button.primary {
+        background: linear-gradient(
+          135deg,
+          #c9d95c 0%,
+          #b7cf57 18%,
+          #6c8cbf 100%
+        );
+        color: var(--white);
+        box-shadow: 0 18px 35px rgba(12, 44, 82, 0.2);
+      }
+      .cta-button.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 22px 42px rgba(12, 44, 82, 0.28);
+      }
+      .cta-button.secondary {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--dark-blue);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 22px rgba(16, 82, 148, 0.06);
+      }
+      .cta-button.secondary:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-divider {
+        width: 140px;
+        height: 5px;
+        margin: 2rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        box-shadow: 0 6px 18px rgba(16, 82, 148, 0.12);
+      }
+
+      /* =============================
+         CONTENT SECTION
+         ============================= */
+      .content-section {
+        padding: 4rem 0 2rem;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        box-shadow: var(--shadow-md);
+        border-radius: var(--radius-xl);
+        backdrop-filter: blur(16px);
+      }
+      .intro-panel {
+        padding: 1.6rem;
+        margin-top: -1.6rem;
+        position: relative;
+        z-index: 2;
+      }
+      .intro-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 1rem;
+      }
+      .intro-card,
+      .urgency-card {
+        padding: 1.4rem;
+        border-radius: 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(251, 253, 247, 0.96)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        box-shadow: 0 10px 24px rgba(16, 82, 148, 0.05);
+      }
+      .intro-card h2,
+      .urgency-card h3 {
+        color: var(--dark-blue);
+        margin-bottom: 0.7rem;
+      }
+      .intro-card p,
+      .urgency-card p {
+        color: var(--muted);
+      }
+
+      .regulation-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.65rem 1rem;
+        border-radius: 999px;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.18),
+          rgba(108, 140, 191, 0.14)
+        );
+        color: var(--dark-blue);
+        font-size: 0.86rem;
+        font-weight: 800;
+        margin-top: 0.8rem;
+      }
+
+      .urgency-card {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          rgba(239, 68, 68, 0.08),
+          rgba(255, 255, 255, 0.95)
+        );
+        border: 1px solid rgba(239, 68, 68, 0.12);
+      }
+      .urgency-card::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(239, 68, 68, 0.08);
+      }
+      .urgency-head {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+        position: relative;
+      }
+      .urgency-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(239, 68, 68, 0.12);
+        color: var(--danger);
+        font-size: 1.3rem;
+        flex-shrink: 0;
+      }
+
+      .countdown-box {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.65rem;
+        margin-top: 1rem;
+      }
+      .countdown-item {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(239, 68, 68, 0.08);
+        border-radius: 16px;
+        text-align: center;
+        padding: 0.9rem 0.7rem;
+      }
+      .countdown-item strong {
+        display: block;
+        font-size: 1.35rem;
+        color: var(--danger);
+        line-height: 1;
+      }
+      .countdown-item span {
+        display: block;
+        margin-top: 0.3rem;
+        font-size: 0.78rem;
+        color: var(--gray-600);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      /* =============================
+         CHECKLIST TOOLS
+         ============================= */
+      .report-tools {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 1rem;
+      }
+      .tool-card {
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 28px;
+        padding: 1.4rem;
+        box-shadow: var(--shadow-md);
+      }
+      .tool-card h3 {
+        color: var(--dark-blue);
+        margin-bottom: 0.8rem;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      .check-item {
+        display: flex;
+        gap: 0.8rem;
+        align-items: flex-start;
+        padding: 0.9rem;
+        border-radius: 16px;
+        background: linear-gradient(180deg, #ffffff, #fafcf8);
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        transition: all 0.22s ease;
+        cursor: pointer;
+      }
+      .check-item:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+      }
+      .check-item input {
+        margin-top: 0.2rem;
+        accent-color: var(--dark-blue);
+      }
+      .check-item.done {
+        background: linear-gradient(
+          135deg,
+          rgba(22, 163, 74, 0.09),
+          rgba(255, 255, 255, 0.95)
+        );
+        border-color: rgba(22, 163, 74, 0.18);
+      }
+      .check-item span {
+        color: var(--gray-600);
+        font-size: 0.94rem;
+      }
+
+      .progress-wrap {
+        margin-top: 1rem;
+      }
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.88rem;
+        color: var(--dark-blue);
+        font-weight: 700;
+        margin-bottom: 0.45rem;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 12px;
+        background: #edf3e9;
+        border-radius: 999px;
+        overflow: hidden;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+      }
+      .progress-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        transition: width 0.35s ease;
+      }
+
+      .quick-note {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 16px;
+        background: rgba(16, 82, 148, 0.05);
+        border: 1px dashed rgba(16, 82, 148, 0.12);
+        color: var(--dark-blue);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      /* =============================
+         FLOW SECTION
+         ============================= */
+      .flow-section {
+        margin-top: 3rem;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 30px;
+        box-shadow: var(--shadow-md);
+        padding: 2rem;
+      }
+      .flow-title {
+        color: var(--dark-blue);
+        font-size: clamp(2rem, 3vw, 2.6rem);
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      .flow-progress {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .flow-progress .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.65rem 1rem;
+        border-radius: 999px;
+        background: var(--gray-100);
+        color: var(--dark-blue);
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+      .flow-progress .arrow {
+        color: var(--teal);
+        font-size: 1rem;
+      }
+
+      .flow-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.1rem;
+      }
+      .flow-step {
+        position: relative;
+        border-radius: 26px;
+        padding: 1.6rem;
+        background: linear-gradient(180deg, #ffffff, #fbfdf9);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .flow-step:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 30px rgba(16, 82, 148, 0.08);
+      }
+      .flow-step::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+      }
+      .step-badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.16)
+        );
+        color: var(--dark-blue);
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+      .flow-step-icon {
+        font-size: 2.4rem;
+        margin-bottom: 0.8rem;
+        color: var(--dark-blue);
+      }
+      .flow-step-title {
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--dark-blue);
+        margin-bottom: 0.6rem;
+      }
+      .flow-step-description {
+        color: var(--gray-600);
+        line-height: 1.7;
+        margin-bottom: 1.2rem;
+        font-size: 0.95rem;
+      }
+      .flow-meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(16, 82, 148, 0.05);
+        color: var(--dark-blue);
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .flow-step-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue) 0%,
+          var(--teal) 100%
+        );
+        color: var(--white);
+        padding: 0.85rem 1.2rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.25s ease;
+        justify-content: center;
+        width: 100%;
+      }
+      .flow-step-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(108, 140, 191, 0.22);
+      }
+
+      /* =============================
+         CTA + FAQ
+         ============================= */
+      .extra-grid {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 1rem;
+      }
+      .cta-section,
+      .faq-section {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 28px;
+        box-shadow: var(--shadow-md);
+        padding: 1.6rem;
+      }
+      .cta-title,
+      .faq-title {
+        color: var(--dark-blue);
+        font-size: 1.55rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+      .cta-text {
+        color: var(--muted);
+        margin-bottom: 1.3rem;
+      }
+      .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .cta-btn {
+        padding: 1rem 1.2rem;
+        border-radius: 18px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.97rem;
+        transition: all 0.25s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+      }
+      .cta-btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue) 0%,
+          var(--teal) 100%
+        );
+        color: var(--white);
+        box-shadow: 0 8px 18px rgba(108, 140, 191, 0.18);
+      }
+      .cta-btn-secondary {
+        background: var(--white);
+        color: var(--dark-blue);
+        border: 1.5px solid rgba(16, 82, 148, 0.12);
+      }
+      .cta-btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .faq-list {
+        display: grid;
+        gap: 0.8rem;
+      }
+      .faq-item {
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 18px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #ffffff, #fbfdf8);
+      }
+      .faq-question {
+        width: 100%;
+        border: none;
+        background: transparent;
+        padding: 1rem 1rem;
+        text-align: left;
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--dark-blue);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .faq-question i {
+        transition: transform 0.25s ease;
+      }
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .faq-answer-inner {
+        padding: 0 1rem 1rem;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .notice-section {
+        background: linear-gradient(
+          135deg,
+          rgba(234, 246, 205, 0.5),
+          rgba(255, 255, 255, 0.96)
+        );
+        border: 1px dashed rgba(186, 201, 74, 0.35);
+        border-radius: 24px;
+        padding: 1.4rem;
+        margin-top: 3rem;
+      }
+      .notice-title {
+        color: var(--dark-blue);
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin-bottom: 0.8rem;
+      }
+      .notice-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+      }
+      .notice-item {
+        background: rgba(255, 255, 255, 0.84);
+        border-radius: 18px;
+        padding: 1rem;
+        border: 1px solid rgba(16, 82, 148, 0.06);
+      }
+      .notice-item strong {
+        display: block;
+        color: var(--dark-blue);
+        margin-bottom: 0.35rem;
+      }
+      .notice-item span {
+        color: var(--gray-600);
+        font-size: 0.9rem;
+      }
+
+      /* =============================
+         BACK TO TOP
+         ============================= */
+      .back-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #c9d95c 0%, #6c8cbf 100%);
+        color: var(--white);
+        box-shadow: 0 18px 34px rgba(16, 82, 148, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.28s ease;
+        z-index: 1100;
+      }
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .back-to-top:hover {
+        transform: translateY(-4px);
+      }
+
+      /* =============================
+         RESPONSIVE (NON-HEADER)
+         ============================= */
+      @media (max-width: 1100px) {
+        .intro-grid,
+        .report-tools,
+        .extra-grid {
+          grid-template-columns: 1fr;
+        }
+        .flow-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .notice-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        .reporting-hero {
+          padding: 5.8rem 0 4.4rem;
+        }
+        .hero-actions,
+        .flow-progress {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .cta-button {
+          width: 100%;
+        }
+        .flow-grid,
+        .notice-grid {
+          grid-template-columns: 1fr;
+        }
+        .countdown-box {
+          grid-template-columns: 1fr;
+        }
+        .back-to-top {
+          width: 48px;
+          height: 48px;
+          right: 14px;
+          bottom: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div id="header-placeholder"></div>
+
+    <section class="reporting-hero">
+      <div class="container">
+        <div class="hero-inner reveal">
+          <span class="section-label">
+            <i class="bi bi-clipboard2-pulse"></i>
+            Pelaporan Insiden K3
+          </span>
+
+          <h1>
+            Setiap Insiden Kerja Wajib Dicatat dan Dilaporkan Secara Resmi
+          </h1>
+
+          <p>
+            Pelaporan kecelakaan kerja adalah bagian penting dari pengendalian
+            K3. Dengan laporan yang cepat, akurat, dan rapi, proses investigasi
+            serta pencegahan insiden serupa bisa dilakukan lebih efektif.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#alur-pelaporan" class="cta-button primary">
+              <i class="bi bi-arrow-right-circle"></i> Lihat Alur Pelaporan
+            </a>
+            <a
+              href="https://forms.gle/6RkYwN71xJCRzFDq9"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cta-button secondary"
+            >
+              <i class="bi bi-box-arrow-up-right"></i> Isi Form Online
+            </a>
+          </div>
+
+          <div class="hero-divider"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="intro-panel glass-panel reveal">
+          <div class="intro-grid">
+            <div class="intro-card">
+              <h2>Dasar hukum dan urgensi pelaporan</h2>
+              <p>
+                Berdasarkan Permenaker No.03/MEN/1998, kecelakaan kerja wajib
+                dilaporkan oleh pihak terkait. Tujuannya adalah untuk keperluan
+                investigasi, perlindungan korban, dan pencegahan terulangnya
+                kejadian serupa di kemudian hari.
+              </p>
+              <p>
+                Pelaporan yang tertunda atau tidak dilakukan berpotensi
+                menghambat proses investigasi dan membuka peluang terjadinya
+                insiden berulang yang seharusnya dapat dicegah.
+              </p>
+              <span class="regulation-badge">
+                <i class="bi bi-shield-check"></i> Permenaker No.03/MEN/1998
+              </span>
+            </div>
+
+            <div class="urgency-card">
+              <div class="urgency-head">
+                <span class="urgency-icon"><i class="bi bi-alarm"></i></span>
+                <div>
+                  <h3>Batas waktu pelaporan</h3>
+                  <p>Maksimal <strong>2 x 24 jam</strong> setelah kejadian.</p>
+                </div>
+              </div>
+
+              <div class="countdown-box">
+                <div class="countdown-item">
+                  <strong>2</strong>
+                  <span>Hari</span>
+                </div>
+                <div class="countdown-item">
+                  <strong>48</strong>
+                  <span>Jam</span>
+                </div>
+                <div class="countdown-item">
+                  <strong>2880</strong>
+                  <span>Menit</span>
+                </div>
+              </div>
+
+              <p style="margin-top: 1rem">
+                Semakin cepat pelaporan dilakukan, semakin akurat data kejadian
+                yang berhasil didokumentasikan untuk keperluan investigasi lebih lanjut.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-tools">
+          <div class="tool-card reveal">
+            <h3>Checklist Persiapan Data Pelaporan</h3>
+            <p style="color: var(--muted)">
+              Kumpulkan data dan fakta minimum ini sebelum menyusun Berita Acara
+              Kecelakaan Kerja Laboratorium.
+            </p>
+
+            <div class="checklist" id="reportChecklist">
+              <label class="check-item">
+                <input type="checkbox" class="report-check" />
+                <span
+                  >Identitas pelapor & korban (Nama, Status/Unit, Kontak)</span
+                >
+              </label>
+              <label class="check-item">
+                <input type="checkbox" class="report-check" />
+                <span>Waktu dan lokasi presisi terjadinya kecelakaan</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" class="report-check" />
+                <span>Uraian kronologi kejadian yang runtut dan obyektif</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" class="report-check" />
+                <span
+                  >Dampak kecelakaan (Cidera pada korban / kerusakan alat)</span
+                >
+              </label>
+              <label class="check-item">
+                <input type="checkbox" class="report-check" />
+                <span>Tindakan awal / P3K yang telah diupayakan</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" class="report-check" />
+                <span
+                  >Identitas minimal 2 (dua) orang saksi mata (Saksi I & Saksi
+                  II)</span
+                >
+              </label>
+            </div>
+
+            <div class="progress-wrap">
+              <div class="progress-label">
+                <span>Kesiapan data pelaporan</span>
+                <span id="progressPercent">0%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-card reveal">
+            <h3>Catatan penting</h3>
+            <p style="color: var(--muted)">
+              Laporan yang baik adalah laporan yang rinci, runtut, dan dapat
+              digunakan sebagai dasar tindak lanjut dan evaluasi keselamatan kerja.
+            </p>
+
+            <div class="quick-note">
+              <i class="bi bi-lightbulb"></i> Laporan wajib berfokus pada fakta
+              kejadian secara objektif, bukan opini atau asumsi sepihak.
+            </div>
+            <div
+              class="quick-note"
+              style="
+                margin-top: 0.8rem;
+                background: rgba(22, 163, 74, 0.07);
+                color: #166534;
+                border-color: rgba(22, 163, 74, 0.18);
+              "
+            >
+              <i class="bi bi-check2-circle"></i> Bukti pendukung seperti foto,
+              nama saksi, dan kondisi area sangat membantu proses investigasi.
+            </div>
+            <div
+              class="quick-note"
+              style="
+                margin-top: 0.8rem;
+                background: rgba(245, 158, 11, 0.08);
+                color: #92400e;
+                border-color: rgba(245, 158, 11, 0.2);
+              "
+            >
+              <i class="bi bi-exclamation-circle"></i> Pelaporan tidak boleh ditunda
+              apabila insiden telah terjadi. Keterlambatan pelaporan berpotensi
+              mengakibatkan hilangnya data kejadian yang akurat.
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-section reveal" id="alur-pelaporan">
+          <h2 class="flow-title">Alur pelaporan kecelakaan kerja</h2>
+
+          <div class="flow-progress">
+            <span class="pill"
+              ><i class="bi bi-1-circle-fill"></i> Input Awal</span
+            >
+            <span class="arrow"><i class="bi bi-arrow-right"></i></span>
+            <span class="pill"
+              ><i class="bi bi-2-circle-fill"></i> Berita Acara Resmi</span
+            >
+            <span class="arrow"><i class="bi bi-arrow-right"></i></span>
+            <span class="pill"
+              ><i class="bi bi-3-circle-fill"></i> Tindak Lanjut</span
+            >
+          </div>
+
+          <div class="flow-grid">
+            <div class="flow-step">
+              <span class="step-badge">1</span>
+              <div class="flow-step-icon">
+                <i class="fas fa-user-injured"></i>
+              </div>
+              <h3 class="flow-step-title">
+                Korban / Saksi mengisi form online
+              </h3>
+              <p class="flow-step-description">
+                Laporan awal wajib diisi sesegera mungkin setelah kejadian agar
+                data dapat direkam secara lengkap dan akurat sebelum ada potensi
+                perubahan pada keterangan kejadian.
+              </p>
+              <span class="flow-meta"
+                ><i class="bi bi-clock-history"></i> Tahap awal pelaporan</span
+              ><br />
+              <a
+                href="https://forms.gle/6RkYwN71xJCRzFDq9"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flow-step-link"
+              >
+                <i class="fas fa-external-link-alt"></i> Isi Form Online
+              </a>
+            </div>
+
+            <div class="flow-step">
+              <span class="step-badge">2</span>
+              <div class="flow-step-icon">
+                <i class="fas fa-file-signature"></i>
+              </div>
+              <h3 class="flow-step-title">Petugas menyusun Berita Acara</h3>
+              <p class="flow-step-description">
+                Berdasarkan data awal, petugas akan mencetak Berita Acara
+                Kecelakaan Kerja Laboratorium yang harus ditandatangani pelapor
+                dan 2 orang saksi.
+              </p>
+              <span class="flow-meta"
+                ><i class="bi bi-folder2-open"></i> Dokumen legal internal</span
+              ><br />
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScbwEwDIc6xm4iMQgIm47XfhNZJADf9QVNgbtTBXP-KTZSshg/viewform?usp=sharing&ouid=115279150732859247950"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flow-step-link"
+              >
+                <i class="fas fa-file-word"></i> Lihat Format Hard Copy
+              </a>
+            </div>
+
+            <div class="flow-step">
+              <span class="step-badge">3</span>
+              <div class="flow-step-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+              <h3 class="flow-step-title">Investigasi & Tindak Lanjut</h3>
+              <p class="flow-step-description">
+                Dokumen Berita Acara akan diproses oleh Tim K3 atau Manajemen
+                Laboratorium untuk dievaluasi akar masalahnya dan merencanakan
+                pencegahan.
+              </p>
+              <span class="flow-meta"
+                ><i class="bi bi-shield-check"></i> Evaluasi operasional</span
+              ><br />
+            </div>
+          </div>
+        </div>
+
+        <div class="extra-grid">
+          <div class="cta-section reveal">
+            <h2 class="cta-title">Mulai pelaporan sekarang</h2>
+            <p class="cta-text">
+              Pilih jalur pelaporan yang sesuai. Online untuk input cepat, hard
+              copy untuk dokumentasi resmi lanjutan.
+            </p>
+
+            <div class="cta-buttons">
+              <a
+                href="https://forms.gle/6RkYwN71xJCRzFDq9"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-btn cta-btn-primary"
+              >
+                <i class="fas fa-edit"></i> Isi Form Online Sekarang
+              </a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScbwEwDIc6xm4iMQgIm47XfhNZJADf9QVNgbtTBXP-KTZSshg/viewform?usp=sharing&ouid=115279150732859247950"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-btn cta-btn-secondary"
+              >
+                <i class="fas fa-eye"></i> Buka Format Hard Copy
+              </a>
+            </div>
+          </div>
+
+          <div class="faq-section reveal">
+            <h2 class="faq-title">FAQ singkat</h2>
+
+            <div class="faq-list">
+              <div class="faq-item active">
+                <button class="faq-question" type="button">
+                  Apa itu Berita Acara Kecelakaan Kerja?
+                  <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="faq-answer" style="max-height: 180px">
+                  <div class="faq-answer-inner">
+                    Dokumen legal internal laboratorium yang merinci kronologi
+                    pasti, pihak yang terdampak, serta kesaksian dari minimal 2
+                    (dua) orang saksi mata terkait insiden tersebut.
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" type="button">
+                  Siapa yang boleh mengisi laporan?
+                  <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Korban, saksi, atau petugas yang mengetahui kejadian dapat
+                    mengisi laporan awal online, selama informasi yang diberikan
+                    obyektif dan dapat dipertanggungjawabkan.
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" type="button">
+                  Apakah insiden kecil tetap harus dilaporkan?
+                  <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Ya. Insiden kecil dapat mengindikasikan adanya kelemahan
+                    pada sistem kerja, peralatan, atau perilaku operasional yang
+                    apabila diabaikan berpotensi berkembang menjadi kecelakaan
+                    besar (major incident).
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" type="button">
+                  Kenapa perlu dua tahap, online dan cetak?
+                  <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    Form online mempercepat pengumpulan data awal dan memberi
+                    notifikasi instan. Dokumen cetak membantu validasi keabsahan
+                    administrasi resmi (membutuhkan tanda tangan saksi).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice-section reveal">
+          <h3 class="notice-title">Penting untuk diingat</h3>
+          <div class="notice-grid">
+            <div class="notice-item">
+              <strong>Waktu pelaporan</strong>
+              <span>Maksimal 2 x 24 jam setelah kejadian.</span>
+            </div>
+            <div class="notice-item">
+              <strong>Tanggung jawab</strong>
+              <span
+                >Setiap personel wajib melaporkan insiden atau temuan yang
+                relevan.</span
+              >
+            </div>
+            <div class="notice-item">
+              <strong>Kerahasiaan data</strong>
+              <span
+                >Informasi dalam laporan dikelola secara etis untuk kepentingan
+                evaluasi keselamatan.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+      const scrollProgress = document.getElementById("scrollProgress");
+      const backToTop = document.getElementById("backToTop");
+      const reveals = document.querySelectorAll(".reveal");
+      const checklistInputs = document.querySelectorAll(".report-check");
+      const progressFill = document.getElementById("progressFill");
+      const progressPercent = document.getElementById("progressPercent");
+      const faqItems = document.querySelectorAll(".faq-item");
+
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = progress + "%";
+
+        if (scrollTop > 320) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      }
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      reveals.forEach((el) => revealObserver.observe(el));
+
+      function updateChecklistProgress() {
+        const total = checklistInputs.length;
+        const checked = document.querySelectorAll(
+          ".report-check:checked",
+        ).length;
+        const percent = Math.round((checked / total) * 100);
+
+        progressFill.style.width = percent + "%";
+        progressPercent.textContent = percent + "%";
+
+        checklistInputs.forEach((input) => {
+          input.closest(".check-item").classList.toggle("done", input.checked);
+        });
+      }
+
+      checklistInputs.forEach((input) => {
+        input.addEventListener("change", updateChecklistProgress);
+      });
+
+      updateChecklistProgress();
+
+      faqItems.forEach((item) => {
+        const button = item.querySelector(".faq-question");
+        const answer = item.querySelector(".faq-answer");
+
+        button.addEventListener("click", () => {
+          const isActive = item.classList.contains("active");
+
+          faqItems.forEach((other) => {
+            other.classList.remove("active");
+            other.querySelector(".faq-answer").style.maxHeight = null;
+          });
+
+          if (!isActive) {
+            item.classList.add("active");
+            answer.style.maxHeight = answer.scrollHeight + "px";
+          }
+        });
+      });
+
+      window.addEventListener("scroll", updateScrollProgress);
+      window.addEventListener("load", updateScrollProgress);
+    </script>
+  </body>
+</html>

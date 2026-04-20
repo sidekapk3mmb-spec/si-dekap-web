@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keadaan Darurat - SI-DEKAP Laboratorium</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="footer.css" />
+
+    <style>
+      :root {
+        --primary-blue: #bac94a;
+        --teal: #6c8cbf;
+        --bg-grad-start: #eef8d7;
+        --bg-grad-end: #e8f6f0;
+        --dark-blue: #105294;
+
+        --gray-50: #fbfdf9;
+        --gray-100: #f3f6ee;
+        --gray-200: #e4ebdf;
+        --gray-300: #d7dfd1;
+        --gray-500: #6b7280;
+        --gray-600: #4b5563;
+        --gray-700: #374151;
+        --white: #ffffff;
+
+        --danger: #ef4444;
+        --danger-light: #fee2e2;
+        --warning: #f59e0b;
+        --warning-light: #fff4d6;
+        --success: #10b981;
+        --info-light: #e8f1ff;
+
+        --shadow-sm: 0 8px 20px rgba(16, 82, 148, 0.05);
+        --shadow-md: 0 18px 40px rgba(16, 82, 148, 0.08);
+        --shadow-lg: 0 28px 60px rgba(16, 82, 148, 0.12);
+
+        --radius-lg: 24px;
+        --radius-xl: 30px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(234, 246, 205, 0.48),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(207, 247, 228, 0.36),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #fbfdf9 0%, #f8fbf8 42%, #ffffff 100%);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.72rem 1.1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 25px rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .section-heading {
+        font-size: clamp(2rem, 3.8vw, 3rem);
+        line-height: 1.08;
+        color: var(--dark-blue);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .section-subtitle {
+        color: var(--muted);
+        font-size: 1.02rem;
+        max-width: 720px;
+        margin: 1rem auto 0;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        z-index: 1200;
+        box-shadow: 0 2px 10px rgba(16, 82, 148, 0.18);
+      }
+
+      /* =============================
+         HERO
+         ============================= */
+      .emergency-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 0 5rem;
+        background:
+          radial-gradient(
+            circle at 12% 20%,
+            rgba(239, 68, 68, 0.1),
+            transparent 22%
+          ),
+          radial-gradient(
+            circle at 85% 22%,
+            rgba(245, 158, 11, 0.08),
+            transparent 20%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(255, 244, 244, 0.95) 0%,
+            rgba(255, 250, 245, 0.95) 48%,
+            rgba(255, 255, 255, 1) 100%
+          );
+      }
+
+      .emergency-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(239, 68, 68, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(239, 68, 68, 0.08) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.35),
+          transparent 90%
+        );
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 920px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .hero-inner h1 {
+        font-size: clamp(2.6rem, 5vw, 4.4rem);
+        line-height: 1.04;
+        font-weight: 800;
+        margin: 1.2rem 0 1rem;
+        letter-spacing: -0.04em;
+        color: var(--dark-blue);
+      }
+      .hero-inner p {
+        font-size: 1.08rem;
+        color: var(--gray-600);
+        max-width: 760px;
+        margin: 0 auto 2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 1rem 1.55rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.98rem;
+        cursor: pointer;
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          background 0.28s ease;
+        border: none;
+      }
+      .cta-button.primary {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: var(--white);
+        box-shadow: 0 18px 35px rgba(220, 38, 38, 0.2);
+      }
+      .cta-button.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 22px 42px rgba(220, 38, 38, 0.3);
+      }
+      .cta-button.secondary {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--danger);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        box-shadow: 0 10px 22px rgba(239, 68, 68, 0.06);
+      }
+      .cta-button.secondary:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-divider {
+        width: 140px;
+        height: 5px;
+        margin: 2rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--danger), var(--warning));
+        box-shadow: 0 6px 18px rgba(239, 68, 68, 0.15);
+      }
+
+      /* =============================
+         INTRO STRIP
+         ============================= */
+      .content-section {
+        padding: 4rem 0 2rem;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        box-shadow: var(--shadow-md);
+        border-radius: var(--radius-xl);
+        backdrop-filter: blur(16px);
+      }
+      .intro-panel {
+        padding: 1.6rem;
+        margin-top: -1.6rem;
+        position: relative;
+        z-index: 2;
+      }
+      .intro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .intro-card {
+        padding: 1.25rem;
+        border-radius: 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(251, 253, 247, 0.96)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        box-shadow: 0 10px 24px rgba(16, 82, 148, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .intro-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 28px rgba(16, 82, 148, 0.08);
+      }
+      .intro-card .icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.9rem;
+        background: linear-gradient(
+          135deg,
+          rgba(239, 68, 68, 0.15),
+          rgba(245, 158, 11, 0.1)
+        );
+        color: var(--danger);
+        font-size: 1.2rem;
+      }
+      .intro-card h3 {
+        color: var(--dark-blue);
+        font-size: 1.02rem;
+        margin-bottom: 0.4rem;
+      }
+      .intro-card p {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      /* =============================
+         EARTHQUAKE SECTION
+         ============================= */
+      .earthquake-section {
+        margin-top: 3rem;
+      }
+      .earthquake-card {
+        background:
+          url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q 25 25, 50 50 T 100 50" fill="none" stroke="rgba(108,140,191,0.06)" stroke-width="4"/></svg>'),
+          linear-gradient(135deg, #ffffff 0%, #fbfdf9 100%);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        border-radius: 30px;
+        padding: 2.5rem;
+        box-shadow: var(--shadow-md);
+      }
+      .eq-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .eq-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
+        background: var(--info-light);
+        color: var(--dark-blue);
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .eq-header h2 {
+        color: var(--dark-blue);
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin: 0;
+      }
+      .eq-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .eq-step {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        padding: 1.2rem;
+        border-radius: 20px;
+        transition: transform 0.25s ease;
+      }
+      .eq-step:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-sm);
+      }
+      .eq-step h4 {
+        color: var(--dark-blue);
+        margin-bottom: 0.5rem;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .eq-step h4 i {
+        color: var(--teal);
+      }
+      .eq-step p {
+        color: var(--gray-600);
+        font-size: 0.95rem;
+        margin: 0;
+      }
+
+      /* =============================
+         FIRE SECTION
+         ============================= */
+      .fire-section {
+        margin-top: 4rem;
+      }
+      .fire-title {
+        text-align: center;
+        color: var(--danger);
+        font-size: clamp(2rem, 3vw, 2.5rem);
+        font-weight: 800;
+        margin-bottom: 2rem;
+      }
+
+      .fire-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+      .fire-triangle-card {
+        background: linear-gradient(180deg, #ffffff, #fffafa);
+        border: 1px solid var(--danger-light);
+        border-radius: 28px;
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        text-align: center;
+        height: 100%;
+      }
+      .fire-triangle-card h3 {
+        color: var(--danger);
+        margin-bottom: 1.5rem;
+        font-size: 1.4rem;
+      }
+      .triangle-wrapper {
+        position: relative;
+        width: 200px;
+        height: 180px;
+        margin: 0 auto 2rem;
+      }
+      /* Simple CSS Triangle representation */
+      .triangle-border {
+        position: absolute;
+        border-left: 100px solid transparent;
+        border-right: 100px solid transparent;
+        border-bottom: 170px solid rgba(239, 68, 68, 0.1);
+        top: 0;
+        left: 0;
+      }
+      .t-label {
+        position: absolute;
+        font-weight: 800;
+        font-size: 0.9rem;
+      }
+      .t-heat {
+        top: 40%;
+        right: -30px;
+        color: var(--danger);
+      }
+      .t-oxygen {
+        top: 40%;
+        left: -40px;
+        color: var(--teal);
+      }
+      .t-fuel {
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--warning);
+      }
+      .t-center {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3.5rem;
+        color: var(--danger);
+        animation: flicker 1.5s infinite alternate;
+      }
+      @keyframes flicker {
+        0%,
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: translate(-50%, -50%) scale(0.9);
+        }
+      }
+      .triangle-desc {
+        color: var(--gray-600);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .fire-steps-card {
+        background: var(--white);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 28px;
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        height: 100%;
+      }
+      .fire-steps-card h3 {
+        color: var(--dark-blue);
+        margin-bottom: 1.5rem;
+        font-size: 1.4rem;
+      }
+      .step-list {
+        display: grid;
+        gap: 1rem;
+      }
+      .step-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--gray-50);
+        border: 1px solid rgba(16, 82, 148, 0.05);
+        border-radius: 16px;
+      }
+      .step-num {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--danger-light);
+        color: var(--danger);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+      .step-text {
+        color: var(--gray-700);
+        font-size: 0.95rem;
+        align-self: center;
+      }
+
+      /* =============================
+         APAR USAGE (PASS)
+         ============================= */
+      .apar-section {
+        margin-top: 4rem;
+      }
+      .apar-card {
+        background: linear-gradient(
+          135deg,
+          rgba(239, 68, 68, 0.04),
+          rgba(245, 158, 11, 0.04)
+        );
+        border: 1px dashed rgba(239, 68, 68, 0.2);
+        border-radius: 30px;
+        padding: 2.5rem;
+        box-shadow: var(--shadow-md);
+      }
+      .apar-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .apar-header h2 {
+        color: var(--danger);
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+      .apar-header p {
+        color: var(--gray-600);
+      }
+
+      .pass-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+      .pass-step {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(239, 68, 68, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+      .pass-step:hover {
+        transform: translateY(-5px);
+      }
+      .pass-letter {
+        font-size: 4rem;
+        font-weight: 800;
+        color: rgba(239, 68, 68, 0.1);
+        position: absolute;
+        right: 10px;
+        bottom: -10px;
+        line-height: 1;
+        pointer-events: none;
+      }
+      .pass-icon {
+        font-size: 2rem;
+        color: var(--danger);
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+      .pass-title {
+        color: var(--dark-blue);
+        font-weight: 800;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+      }
+      .pass-desc {
+        color: var(--gray-600);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* =============================
+         FIRE CLASSES
+         ============================= */
+      .class-section {
+        margin-top: 4rem;
+      }
+      .class-title {
+        text-align: center;
+        color: var(--dark-blue);
+        font-size: clamp(1.8rem, 3vw, 2.2rem);
+        font-weight: 800;
+        margin-bottom: 2rem;
+      }
+      .class-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+      .class-card {
+        display: flex;
+        align-items: stretch;
+        background: var(--white);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        transition: transform 0.25s ease;
+      }
+      .class-card:hover {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-md);
+      }
+
+      .class-badge {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        padding: 1rem;
+        flex-shrink: 0;
+      }
+      .class-a {
+        background: var(--success);
+      }
+      .class-b {
+        background: var(--danger);
+      }
+      .class-c {
+        background: var(--dark-blue);
+      }
+      .class-d {
+        background: #6d28d9;
+      }
+
+      .class-badge i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      .class-badge span {
+        font-size: 1.5rem;
+        font-weight: 800;
+      }
+
+      .class-info {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .class-info h4 {
+        color: var(--dark-blue);
+        font-size: 1.1rem;
+        margin-bottom: 0.4rem;
+      }
+      .class-info p {
+        color: var(--gray-600);
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.5;
+      }
+      .class-apar {
+        background: var(--gray-50);
+        padding: 0.5rem 0.8rem;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        color: var(--dark-blue);
+        font-weight: 600;
+        border: 1px solid rgba(16, 82, 148, 0.05);
+      }
+
+      /* =============================
+         INFO BOX
+         ============================= */
+      .info-box {
+        margin-top: 3rem;
+        padding: 2rem;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.1),
+          rgba(108, 140, 191, 0.08)
+        );
+        border-radius: 28px;
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: var(--shadow-sm);
+      }
+      .info-box h3 {
+        color: var(--dark-blue);
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .info-box ul {
+        color: var(--gray-600);
+        line-height: 1.8;
+        padding-left: 1.3rem;
+      }
+      .info-box ul li {
+        margin-bottom: 0.45rem;
+      }
+
+      /* =============================
+         BACK TO TOP
+         ============================= */
+      .back-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #c9d95c 0%, #6c8cbf 100%);
+        color: var(--white);
+        box-shadow: 0 18px 34px rgba(16, 82, 148, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.28s ease;
+        z-index: 1100;
+      }
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .back-to-top:hover {
+        transform: translateY(-4px);
+      }
+
+      /* =============================
+         RESPONSIVE
+         ============================= */
+      @media (max-width: 1100px) {
+        .intro-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .fire-grid {
+          grid-template-columns: 1fr;
+        }
+        .pass-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .emergency-hero {
+          padding: 5.8rem 0 4.4rem;
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .cta-button {
+          width: 100%;
+        }
+        .intro-grid {
+          grid-template-columns: 1fr;
+        }
+        .eq-steps,
+        .pass-grid,
+        .class-grid {
+          grid-template-columns: 1fr;
+        }
+        .earthquake-card,
+        .apar-card {
+          padding: 1.5rem;
+        }
+        .back-to-top {
+          width: 48px;
+          height: 48px;
+          right: 14px;
+          bottom: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div id="header-placeholder"></div>
+
+    <section class="emergency-hero">
+      <div class="container">
+        <div class="hero-inner reveal">
+          <span class="section-label">
+            <i class="bi bi-shield-exclamation"></i>
+            Prosedur Keadaan Darurat
+          </span>
+          <h1>Pencegahan dan Penanggulangan Keadaan Darurat</h1>
+          <p>
+            Kondisi darurat seperti gempa bumi dan kebakaran membutuhkan respons
+            yang tenang, cepat, dan sesuai prosedur. Pahami langkah evakuasi dan
+            penggunaan alat pemadam sebelum bahaya benar-benar terjadi.
+          </p>
+          <div class="hero-actions">
+            <a href="#gempa-bumi" class="cta-button secondary">
+              <i class="fas fa-house-damage"></i> Gempa Bumi
+            </a>
+            <a href="#kebakaran" class="cta-button primary">
+              <i class="fas fa-fire-extinguisher"></i> Bahaya Kebakaran
+            </a>
+          </div>
+          <div class="hero-divider"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="intro-panel glass-panel reveal">
+          <div class="intro-grid">
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-eye"></i></div>
+              <h3>Identifikasi Cepat</h3>
+              <p>
+                Kenali tanda-tanda awal keadaan darurat agar bisa merespons
+                sebelum situasi memburuk.
+              </p>
+            </div>
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-lightning"></i></div>
+              <h3>Respons Terukur</h3>
+              <p>
+                Lakukan tindakan pemadaman awal atau evakuasi sesuai standar
+                operasional yang berlaku.
+              </p>
+            </div>
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-door-open"></i></div>
+              <h3>Evakuasi Aman</h3>
+              <p>
+                Gunakan jalur evakuasi resmi menuju titik kumpul (assembly
+                point) tanpa menimbulkan kepanikan.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="earthquake-section reveal" id="gempa-bumi">
+          <div class="earthquake-card">
+            <div class="eq-header">
+              <div class="eq-icon"><i class="fas fa-house-damage"></i></div>
+              <h2>Penanggulangan Gempa Bumi</h2>
+            </div>
+            <p
+              style="
+                color: var(--muted);
+                margin-bottom: 1rem;
+                font-size: 1.05rem;
+              "
+            >
+              Guncangan gempa bumi di laboratorium sangat berbahaya karena dapat
+              memicu jatuhnya bahan kimia, alat kaca, dan korsleting alat
+              listrik.
+            </p>
+            <div class="eq-steps">
+              <div class="eq-step">
+                <h4><i class="fas fa-user-shield"></i> 1. Jangan Panik</h4>
+                <p>
+                  Kendalikan diri. Kepanikan seringkali menjadi penyebab utama
+                  cedera akibat bertabrakan saat berlari.
+                </p>
+              </div>
+              <div class="eq-step">
+                <h4><i class="fas fa-table"></i> 2. Cari Perlindungan</h4>
+                <p>
+                  Berlindunglah di bawah meja yang kuat, kolong kasur, atau
+                  sudut ruangan yang memiliki struktur pilar kokoh.
+                </p>
+              </div>
+              <div class="eq-step">
+                <h4><i class="fas fa-flask"></i> 3. Jauhi Sumber Bahaya</h4>
+                <p>
+                  Hindari berlindung di dekat jendela kaca, lemari bahan kimia,
+                  atau rak alat berat yang mudah roboh.
+                </p>
+              </div>
+              <div class="eq-step">
+                <h4><i class="fas fa-bolt"></i> 4. Waspada Efek Sekunder</h4>
+                <p>
+                  Perhatikan potensi bahaya lanjutan seperti kebakaran akibat
+                  kebocoran gas atau arus pendek listrik.
+                </p>
+              </div>
+              <div
+                class="eq-step"
+                style="
+                  grid-column: 1 / -1;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 1rem;
+                  background: var(--info-light);
+                "
+              >
+                <i
+                  class="fas fa-phone-alt"
+                  style="font-size: 1.5rem; color: var(--dark-blue)"
+                ></i>
+                <p style="color: var(--dark-blue); font-weight: 600">
+                  Segera hubungi Pemadam Kebakaran atau petugas keamanan gedung
+                  jika terjadi kerusakan struktur yang parah.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fire-section reveal" id="kebakaran">
+          <h2 class="fire-title">Penanggulangan Kebakaran</h2>
+
+          <div class="fire-grid">
+            <div class="fire-triangle-card">
+              <h3>Teori Segitiga Api</h3>
+              <div class="triangle-wrapper">
+                <div class="triangle-border"></div>
+                <div class="t-label t-heat">PANAS<br />(Heat)</div>
+                <div class="t-label t-oxygen">UDARA<br />(Oxygen)</div>
+                <div class="t-label t-fuel">BAHAN<br />(Fuel)</div>
+                <div class="t-center"><i class="fas fa-fire"></i></div>
+              </div>
+              <p class="triangle-desc">
+                Api hanya dapat menyala jika terdapat tiga unsur yang bersatu:
+                <strong>Material/Bahan mudah terbakar</strong>,
+                <strong>Panas (sumber nyala)</strong>, dan
+                <strong>Oksigen</strong>. Memutus salah satu dari unsur ini
+                adalah prinsip utama dalam memadamkan api.
+              </p>
+            </div>
+
+            <div class="fire-steps-card">
+              <h3>Langkah Saat Terjadi Kebakaran</h3>
+              <div class="step-list">
+                <div class="step-item">
+                  <div class="step-num">1</div>
+                  <div class="step-text">
+                    <strong>Jangan Panik.</strong> Tetap tenang agar dapat
+                    berpikir jernih.
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num">2</div>
+                  <div class="step-text">
+                    <strong>Beritahu Teman/Petugas.</strong> Teriakkan
+                    "Kebakaran!" atau tekan tombol Fire Alarm.
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num">3</div>
+                  <div class="step-text">
+                    <strong>Gunakan APAR Terdekat.</strong> Padamkan api jika
+                    masih kecil dan aman untuk dilakukan.
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num">4</div>
+                  <div class="step-text">
+                    <strong>Hindari Asap.</strong> Merunduk atau merangkak saat
+                    evakuasi karena asap berkumpul di atas.
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num">5</div>
+                  <div class="step-text">
+                    <strong>Tutup Pintu.</strong> Tutup pintu ruangan di
+                    belakang Anda (tanpa dikunci) untuk menghambat rambatan api.
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num">6</div>
+                  <div class="step-text">
+                    <strong>Gunakan Tangga Darurat.</strong> Dilarang keras
+                    menggunakan lift saat kebakaran.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="apar-section reveal">
+          <div class="apar-card">
+            <div class="apar-header">
+              <h2>Cara Penggunaan APAR</h2>
+              <p>
+                Ingat selalu teknik <strong>T A S S</strong> (Tarik, Arahkan,
+                Sapukan, Semprot) atau standar PASS.
+              </p>
+            </div>
+
+            <div class="pass-grid">
+              <div class="pass-step">
+                <div class="pass-letter">T</div>
+                <div class="pass-icon"><i class="fas fa-unlock-alt"></i></div>
+                <div class="pass-title">Tarik Pin</div>
+                <div class="pass-desc">
+                  Tarik/lepas pin pengunci pengaman (safety pin) pada tuas
+                  tabung pemadam.
+                </div>
+              </div>
+              <div class="pass-step">
+                <div class="pass-letter">A</div>
+                <div class="pass-icon"><i class="fas fa-crosshairs"></i></div>
+                <div class="pass-title">Arahkan Selang</div>
+                <div class="pass-desc">
+                  Pegang ujung selang dan arahkan *nozzle* tepat ke dasar/pusat
+                  titik api.
+                </div>
+              </div>
+              <div class="pass-step">
+                <div class="pass-letter">T</div>
+                <div class="pass-icon"><i class="fas fa-hand-rock"></i></div>
+                <div class="pass-title">Tekan Tuas</div>
+                <div class="pass-desc">
+                  Berdiri searah angin. Tekan tuas secara penuh untuk
+                  mengeluarkan media pemadam.
+                </div>
+              </div>
+              <div class="pass-step">
+                <div class="pass-letter">S</div>
+                <div class="pass-icon"><i class="fas fa-wind"></i></div>
+                <div class="pass-title">Sapukan Merata</div>
+                <div class="pass-desc">
+                  Sapukan semprotan ke arah kiri dan kanan secara merata hingga
+                  api benar-benar padam.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="class-section reveal">
+          <h2 class="class-title">Klasifikasi Kelas Kebakaran & Media APAR</h2>
+          <div class="class-grid">
+            <div class="class-card">
+              <div class="class-badge class-a">
+                <i class="fas fa-trash"></i>
+                <span>Kelas A</span>
+              </div>
+              <div class="class-info">
+                <h4>Padat Non-Logam</h4>
+                <p>
+                  Bahan padat mudah terbakar seperti kertas, plastik, kain,
+                  kayu, dan karet.
+                </p>
+                <span class="class-apar"
+                  ><i class="fas fa-check-circle"></i> Air, Busa (Foam), Tepung
+                  Kimia (Dry Powder)</span
+                >
+              </div>
+            </div>
+
+            <div class="class-card">
+              <div class="class-badge class-b">
+                <i class="fas fa-gas-pump"></i>
+                <span>Kelas B</span>
+              </div>
+              <div class="class-info">
+                <h4>Cairan & Gas</h4>
+                <p>
+                  Bahan cair mudah terbakar (bensin, solar, cat, alkohol,
+                  pelarut/solvent).
+                </p>
+                <span class="class-apar"
+                  ><i class="fas fa-check-circle"></i> CO2, Busa (Foam), Tepung
+                  Kimia (Dry Powder)</span
+                >
+              </div>
+            </div>
+
+            <div class="class-card">
+              <div class="class-badge class-c">
+                <i class="fas fa-bolt"></i>
+                <span>Kelas C</span>
+              </div>
+              <div class="class-info">
+                <h4>Elektrikal</h4>
+                <p>
+                  Instalasi dan peralatan listrik bertegangan yang mengalami
+                  korsleting.
+                </p>
+                <span class="class-apar"
+                  ><i class="fas fa-check-circle"></i> CO2, Tepung Kimia (Dry
+                  Powder)</span
+                >
+              </div>
+            </div>
+
+            <div class="class-card">
+              <div class="class-badge class-d">
+                <i class="fas fa-cubes"></i>
+                <span>Kelas D</span>
+              </div>
+              <div class="class-info">
+                <h4>Logam (Metal)</h4>
+                <p>
+                  Bahan logam mudah terbakar seperti Sodium, Magnesium, Lithium,
+                  dan Potassium.
+                </p>
+                <span class="class-apar"
+                  ><i class="fas fa-check-circle"></i> APAR Khusus Logam
+                  (Special Dry Powder)</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box reveal">
+          <h3>
+            <i class="fas fa-tools"></i> Perawatan dan Standar Penempatan APAR
+          </h3>
+          <ul>
+            <li>
+              Tempatkan APAR di tempat yang mudah diakses, tidak terhalang benda
+              lain, dan dilengkapi tanda segitiga APAR di atasnya.
+            </li>
+            <li>
+              Pasang APAR pada dinding dengan jarak ideal 125 cm dari lantai
+              (minimal 15 cm dari atas lantai).
+            </li>
+            <li>
+              Di laboratorium terpadu, pemeriksaan kondisi dan tekanan APAR
+              dilakukan secara berkala <strong>setiap 1 bulan sekali</strong>.
+            </li>
+            <li>
+              Setiap tabung APAR harus diuji cobakan (hydrotest) secara berkala
+              dengan jangka waktu maksimal 5 tahun sekali.
+            </li>
+            <li>
+              Jika terdapat segel rusak atau manometer turun, segera laporkan ke
+              tim Sarana Prasarana K3.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+      const scrollProgress = document.getElementById("scrollProgress");
+      const backToTop = document.getElementById("backToTop");
+      const reveals = document.querySelectorAll(".reveal");
+
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = progress + "%";
+
+        if (scrollTop > 320) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      }
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      reveals.forEach((el) => revealObserver.observe(el));
+
+      window.addEventListener("scroll", updateScrollProgress);
+      window.addEventListener("load", updateScrollProgress);
+    </script>
+  </body>
+</html>

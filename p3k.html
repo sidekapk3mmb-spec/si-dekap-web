@@ -1,0 +1,1983 @@
+﻿<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pertolongan Pertama (P3K) - SI-DEKAP Laboratorium</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="footer.css" />
+
+    <style>
+      :root {
+        --primary-blue: #bac94a;
+        --teal: #6c8cbf;
+        --bg-grad-start: #eef8d7;
+        --bg-grad-end: #e8f6f0;
+        --dark-blue: #105294;
+
+        --bg: #fbfdf9;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --border: #e9eef2;
+        --white: #ffffff;
+        --gray-50: #f8fafc;
+        --gray-100: #f1f5f9;
+        --gray-200: #e5e7eb;
+        --gray-600: #4b5563;
+
+        --danger: #ef4444;
+        --danger-soft: #fee2e2;
+        --warning: #f59e0b;
+        --success: #16a34a;
+
+        --shadow-sm: 0 8px 20px rgba(16, 82, 148, 0.05);
+        --shadow-md: 0 18px 40px rgba(16, 82, 148, 0.08);
+        --shadow-lg: 0 28px 60px rgba(16, 82, 148, 0.12);
+
+        --radius-lg: 24px;
+        --radius-xl: 30px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(234, 246, 205, 0.48),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(207, 247, 228, 0.36),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #fbfdf9 0%, #f8fbf8 42%, #ffffff 100%);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.72rem 1.1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 25px rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        z-index: 1200;
+        box-shadow: 0 2px 10px rgba(16, 82, 148, 0.18);
+      }
+
+      /* =============================
+         HERO
+         ============================= */
+      .p3k-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 0 5rem;
+        background:
+          radial-gradient(
+            circle at 12% 20%,
+            rgba(186, 201, 74, 0.16),
+            transparent 22%
+          ),
+          radial-gradient(
+            circle at 85% 22%,
+            rgba(108, 140, 191, 0.12),
+            transparent 20%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(238, 248, 215, 0.95) 0%,
+            rgba(232, 246, 240, 0.95) 48%,
+            rgba(255, 255, 255, 1) 100%
+          );
+      }
+
+      .p3k-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.35),
+          transparent 90%
+        );
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 940px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .hero-inner h1 {
+        font-size: clamp(2.6rem, 5vw, 4.3rem);
+        line-height: 1.04;
+        font-weight: 800;
+        margin: 1.2rem 0 1rem;
+        letter-spacing: -0.04em;
+        color: var(--dark-blue);
+      }
+      .hero-inner p {
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 760px;
+        margin: 0 auto 2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 1rem 1.55rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.98rem;
+        cursor: pointer;
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          background 0.28s ease;
+        border: none;
+      }
+      .cta-button.primary {
+        background: linear-gradient(
+          135deg,
+          #c9d95c 0%,
+          #b7cf57 18%,
+          #6c8cbf 100%
+        );
+        color: var(--white);
+        box-shadow: 0 18px 35px rgba(12, 44, 82, 0.2);
+      }
+      .cta-button.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 22px 42px rgba(12, 44, 82, 0.28);
+      }
+      .cta-button.secondary {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--dark-blue);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 22px rgba(16, 82, 148, 0.06);
+      }
+      .cta-button.secondary:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-divider {
+        width: 140px;
+        height: 5px;
+        margin: 2rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        box-shadow: 0 6px 18px rgba(16, 82, 148, 0.12);
+      }
+
+      /* =============================
+         INTRO STRIP
+         ============================= */
+      .content-section {
+        padding: 4rem 0 2rem;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        box-shadow: var(--shadow-md);
+        border-radius: var(--radius-xl);
+        backdrop-filter: blur(16px);
+      }
+      .intro-panel {
+        padding: 1.6rem;
+        margin-top: -1.6rem;
+        position: relative;
+        z-index: 2;
+      }
+      .intro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .intro-card {
+        padding: 1.25rem;
+        border-radius: 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(251, 253, 247, 0.96)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        box-shadow: 0 10px 24px rgba(16, 82, 148, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .intro-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 28px rgba(16, 82, 148, 0.08);
+      }
+      .intro-card .icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.9rem;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.18)
+        );
+        color: var(--dark-blue);
+        font-size: 1.2rem;
+      }
+      .intro-card h3 {
+        color: var(--dark-blue);
+        font-size: 1.02rem;
+        margin-bottom: 0.4rem;
+      }
+      .intro-card p {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .main-wrap {
+        max-width: 1000px;
+        margin: 3rem auto 0;
+      }
+
+      /* =============================
+         ACCORDION (PARENT)
+         ============================= */
+      .accordion-title {
+        color: var(--dark-blue);
+        font-size: clamp(2rem, 3vw, 2.6rem);
+        text-align: center;
+        margin: 0 0 1.8rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .accordion-list {
+        display: grid;
+        gap: 0.95rem;
+      }
+      .accordion {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .accordion:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 28px rgba(16, 82, 148, 0.08);
+      }
+      .accordion.hidden {
+        display: none;
+      }
+      .accordion-header {
+        background: var(--white);
+        padding: 1.2rem 1.25rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--dark-blue);
+        font-family: inherit;
+      }
+      .accordion-left {
+        display: flex;
+        align-items: center;
+        gap: 0.95rem;
+      }
+      .accordion-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.22),
+          rgba(108, 140, 191, 0.16)
+        );
+        color: var(--dark-blue);
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+      .accordion-title-text {
+        font-size: 1.08rem;
+        font-weight: 800;
+        color: var(--dark-blue);
+      }
+      .accordion-subtitle {
+        display: block;
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-weight: 500;
+        margin-top: 0.1rem;
+      }
+      .accordion-toggle {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--gray-100);
+        color: var(--dark-blue);
+        transition:
+          transform 0.25s ease,
+          background 0.25s ease;
+        flex-shrink: 0;
+      }
+      .accordion.open .accordion-toggle {
+        transform: rotate(180deg);
+        background: var(--primary-blue);
+      }
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .accordion-content-inner {
+        padding: 0 1.25rem 1.3rem 1.25rem;
+        border-top: 1px solid rgba(16, 82, 148, 0.06);
+        background: linear-gradient(180deg, #ffffff 0%, #fbfdf9 100%);
+      }
+
+      /* =============================
+         STEPS (PARENT)
+         ============================= */
+      .accordion-steps {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0;
+        counter-reset: step-counter;
+      }
+      .accordion-steps > li {
+        position: relative;
+        padding-left: 3rem;
+        margin-bottom: 1rem;
+        counter-increment: step-counter;
+        color: var(--gray-600);
+        line-height: 1.7;
+      }
+      .accordion-steps > li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 0.05rem;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--dark-blue);
+        color: var(--white);
+        font-size: 0.8rem;
+        font-weight: 800;
+        box-shadow: 0 4px 10px rgba(16, 82, 148, 0.2);
+      }
+      .accordion-steps ul {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 0.55rem;
+      }
+      .accordion-steps ul li {
+        position: relative;
+        padding-left: 1.4rem;
+        margin-bottom: 0.45rem;
+        color: var(--gray-600);
+      }
+      .accordion-steps ul li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.72rem;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--primary-blue);
+        transform: translateY(-50%);
+      }
+
+      .step-critical {
+        display: inline-block;
+        background: #fde68a;
+        color: #92400e;
+        font-size: 0.68rem;
+        font-weight: 800;
+        padding: 0.15rem 0.42rem;
+        border-radius: 7px;
+        margin-left: 0.35rem;
+        vertical-align: middle;
+      }
+      .step-warning {
+        display: inline-block;
+        background: var(--danger-soft);
+        color: #991b1b;
+        font-size: 0.68rem;
+        font-weight: 800;
+        padding: 0.15rem 0.42rem;
+        border-radius: 7px;
+        margin-left: 0.35rem;
+        vertical-align: middle;
+      }
+
+      /* =============================
+         NESTED ACCORDION (DIPERBARUI)
+         ============================= */
+      .nested-accordion-group {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .nested-accordion {
+        border: 1px solid rgba(16, 82, 148, 0.12);
+        border-radius: 16px;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(16, 82, 148, 0.02);
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .nested-accordion:hover {
+        border-color: rgba(16, 82, 148, 0.25);
+        box-shadow: 0 6px 16px rgba(16, 82, 148, 0.06);
+      }
+      .nested-accordion-header {
+        width: 100%;
+        padding: 1rem;
+        background: #f8fafc;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 700;
+        color: var(--dark-blue);
+        font-family: inherit;
+        font-size: 0.96rem;
+        transition: background 0.3s ease;
+      }
+      .nested-accordion.open .nested-accordion-header {
+        background: #ffffff;
+        border-bottom: 1px dashed rgba(16, 82, 148, 0.1);
+      }
+      .nested-accordion-title {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .nested-accordion-badge {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.18),
+          rgba(108, 140, 191, 0.14)
+        );
+        color: var(--dark-blue);
+        flex-shrink: 0;
+      }
+      .nested-accordion-toggle {
+        transition: transform 0.25s ease;
+      }
+      .nested-accordion.open .nested-accordion-toggle {
+        transform: rotate(180deg);
+      }
+      .nested-accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .nested-accordion-content-inner {
+        padding: 1rem;
+      }
+      .nested-steps {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        counter-reset: nested-step;
+      }
+      .nested-steps li {
+        position: relative;
+        padding-left: 2.4rem;
+        margin-bottom: 0.8rem;
+        counter-increment: nested-step;
+        color: var(--gray-600);
+      }
+      .nested-steps li:last-child {
+        margin-bottom: 0;
+      }
+      .nested-steps li::before {
+        content: counter(nested-step);
+        position: absolute;
+        left: 0;
+        top: 0.05rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--teal);
+        color: var(--white);
+        font-size: 0.75rem;
+        font-weight: 800;
+      }
+
+      /* =============================
+         CONTACT CARDS & CTA
+         ============================= */
+      .contact-section {
+        margin-top: 3rem;
+      }
+      .contact-title {
+        color: var(--dark-blue);
+        font-size: clamp(1.9rem, 3vw, 2.4rem);
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+      }
+      .emergency-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .emergency-card {
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 24px;
+        box-shadow: var(--shadow-md);
+        padding: 1.35rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-left: 5px solid var(--primary-blue);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .emergency-card:hover {
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: var(--shadow-lg);
+      }
+      .emergency-card.alt-bg {
+        border-left-color: var(--danger);
+      }
+      .card-left-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        font-size: 1.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .service-icon--112 {
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.18)
+        );
+        color: var(--dark-blue);
+      }
+      .service-icon--fire {
+        background: rgba(239, 68, 68, 0.12);
+        color: var(--danger);
+      }
+      .emergency-card .card-title {
+        font-weight: 800;
+        font-size: 1.08rem;
+        color: var(--dark-blue);
+        margin: 0;
+      }
+      .emergency-card .card-desc {
+        color: var(--gray-600);
+        font-size: 0.92rem;
+        margin: 0.35rem 0 0 0;
+      }
+      .emergency-card .card-right {
+        min-width: 185px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        gap: 0.45rem;
+      }
+      .emergency-card .card-link {
+        color: var(--dark-blue);
+        font-weight: 800;
+        text-decoration: none;
+        font-size: 1.35rem;
+      }
+      .emergency-card.alt-bg .card-link {
+        color: var(--danger);
+      }
+      .card-link:hover {
+        opacity: 0.82;
+      }
+      .call-now {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.48rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+      .emergency-card.alt-bg .call-now {
+        background: rgba(239, 68, 68, 0.08);
+        color: var(--danger);
+      }
+
+      .cta-container {
+        display: flex;
+        justify-content: center;
+        margin: 3.5rem 0 1rem;
+      }
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #28a745;
+        color: #ffffff;
+        padding: 14px 32px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(40, 167, 69, 0.25);
+        transition: all 0.3s ease;
+      }
+      .cta-btn:hover {
+        background-color: #218838;
+        color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 14px 30px rgba(40, 167, 69, 0.35);
+      }
+
+      /* =============================
+         BACK TO TOP
+         ============================= */
+      .back-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #c9d95c 0%, #6c8cbf 100%);
+        color: var(--white);
+        box-shadow: 0 18px 34px rgba(16, 82, 148, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.28s ease;
+        z-index: 1100;
+      }
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .back-to-top:hover {
+        transform: translateY(-4px);
+      }
+
+      /* =============================
+         RESPONSIVE (NON-HEADER)
+         ============================= */
+      @media (max-width: 1100px) {
+        .intro-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 768px) {
+        .p3k-hero {
+          padding: 5.8rem 0 4.4rem;
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .cta-button {
+          width: 100%;
+        }
+        .intro-grid,
+        .emergency-cards {
+          grid-template-columns: 1fr;
+        }
+        .accordion-header {
+          padding: 1rem;
+        }
+        .accordion-content-inner {
+          padding: 0 1rem 1rem;
+        }
+        .emergency-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .emergency-card .card-right {
+          min-width: 0;
+          align-items: flex-start;
+          text-align: left;
+        }
+        .back-to-top {
+          width: 48px;
+          height: 48px;
+          right: 14px;
+          bottom: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div id="header-placeholder"></div>
+
+    <section class="p3k-hero">
+      <div class="container">
+        <div class="hero-inner reveal">
+          <span class="section-label">
+            <i class="bi bi-heart-pulse"></i>
+            Panduan Darurat Laboratorium
+          </span>
+
+          <h1>
+            Pertolongan pertama harus cepat, tepat, dan tidak panik gaya film
+          </h1>
+
+          <p>
+            Halaman ini dirancang untuk membantu personel laboratorium mengambil
+            tindakan awal saat terjadi insiden. Fokus utama P3K adalah mencegah
+            kondisi korban memburuk sambil menunggu pertolongan lanjutan.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#kategori-p3k" class="cta-button primary">
+              <i class="bi bi-arrow-right-circle"></i> Lihat Kategori P3K
+            </a>
+            <a href="#nomor-darurat" class="cta-button secondary">
+              <i class="bi bi-telephone"></i> Nomor Darurat
+            </a>
+          </div>
+
+          <div class="hero-divider"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="intro-panel glass-panel reveal">
+          <div class="intro-grid">
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-lightning-charge"></i></div>
+              <h3>Tanggap Cepat</h3>
+              <p>
+                Langkah awal yang benar bisa mencegah cedera menjadi lebih
+                parah.
+              </p>
+            </div>
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-shield-check"></i></div>
+              <h3>Tindakan Aman</h3>
+              <p>
+                Penolong tetap harus menjaga keselamatan diri sebelum membantu
+                korban.
+              </p>
+            </div>
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-clipboard2-pulse"></i></div>
+              <h3>Arahan Sistematis</h3>
+              <p>
+                Panduan ini dibuat runtut supaya keputusan tidak random dan asal
+                nekat.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-wrap">
+          <h2 class="accordion-title reveal" id="kategori-p3k">
+            Kategori penanganan
+          </h2>
+
+          <div class="accordion-list">
+            <div class="accordion reveal" data-title="Gangguan Kesadaran">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"
+                    ><i class="bi bi-person-bounding-box"></i
+                  ></span>
+                  <div>
+                    <span class="accordion-title-text">Gangguan Kesadaran</span>
+                    <span class="accordion-subtitle"
+                      >Penanganan awal untuk Pingsan dan Cedera Kepala</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <div class="nested-accordion-group">
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-person-down"></i
+                          ></span>
+                          Jika Korban Pingsan
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>Baringkan korban di tempat aman dan datar.</li>
+                            <li>
+                              Tinggikan tungkainya untuk membantu sirkulasi
+                              darah ke otak.
+                            </li>
+                            <li>
+                              Longgarkan pakaian korban yang terlalu ketat.
+                            </li>
+                            <li>
+                              Bila korban pulih, istirahatkan beberapa menit
+                              terlebih dahulu.
+                            </li>
+                            <li>
+                              Bila tidak kunjung pulih, segera perlukan tindakan
+                              medis. <span class="step-critical">KRITIS</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-bandaid"></i
+                          ></span>
+                          Jika Terjadi Cedera Kepala
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Jika korban <b>tidak sadar</b>: Posisikan miring
+                              stabil (Recovery Position).
+                            </li>
+                            <li>
+                              Jika korban <b>sadar</b>: Baringkan dan
+                              istirahatkan penderita secara perlahan.
+                            </li>
+                            <li>
+                              Bersihkan dan buka jalan napas secara hati-hati.
+                            </li>
+                            <li>
+                              Awasi napas dan sirkulasi, selalu topang bagian
+                              kepala dan leher korban.
+                            </li>
+                            <li>
+                              Bila terdapat darah keluar dari telinga, tutup
+                              ringan dengan kasa.
+                              <span class="step-warning">HINDARI</span>
+                              menyumbat darah.
+                            </li>
+                            <li>
+                              Segera rujuk ke fasilitas kesehatan terdekat.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="Gangguan Sirkulasi">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"
+                    ><i class="bi bi-activity"></i
+                  ></span>
+                  <div>
+                    <span class="accordion-title-text"
+                      >Gangguan Sirkulasi (Shock)</span
+                    >
+                    <span class="accordion-subtitle"
+                      >Tindakan darurat untuk korban yang mengalami syok</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <ul class="accordion-steps">
+                    <li>Bawa korban ke tempat yang teduh dan aman.</li>
+                    <li>
+                      Posisikan korban terlentang, lalu tinggikan tungkai
+                      sekitar 20 - 30 cm.
+                    </li>
+                    <li>Longgarkan pakaian yang dirasa mengikat.</li>
+                    <li>
+                      Beri selimut untuk menghangatkan tubuh dan jaga agar
+                      korban tetap tenang.
+                    </li>
+                    <li>
+                      Pastikan jalan napas tidak terganggu. Berikan oksigen
+                      tambahan bila tersedia.
+                    </li>
+                    <li>
+                      Periksa tanda-tanda vital secara berkala dan segera rujuk
+                      ke fasilitas kesehatan.
+                      <span class="step-critical">KRITIS</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="Gangguan Pernapasan">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"><i class="bi bi-wind"></i></span>
+                  <div>
+                    <span class="accordion-title-text"
+                      >Gangguan Pernapasan</span
+                    >
+                    <span class="accordion-subtitle"
+                      >Tersedak, asma, atau napas tidak efektif</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <div class="nested-accordion-group">
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-slash-circle"></i
+                          ></span>
+                          Sumbatan Jalan Napas
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Keluarkan benda penyumbat hanya jika terlihat di
+                              dalam mulut atau di luar.
+                            </li>
+                            <li>
+                              Jika sadar dan napas normal, pantau terus
+                              kesadaran, nadi, dan pernapasannya.
+                            </li>
+                            <li>
+                              Bersiap berikan napas bantuan atau RJP bila
+                              diperlukan.
+                              <span class="step-critical">KRITIS</span>
+                            </li>
+                            <li>
+                              Sekalipun korban tampak pulih, upayakan
+                              pemeriksaan lebih lanjut ke Rumah Sakit.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-inhaler"></i
+                          ></span>
+                          Serangan Asma
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Tenangkan korban, berikan ruang dengan udara segar
+                              dan oksigen cukup.
+                            </li>
+                            <li>
+                              Bantu korban menggunakan obat/inhaler yang biasa
+                              dibawanya.
+                            </li>
+                            <li>
+                              Bila sadar, posisikan duduk atau setengah tidur
+                              senyaman mungkin. Jangan baringkan rata!
+                              <span class="step-warning">HINDARI</span>
+                            </li>
+                            <li>
+                              Jika tidak sadar, bersiap panggil ambulans dan
+                              siapkan tindakan.
+                              <span class="step-critical">KRITIS</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="Patah Tulang">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"
+                    ><i class="bi bi-person-dash"></i
+                  ></span>
+                  <div>
+                    <span class="accordion-title-text">Patah Tulang</span>
+                    <span class="accordion-subtitle"
+                      >Tindakan darurat untuk patah tulang tertutup atau
+                      terbuka</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <ul class="accordion-steps">
+                    <li>
+                      Bawa korban ke tempat yang aman dengan sangat hati-hati
+                      untuk mencegah pergeseran.
+                    </li>
+                    <li>
+                      Bila disertai perdarahan, prioritaskan untuk menghentikan
+                      perdarahannya.
+                    </li>
+                    <li>
+                      Bebaskan jalan napas dan berikan napas buatan bila
+                      diperlukan.
+                    </li>
+                    <li>Tutup area luka (bila terbuka) dengan kasa steril.</li>
+                    <li>
+                      Pasang penyangga/bidai dengan ekstra hati-hati di area
+                      tulang yang patah.
+                    </li>
+                    <li>
+                      Hangatkan atau selimuti tubuh korban sambil menunggu
+                      ambulans atau persiapan evakuasi ke RS.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="Sengatan Listrik">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"
+                    ><i class="bi bi-lightning-fill"></i
+                  ></span>
+                  <div>
+                    <span class="accordion-title-text">Sengatan Listrik</span>
+                    <span class="accordion-subtitle"
+                      >Pertolongan pertama jika tersetrum alat kelistrikan
+                      lab</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <ul class="accordion-steps">
+                    <li>
+                      Perhatikan tempat kejadian dengan seksama sebelum
+                      menyentuh korban.
+                    </li>
+                    <li>
+                      Segera putus sumber arus, atau gunakan benda kering
+                      non-logam (kayu, pakaian) untuk menjauhkan arus dari
+                      korban. <span class="step-critical">KRITIS</span>
+                    </li>
+                    <li>
+                      Baringkan korban dengan posisi kepala lebih rendah dari
+                      tubuh.
+                    </li>
+                    <li>
+                      Periksa tanda henti napas/jantung. Bila perlu, segera
+                      berikan RJP.
+                    </li>
+                    <li>Selimuti korban untuk mencegah syok kedinginan.</li>
+                    <li>
+                      Bila timbul luka bakar akibat tersetrum, atasi sesuai
+                      derajat luka dan segera cari bantuan ke RS/Dokter.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="Perdarahan">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"
+                    ><i class="bi bi-droplet-half"></i
+                  ></span>
+                  <div>
+                    <span class="accordion-title-text">Perdarahan</span>
+                    <span class="accordion-subtitle"
+                      >Penanganan luka terbuka dengan keluarnya darah</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <ul class="accordion-steps">
+                    <li>
+                      Tekan kuat area perdarahan menggunakan kain kasa selama
+                      5-15 menit dan balut.
+                    </li>
+                    <li>
+                      Bila luka kotor, cuci perlahan dengan air bersih dari arah
+                      luka ke luar pinggiran luka sebelum diberi antiseptik.
+                    </li>
+                    <li>
+                      Tinggikan anggota tubuh yang berdarah lebih tinggi dari
+                      posisi jantung, kecuali jika diduga ada patah tulang.
+                      <span class="step-warning">HINDARI</span>
+                    </li>
+                    <li>
+                      Tidurkan korban dengan posisi kepala lebih rendah, kecuali
+                      jika perdarahannya berada di area kepala.
+                    </li>
+                    <li>
+                      Tenangkan korban, lalu segera bawa ke fasilitas kesehatan.
+                      <span class="step-critical">KRITIS</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="Luka Bakar">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"><i class="bi bi-fire"></i></span>
+                  <div>
+                    <span class="accordion-title-text">Luka Bakar</span>
+                    <span class="accordion-subtitle"
+                      >Tindakan berdasarkan tingkat kedalaman luka bakar</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <div class="nested-accordion-group">
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-info-circle"></i
+                          ></span>
+                          Langkah Umum (Semua Tingkat)
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Bebaskan korban dari penyebab luka bakar tersebut
+                              secepatnya.
+                            </li>
+                            <li>
+                              Bila korban juga pingsan, tangani pingsannya
+                              terlebih dahulu!
+                            </li>
+                            <li>
+                              Tanggalkan kain, cincin, gelang, atau perhiasan
+                              yang melekat di area terbakar sebelum kulit
+                              membengkak.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-1-circle"></i
+                          ></span>
+                          Luka Bakar Tingkat Pertama & Kedua
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              <b>Tingkat 1:</b> Siram atau rendam dengan air
+                              dingin mengalir 10-15 menit. Jika nyeri, boleh
+                              diberi pereda nyeri.
+                            </li>
+                            <li>
+                              <b>Tingkat 2:</b> Rendam di air bersih, lalu tutup
+                              dengan kasa/kain steril dan balutan longgar.
+                            </li>
+                            <li>
+                              Ingat: Kulit yang melepuh TIDAK BOLEH dipecahkan!
+                              <span class="step-warning">HINDARI</span>
+                            </li>
+                            <li>
+                              Bila ada kulit yang terlanjur mengelupas, cukup
+                              oleskan salep antibiotik yang tepat.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-exclamation-triangle"></i
+                          ></span>
+                          Luka Bakar Tingkat Ketiga (Parah)
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Segera tutup bagian luka yang terbakar menggunakan
+                              kasa atau kain steril.
+                            </li>
+                            <li>
+                              Baringkan korban dengan posisi kepala yang sedikit
+                              lebih rendah.
+                            </li>
+                            <li>
+                              Jangan buang waktu, amati kondisi korban dan
+                              langsung larikan ke Rumah Sakit terdekat!
+                              <span class="step-critical">KRITIS</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="Pajanan Bahan Kimia">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"
+                    ><i class="bi bi-radioactive"></i
+                  ></span>
+                  <div>
+                    <span class="accordion-title-text"
+                      >Pajanan Bahan Kimia</span
+                    >
+                    <span class="accordion-subtitle"
+                      >Inhalasi, Kulit, Mata, Tertelan & Tindakan Khusus</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <div class="nested-accordion-group">
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-lungs"></i
+                          ></span>
+                          Jika Terhirup (Inhalasi)
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Singkirkan korban dari lokasi bahaya dan bawa ke
+                              area dengan sirkulasi udara yang lebih segar.
+                            </li>
+                            <li>
+                              Longgarkan pakaian dan, jika memungkinkan &
+                              terlatih, berikan oksigen.
+                            </li>
+                            <li>
+                              Jika korban sampai tidak sadarkan diri, baringkan
+                              pada "Posisi Pemulihan".
+                              <span class="step-critical">KRITIS</span>
+                            </li>
+                            <li>
+                              Segera hubungi tenaga kesehatan untuk menyiapkan
+                              ambulans.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-hand-index-thumb"></i
+                          ></span>
+                          Jika Terkena Kulit & Mata
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Prinsip utama: meminimalkan kontak dan
+                              mendinginkan area agar zat tidak terserap.
+                              Lepaskan pakaian yang ikut terpapar.
+                            </li>
+                            <li>
+                              Bilas sisa zat kimia di kulit menggunakan air
+                              sabun mengalir selama kurang lebih 10-15 menit
+                              (Gunakan APD bagi penolong).
+                              <span class="step-critical">KRITIS</span>
+                            </li>
+                            <li>
+                              Jika zat kimia mengenai Mata, langsung bilas
+                              dengan air sebanyak mungkin.
+                            </li>
+                            <li>
+                              Bila korban tak sadar pasca-bilas, atur di posisi
+                              pemulihan dan hubungi medis.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-capsule"></i
+                          ></span>
+                          Jika Tertelan
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Segera minta korban berbaring tenang untuk
+                              beristirahat.
+                            </li>
+                            <li>
+                              Usahakan agar korban memuntahkan racun dengan
+                              diberi minum banyak air/susu (siapkan wadah
+                              muntah).
+                            </li>
+                            <li>
+                              <b>Pengecualian:</b> Dilarang memuntahkan isi
+                              perut apabila korban meminum/menelan cairan kimia
+                              yang bersifat korosif tinggi!
+                              <span class="step-warning">HINDARI</span>
+                            </li>
+                            <li>Panggil petugas kesehatan secepatnya.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-shield-exclamation"></i
+                          ></span>
+                          Tindakan Spesifik Berdasarkan Reagen
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              <b>Asam Kuat (HCl, H2SO4, HNO3):</b> Basuh area
+                              kulit dengan air sabun, lalu tutup dengan Mg(OH)2
+                              atau Mg trisilikat.
+                            </li>
+                            <li>
+                              <b>Asam Oksalat & Asam Hidroflorat:</b> Basuh
+                              memakai larutan NaHCO3, olesi dengan Hyamin 2%
+                              (es/alkohol), atau suntik Ca-glukonat untuk
+                              redakan nyeri parah.
+                            </li>
+                            <li>
+                              <b>Khromat (Chlorox, Na-hipoklorit):</b> Basuh
+                              dengan larutan Na-hiposulfit encer, kemudian bilas
+                              air, lalu beri Na-tiosulfat.
+                            </li>
+                            <li>
+                              <b>Fenol / Kresol 10%:</b> Cepat basuh memakai
+                              etanol, setelahnya balut dan tutup dengan minyak
+                              (minyak zaitun/nabati).
+                            </li>
+                            <li>
+                              <b>Basa Kuat (NaOH, KOH, dll):</b> Basuh dengan
+                              air cuka yang diencerkan (atau air jeruk nipis),
+                              dan tutup menggunakan minyak.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="RJP">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"
+                    ><i class="bi bi-heart-pulse-fill"></i
+                  ></span>
+                  <div>
+                    <span class="accordion-title-text"
+                      >RJP (Resusitasi Jantung Paru)</span
+                    >
+                    <span class="accordion-subtitle"
+                      >Tindakan henti napas/henti jantung</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <ul class="accordion-steps">
+                    <li>
+                      Baringkan korban terlentang di dasar yang keras. Lakukan
+                      cek respons dan kesadaran terlebih dahulu.
+                    </li>
+                    <li>
+                      Tentukan titik kompresi pada bagian dada, letakkan tumit
+                      satu tangan disusul mengunci jari-jari dengan tangan
+                      satunya.
+                    </li>
+                    <li>
+                      Lakukan kompresi (pompa jantung) dengan tangan tegak lurus
+                      sebanyak 30x (kecepatan stabil 100x/menit, kedalaman 5cm).
+                    </li>
+                    <li>
+                      Pastikan jalan napas tidak tertutup sumbatan. Lalu berikan
+                      napas buatan 2 kali secara mantap (1 napas tiap 6-8 dtk).
+                    </li>
+                    <li>
+                      Ulangi perbandingan rasio 30:2 ini secara terus menerus
+                      (total 5 siklus berturut-turut).
+                    </li>
+                    <li>
+                      Setelah 5 siklus, evaluasi ulang. Jika nadi teraba tetapi
+                      korban tidak bernapas, lanjutkan beri 10-12 napas/menit.
+                      Bila pulih, pindahkan ke Posisi Stabil.
+                      <span class="step-critical">KRITIS</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion reveal" data-title="Evakuasi & Pemulihan">
+              <button class="accordion-header" type="button">
+                <div class="accordion-left">
+                  <span class="accordion-icon"
+                    ><i class="bi bi-person-wheelchair"></i
+                  ></span>
+                  <div>
+                    <span class="accordion-title-text"
+                      >Evakuasi & Posisi Pemulihan</span
+                    >
+                    <span class="accordion-subtitle"
+                      >Posisi pasca-insiden & cara angkat korban</span
+                    >
+                  </div>
+                </div>
+                <span class="accordion-toggle"
+                  ><i class="bi bi-chevron-down"></i
+                ></span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  <div class="nested-accordion-group">
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-heart-arrow"></i
+                          ></span>
+                          Posisi Pemulihan (Recovery)
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Posisikan ini jika korban pingsan, masih bisa
+                              bernapas, namun TANPA trauma/patah tulang.
+                            </li>
+                            <li>
+                              Miringkan posisi korban ke samping agar lidah
+                              tidak menyumbat jalur pernapasan.
+                            </li>
+                            <li>
+                              Letakkan tangan korban sebagai penopang bagi
+                              kepalanya sendiri.
+                            </li>
+                            <li>
+                              Tekuk satu tungkai kaki untuk menstabilkan posisi,
+                              mencegah korban bergulir berbalik arah, dan
+                              menghindari asfiksia muntahan.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="nested-accordion">
+                      <button class="nested-accordion-header" type="button">
+                        <span class="nested-accordion-title">
+                          <span class="nested-accordion-badge"
+                            ><i class="bi bi-people"></i
+                          ></span>
+                          Evakuasi Memindahkan Korban
+                        </span>
+                        <span class="nested-accordion-toggle"
+                          ><i class="bi bi-chevron-down"></i
+                        ></span>
+                      </button>
+                      <div class="nested-accordion-content">
+                        <div class="nested-accordion-content-inner">
+                          <ul class="nested-steps">
+                            <li>
+                              Pastikan terlebih dahulu tidak ada fraktur
+                              punggung atau tulang leher.
+                            </li>
+                            <li>
+                              <b>Bila Satu Orang:</b> Lakukan dengan teknik
+                              pondong/gendong (hanya untuk korban ringan).
+                            </li>
+                            <li>
+                              <b>Bila Dua Orang (Tidak Sadar):</b> Satu penolong
+                              melingkarkan lengan dari bawah ketiak korban, dan
+                              penolong kedua memondong pada area lekuk lutut.
+                            </li>
+                            <li>
+                              <b>Bila Dua Orang (Sadar):</b> Buat dudukan
+                              menggunakan anyaman lengan empat tangan untuk
+                              ditunggangi korban.
+                            </li>
+                            <li>
+                              Bila tersedia dan luka terlampau parah, gunakan
+                              usungan atau tandu keselamatan.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-section reveal" id="nomor-darurat">
+            <h2 class="contact-title">Nomor darurat</h2>
+
+            <div class="emergency-cards">
+              <div class="emergency-card">
+                <div class="card-left-row">
+                  <span class="service-icon service-icon--112"
+                    ><i class="fas fa-ambulance"></i
+                  ></span>
+                  <div>
+                    <h3 class="card-title">Call Center Terpadu</h3>
+                    <p class="card-desc">
+                      Ambulans, kecelakaan, bencana, dan kondisi
+                      kegawatdaruratan medis.
+                    </p>
+                  </div>
+                </div>
+                <div class="card-right">
+                  <a class="card-link" href="tel:112">112</a>
+                  <span class="call-now"
+                    ><i class="bi bi-telephone-fill"></i> Hubungi sekarang</span
+                  >
+                </div>
+              </div>
+
+              <div class="emergency-card alt-bg">
+                <div class="card-left-row">
+                  <span class="service-icon service-icon--fire"
+                    ><i class="fas fa-fire"></i
+                  ></span>
+                  <div>
+                    <h3 class="card-title">Pemadam Kebakaran</h3>
+                    <p class="card-desc">
+                      Kebakaran laboratorium, ledakan bahan, dan evakuasi
+                      keadaan darurat.
+                    </p>
+                  </div>
+                </div>
+                <div class="card-right">
+                  <a class="card-link" href="https://wa.me/6281131149113"
+                    >0811-3114-9113</a
+                  >
+                  <span class="call-now"
+                    ><i class="bi bi-telephone-fill"></i> Hubungi sekarang</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-container reveal">
+            <a href="form-lapor.html" class="cta-btn">
+              <i class="bi bi-file-earmark-text"></i> Lihat Form Pelaporan
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+      const scrollProgress = document.getElementById("scrollProgress");
+      const backToTop = document.getElementById("backToTop");
+      const reveals = document.querySelectorAll(".reveal");
+      const accordions = document.querySelectorAll(".accordion");
+
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = progress + "%";
+
+        if (scrollTop > 320) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      }
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      reveals.forEach((el) => revealObserver.observe(el));
+
+      // ==========================================
+      // LOGIKA ACCORDION (BARU)
+      // ==========================================
+      function openAccordion(accordion) {
+        const content = accordion.querySelector(".accordion-content");
+
+        // 1. Tutup accordion lain yang sedang terbuka
+        accordions.forEach((item) => {
+          if (item !== accordion) {
+            item.classList.remove("open");
+            const itemContent = item.querySelector(".accordion-content");
+
+            // Kunci tinggi spesifik sebelum ditutup agar animasi berjalan mulus
+            if (
+              itemContent.style.maxHeight &&
+              itemContent.style.maxHeight !== "none"
+            ) {
+              itemContent.style.maxHeight = itemContent.scrollHeight + "px";
+              void itemContent.offsetHeight; // Paksa browser membaca reflow
+            }
+            itemContent.style.maxHeight = null;
+
+            // Tutup juga nested accordion di dalamnya agar kembali rapi
+            item.querySelectorAll(".nested-accordion").forEach((nested) => {
+              nested.classList.remove("open");
+              nested.querySelector(
+                ".nested-accordion-content",
+              ).style.maxHeight = null;
+            });
+          }
+        });
+
+        // 2. Buka/Tutup accordion yang diklik
+        accordion.classList.toggle("open");
+        if (accordion.classList.contains("open")) {
+          content.style.maxHeight = content.scrollHeight + "px";
+
+          // PENTING: Hapus batasan max-height setelah animasi selesai
+          setTimeout(() => {
+            if (accordion.classList.contains("open")) {
+              content.style.maxHeight = "none";
+            }
+          }, 350);
+        } else {
+          // Kembalikan ke angka pasti sebelum ditutup
+          content.style.maxHeight = content.scrollHeight + "px";
+          void content.offsetHeight;
+          content.style.maxHeight = null;
+        }
+      }
+
+      accordions.forEach((accordion) => {
+        const header = accordion.querySelector(".accordion-header");
+        header.addEventListener("click", () => openAccordion(accordion));
+      });
+
+      // ==========================================
+      // LOGIKA NESTED ACCORDION (1 Buka, Lainnya Tutup)
+      // ==========================================
+      const nestedAccordions = document.querySelectorAll(".nested-accordion");
+      nestedAccordions.forEach((accordion) => {
+        const header = accordion.querySelector(".nested-accordion-header");
+        const content = accordion.querySelector(".nested-accordion-content");
+
+        header.addEventListener("click", (e) => {
+          e.stopPropagation(); // Cegah event klik bocor ke accordion utama
+
+          // 1. Cari grup parent (wadah) dari nested accordion ini
+          const parentGroup = accordion.closest(".nested-accordion-group");
+
+          // 2. Tutup semua nested accordion lain yang sedang terbuka di grup yang sama
+          if (parentGroup) {
+            const siblings = parentGroup.querySelectorAll(".nested-accordion");
+            siblings.forEach((sibling) => {
+              if (sibling !== accordion && sibling.classList.contains("open")) {
+                sibling.classList.remove("open");
+                sibling.querySelector(
+                  ".nested-accordion-content",
+                ).style.maxHeight = null;
+              }
+            });
+          }
+
+          // 3. Buka/Tutup accordion yang sedang diklik
+          accordion.classList.toggle("open");
+
+          if (accordion.classList.contains("open")) {
+            content.style.maxHeight = content.scrollHeight + "px";
+          } else {
+            content.style.maxHeight = null;
+          }
+        });
+      });
+
+      window.addEventListener("scroll", updateScrollProgress);
+      window.addEventListener("load", updateScrollProgress);
+    </script>
+  </body>
+</html>

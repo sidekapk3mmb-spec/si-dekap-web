@@ -1,0 +1,1440 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simbol B3 - SI-DEKAP Laboratorium</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="footer.css" />
+
+    <style>
+      :root {
+        --primary-blue: #bac94a;
+        --teal: #6c8cbf;
+        --bg-grad-start: #eef8d7;
+        --bg-grad-end: #e8f6f0;
+        --dark-blue: #105294;
+
+        --bg: #fbfdf9;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --border: #e9eef2;
+        --white: #ffffff;
+        --gray-50: #f8fafc;
+        --gray-100: #f1f5f9;
+
+        --ghs-red: #e53e3e;
+        --ghs-orange: #ed8936;
+        --ghs-yellow: #d97706;
+        --ghs-blue: #4299e1;
+        --ghs-green: #48bb78;
+        --ghs-purple: #8b5cf6;
+        --ghs-brown: #8b4513;
+        --ghs-dark: #374151;
+
+        --footer-bg: #fbfcf4;
+        --footer-bottom: #d9ded5;
+        --footer-text: #374836;
+        --footer-heading: #105294;
+        --footer-hover: #bac94a;
+
+        --shadow-sm: 0 8px 20px rgba(16, 82, 148, 0.05);
+        --shadow-md: 0 18px 40px rgba(16, 82, 148, 0.08);
+        --shadow-lg: 0 28px 60px rgba(16, 82, 148, 0.12);
+
+        --radius-lg: 24px;
+        --radius-xl: 30px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(234, 246, 205, 0.48),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(207, 247, 228, 0.36),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #fbfdf9 0%, #f8fbf8 42%, #ffffff 100%);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.72rem 1.1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 25px rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .section-heading {
+        font-size: clamp(2rem, 3.8vw, 3rem);
+        line-height: 1.08;
+        color: var(--dark-blue);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .section-subtitle {
+        color: var(--muted);
+        font-size: 1.02rem;
+        max-width: 760px;
+        margin: 1rem auto 0;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        z-index: 1200;
+        box-shadow: 0 2px 10px rgba(16, 82, 148, 0.18);
+      }
+
+      /* =============================
+         HERO
+         ============================= */
+      .symbols-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 0 5rem;
+        background:
+          radial-gradient(
+            circle at 12% 20%,
+            rgba(186, 201, 74, 0.16),
+            transparent 22%
+          ),
+          radial-gradient(
+            circle at 85% 22%,
+            rgba(108, 140, 191, 0.12),
+            transparent 20%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(238, 248, 215, 0.95) 0%,
+            rgba(232, 246, 240, 0.95) 48%,
+            rgba(255, 255, 255, 1) 100%
+          );
+      }
+
+      .symbols-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.35),
+          transparent 90%
+        );
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 940px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .hero-inner h1 {
+        font-size: clamp(2.6rem, 5vw, 4.3rem);
+        line-height: 1.04;
+        font-weight: 800;
+        margin: 1.2rem 0 1rem;
+        letter-spacing: -0.04em;
+        color: var(--dark-blue);
+      }
+      .hero-inner p {
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 760px;
+        margin: 0 auto 2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 1rem 1.55rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.98rem;
+        cursor: pointer;
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          background 0.28s ease;
+        border: none;
+      }
+      .cta-button.primary {
+        background: linear-gradient(
+          135deg,
+          #c9d95c 0%,
+          #b7cf57 18%,
+          #6c8cbf 100%
+        );
+        color: var(--white);
+        box-shadow: 0 18px 35px rgba(12, 44, 82, 0.2);
+      }
+      .cta-button.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 22px 42px rgba(12, 44, 82, 0.28);
+      }
+      .cta-button.secondary {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--dark-blue);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 22px rgba(16, 82, 148, 0.06);
+      }
+      .cta-button.secondary:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-divider {
+        width: 140px;
+        height: 5px;
+        margin: 2rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        box-shadow: 0 6px 18px rgba(16, 82, 148, 0.12);
+      }
+
+      /* =============================
+         INTRO STRIP
+         ============================= */
+      .content-section {
+        padding: 4rem 0 2rem;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        box-shadow: var(--shadow-md);
+        border-radius: var(--radius-xl);
+        backdrop-filter: blur(16px);
+      }
+      .intro-panel {
+        padding: 1.6rem;
+        margin-top: -1.6rem;
+        position: relative;
+        z-index: 2;
+      }
+      .intro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .intro-card {
+        padding: 1.25rem;
+        border-radius: 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(251, 253, 247, 0.96)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        box-shadow: 0 10px 24px rgba(16, 82, 148, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .intro-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 28px rgba(16, 82, 148, 0.08);
+      }
+      .intro-card .icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.9rem;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.18)
+        );
+        color: var(--dark-blue);
+        font-size: 1.2rem;
+      }
+      .intro-card h3 {
+        color: var(--dark-blue);
+        font-size: 1.02rem;
+        margin-bottom: 0.4rem;
+      }
+      .intro-card p {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      /* =============================
+         INTRO TEXT
+         ============================= */
+      .intro-text {
+        text-align: center;
+        max-width: 900px;
+        margin: 3rem auto 0;
+      }
+      .intro-text h2 {
+        font-size: clamp(2rem, 3vw, 2.7rem);
+        color: var(--dark-blue);
+        margin-bottom: 1rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .intro-text p {
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.9;
+      }
+
+      /* =============================
+         TOOLBAR
+         ============================= */
+      .toolbar {
+        margin-top: 2.5rem;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 1rem;
+      }
+      .search-box,
+      .filter-box {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        border-radius: 20px;
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.95rem 1rem;
+      }
+      .search-box i,
+      .filter-box i {
+        color: var(--dark-blue);
+        font-size: 1rem;
+      }
+      .search-box input,
+      .filter-box select {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: var(--text);
+      }
+
+      /* =============================
+         SYMBOL GRID
+         ============================= */
+      .symbols-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+      }
+      .symbol-card {
+        background: var(--card);
+        border-radius: 24px;
+        padding: 1.7rem 1.35rem;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-bottom: 4px solid var(--symbol-color, var(--dark-blue));
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+      .symbol-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 36px rgba(16, 82, 148, 0.12);
+        border-color: rgba(16, 82, 148, 0.12);
+      }
+
+      .symbol-icon {
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--symbol-color, var(--dark-blue));
+        background: #fff;
+        margin-bottom: 1.3rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        padding: 10px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+      .symbol-card:hover .symbol-icon {
+        transform: scale(1.08);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      }
+      .symbol-icon::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.55),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: all 0.6s ease;
+        opacity: 0;
+      }
+      .symbol-card:hover .symbol-icon::before {
+        opacity: 1;
+        animation: shimmer 1.4s ease-in-out;
+      }
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+      }
+
+      .symbol-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        position: relative;
+        z-index: 1;
+      }
+      .symbol-icon i {
+        font-size: 2rem;
+        color: var(--symbol-color, var(--dark-blue));
+        position: relative;
+        z-index: 1;
+      }
+
+      .symbol-name {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--dark-blue);
+        margin-bottom: 0.75rem;
+        text-align: center;
+        line-height: 1.35;
+      }
+      .symbol-description {
+        color: var(--muted);
+        line-height: 1.7;
+        text-align: center;
+        font-size: 0.94rem;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+      }
+      .symbol-category {
+        display: inline-block;
+        padding: 0.42rem 1rem;
+        border-radius: 999px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        background: var(--symbol-color, var(--dark-blue));
+        color: white;
+      }
+
+      /* Warna Kategori */
+      .symbol-toxic {
+        --symbol-color: var(--ghs-red);
+      }
+      .symbol-flammable {
+        --symbol-color: var(--ghs-orange);
+      }
+      .symbol-explosive {
+        --symbol-color: var(--ghs-brown);
+      }
+      .symbol-irritant {
+        --symbol-color: var(--ghs-yellow);
+      }
+      .symbol-corrosive {
+        --symbol-color: var(--ghs-blue);
+      }
+      .symbol-environmental {
+        --symbol-color: var(--ghs-green);
+      }
+      .symbol-carcinogenic {
+        --symbol-color: var(--ghs-purple);
+      }
+      .symbol-gas {
+        --symbol-color: var(--ghs-dark);
+      }
+      .symbol-oxidizer {
+        --symbol-color: var(--ghs-red);
+      }
+      .symbol-reactive {
+        --symbol-color: var(--ghs-red);
+      }
+      .symbol-harmful {
+        --symbol-color: var(--ghs-orange);
+      }
+
+      /* =============================
+         EDUCATIONAL SECTION
+         ============================= */
+      .educational-section {
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(186, 201, 74, 0.12),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #ffffff 0%, #f8fbf4 100%);
+        padding: 2.5rem 2rem;
+        margin-top: 3rem;
+        border-radius: 30px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+      }
+      .educational-content {
+        text-align: center;
+        max-width: 950px;
+        margin: 0 auto;
+      }
+      .educational-content h2 {
+        color: var(--dark-blue);
+        font-size: clamp(2rem, 3vw, 2.6rem);
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+      .educational-content p {
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.85;
+        margin-bottom: 2.2rem;
+      }
+      .educational-tips {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1rem;
+      }
+      .tip-card {
+        background: rgba(255, 255, 255, 0.92);
+        padding: 1.6rem 1.2rem;
+        border-radius: 22px;
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.28s ease;
+      }
+      .tip-card:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.12),
+          rgba(108, 140, 191, 0.08)
+        );
+        transform: translateY(-5px);
+      }
+      .tip-card h3 {
+        color: var(--dark-blue);
+        font-size: 1.02rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+      }
+      .tip-card h3 i {
+        color: var(--primary-blue);
+        font-size: 1.25rem;
+      }
+      .tip-card p {
+        color: var(--muted);
+        font-size: 0.92rem;
+        margin: 0;
+        line-height: 1.65;
+      }
+
+      /* =============================
+         MODAL
+         ============================= */
+      .symbol-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+        z-index: 2000;
+        padding: 1rem;
+      }
+      .symbol-modal.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 24px;
+        max-width: 460px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+      }
+      .modal-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        border: 3px solid var(--modal-color, var(--dark-blue));
+        color: var(--modal-color, var(--dark-blue));
+        background: white;
+        font-size: 1.7rem;
+      }
+      .modal-content h3 {
+        color: var(--dark-blue);
+        margin-bottom: 0.75rem;
+        font-size: 1.35rem;
+      }
+      .modal-category {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        background: var(--modal-color, var(--dark-blue));
+        color: white;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .modal-content p {
+        color: var(--muted);
+        margin-bottom: 1.4rem;
+        line-height: 1.75;
+      }
+
+      .modal-examples-container {
+        display: none;
+        margin-bottom: 1.4rem;
+        padding-top: 0.2rem;
+      }
+      .modal-examples-container strong {
+        color: var(--dark-blue);
+        display: block;
+        margin-bottom: 0.4rem;
+        font-size: 0.95rem;
+      }
+      .modal-examples-text {
+        color: var(--muted);
+        font-size: 0.94rem;
+        line-height: 1.6;
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: center;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .modal-content button {
+        border: none;
+        padding: 0.78rem 1.25rem;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .modal-primary {
+        background: linear-gradient(135deg, #c9d95c 0%, #6c8cbf 100%);
+        color: white;
+      }
+      .modal-secondary {
+        background: #eef3f8;
+        color: var(--dark-blue);
+      }
+
+      /* =============================
+         BACK TO TOP
+         ============================= */
+      .back-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #c9d95c 0%, #6c8cbf 100%);
+        color: var(--white);
+        box-shadow: 0 18px 34px rgba(16, 82, 148, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.28s ease;
+        z-index: 1100;
+      }
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .back-to-top:hover {
+        transform: translateY(-4px);
+      }
+
+      /* =============================
+         RESPONSIVE
+         ============================= */
+      @media (max-width: 1100px) {
+        .intro-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .toolbar {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        .symbols-hero {
+          padding: 5.8rem 0 4.4rem;
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .cta-button {
+          width: 100%;
+        }
+        .intro-grid,
+        .symbols-grid,
+        .educational-tips {
+          grid-template-columns: 1fr;
+        }
+        .educational-section {
+          padding: 2rem 1.2rem;
+          border-radius: 26px;
+        }
+        .back-to-top {
+          width: 48px;
+          height: 48px;
+          right: 14px;
+          bottom: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div id="header-placeholder"></div>
+
+    <section class="symbols-hero">
+      <div class="container">
+        <div class="hero-inner reveal">
+          <span class="section-label">
+            <i class="bi bi-radioactive"></i>
+            Piktogram dan Klasifikasi B3
+          </span>
+
+          <h1>
+            Simbol B3 wajib dikenali sebelum bahan dipakai, dipindah, atau
+            disimpan
+          </h1>
+
+          <p>
+            Piktogram GHS merupakan elemen wajib pada label kemasan bahan kimia,
+            bukan sekadar ornamen. Setiap simbol memberikan informasi penting
+            mengenai tingkat bahaya bahan sehingga personel dapat menentukan
+            perlindungan, penanganan, dan respons yang tepat.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#daftar-simbol" class="cta-button primary">
+              <i class="bi bi-arrow-right-circle"></i> Lihat Simbol
+            </a>
+            <a href="#tips-b3" class="cta-button secondary">
+              <i class="bi bi-shield-check"></i> Tips Keselamatan
+            </a>
+          </div>
+
+          <div class="hero-divider"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="daftar-simbol">
+      <div class="container">
+        <div class="intro-panel glass-panel reveal">
+          <div class="intro-grid">
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-search"></i></div>
+              <h3>Identifikasi Cepat</h3>
+              <p>
+                Simbol membantu mengenali bahaya utama bahan hanya dari label
+                kemasan.
+              </p>
+            </div>
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-shield-exclamation"></i></div>
+              <h3>Proteksi Tepat</h3>
+              <p>
+                Jenis piktogram menentukan kebutuhan APD, penyimpanan, dan
+                penanganan.
+              </p>
+            </div>
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-clipboard2-check"></i></div>
+              <h3>Kepatuhan Operasional</h3>
+              <p>
+                Pemahaman terhadap simbol B3 merupakan bagian dari kepatuhan
+                operasional yang mencegah kesalahan penanganan bahan yang dapat
+                menimbulkan dampak berbahaya bagi personel maupun lingkungan.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro-text reveal">
+          <h2>Pengenalan piktogram B3</h2>
+          <p>
+            Sistem GHS digunakan secara internasional untuk mengklasifikasikan
+            dan mengomunikasikan bahaya bahan kimia. Setiap simbol memberi
+            informasi visual yang ringkas agar personel bisa segera memahami
+            risiko utama, bahkan sebelum membaca detail lengkap pada MSDS.
+          </p>
+        </div>
+
+        <div class="toolbar reveal">
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              id="searchSymbol"
+              placeholder="Cari simbol, contoh: korosif, toksik, gas..."
+            />
+          </div>
+
+          <div class="filter-box">
+            <i class="bi bi-funnel"></i>
+            <select id="filterCategory">
+              <option value="all">Semua Kategori</option>
+              <option value="explosive">Explosive (Mudah Meledak)</option>
+              <option value="flammable">Flammable (Mudah Menyala)</option>
+              <option value="reactive">Reactive (Reaktif)</option>
+              <option value="toxic">Toxic (Beracun)</option>
+              <option value="corrosive">Corrosive (Korosif)</option>
+              <option value="harmful">Harmful (Berbahaya)</option>
+              <option value="irritant">Irritant (Iritasi)</option>
+              <option value="environmental">
+                Environmental (Bahaya Lingkungan)
+              </option>
+              <option value="health hazard">
+                Health Hazard (Karsinogenik dll)
+              </option>
+              <option value="compressed gas">
+                Compressed Gas (Gas Bertekanan)
+              </option>
+              <option value="oxidizer">Oxidizer (Oksidator)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="symbols-grid reveal" id="symbolsGrid">
+          <div
+            class="symbol-card symbol-explosive"
+            data-category="explosive"
+            data-examples="Asetilen, Diazo, Nitroso, Nitro, Alkil Polinitro, Oksim, Azo, N-Nitroso."
+          >
+            <div class="symbol-icon">
+              <img
+                src="mudah meledak.png"
+                alt="Mudah Meledak"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-bomb\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Mudah Meledak</h3>
+            <p class="symbol-description">
+              Bahan yang pada suhu dan tekanan standar (25°C, 760 mmHg) dapat
+              meledak atau melalui reaksi kimia/fisika menghasilkan gas dengan
+              suhu dan tekanan tinggi.
+            </p>
+            <div class="symbol-category">Explosive</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-flammable"
+            data-category="flammable"
+            data-examples="Padat: belerang/sulfur, fosfor. Cair: alkohol, aseton, benzenaheksan. Gas: gas alam, asetilen, hidrogen."
+          >
+            <div class="symbol-icon">
+              <img
+                src="mudah menyala.png"
+                alt="Simbol Mudah Menyala"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-fire\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Mudah Menyala</h3>
+            <p class="symbol-description">
+              Bahan padat, cair, maupun gas yang sangat mudah terbakar bila
+              terkena percikan api, panas, atau jika bercampur dengan air/udara
+              lembab.
+            </p>
+            <div class="symbol-category">Flammable</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-reactive"
+            data-category="reactive"
+            data-examples="Bahan kimia reaktif spesifik."
+          >
+            <div class="symbol-icon">
+              <img
+                src="reaktif.png"
+                alt="Reaktif"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-radiation\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Reaktif</h3>
+            <p class="symbol-description">
+              Suatu bahan yang dapat melepaskan banyak panas atau menimbulkan
+              api ketika bereaksi dengan bahan kimia lainnya, meskipun dalam
+              keadaan hampa udara.
+            </p>
+            <div class="symbol-category">Reactive</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-toxic"
+            data-category="toxic"
+            data-examples="Sianida, Metanol, Benzena, Hydrogen sulfida, Atripin."
+          >
+            <div class="symbol-icon">
+              <img
+                src="beracun.png"
+                alt="Simbol Beracun"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-skull-crossbones\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Beracun / Toksik</h3>
+            <p class="symbol-description">
+              Memiliki sifat racun bagi manusia yang dapat menyebabkan keracunan
+              atau sakit serius apabila masuk ke dalam tubuh melalui pernapasan,
+              kulit, atau mulut.
+            </p>
+            <div class="symbol-category">Toxic</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-corrosive"
+            data-category="corrosive"
+            data-examples="Asam (pH ≤ 2): HCl, H2SO4. Basa (pH ≥ 12,5): NaOH, KOH."
+          >
+            <div class="symbol-icon">
+              <img
+                src="korosif.png"
+                alt="Korosif"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-tint-slash\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Korosif</h3>
+            <p class="symbol-description">
+              Menyebabkan iritasi atau luka bakar pada kulit serta memicu proses
+              pengkaratan pada lempeng baja. Memiliki pH ≤ 2 (asam) atau ≥ 12,5
+              (basa).
+            </p>
+            <div class="symbol-category">Corrosive</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-harmful"
+            data-category="harmful"
+            data-examples="Bahan kimia tingkat bahaya sedang."
+          >
+            <div class="symbol-icon">
+              <img
+                src="harmful.png"
+                alt="Harmful"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-exclamation\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Berbahaya (Harmful)</h3>
+            <p class="symbol-description">
+              Suatu bahan padat, cair, ataupun gas yang jika terjadi kontak,
+              terhirup, atau tertelan dapat menyebabkan bahaya terhadap
+              kesehatan sampai tingkat tertentu.
+            </p>
+            <div class="symbol-category">Harmful</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-irritant"
+            data-category="irritant"
+            data-examples="Padat: NaOH, fenol. Cair: asam sulfat, asam format. Gas: amoniak, formaldehyde, sulfur dioksida."
+          >
+            <div class="symbol-icon">
+              <img
+                src="iritasi.png"
+                alt="Iritasi"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-exclamation-circle\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Iritasi (Irritant)</h3>
+            <p class="symbol-description">
+              Dapat menimbulkan iritasi, luka, atau inflamasi jika terkena
+              jaringan kulit, mata, maupun saluran pernapasan manusia.
+            </p>
+            <div class="symbol-category">Irritant</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-environmental"
+            data-category="environmental"
+            data-examples="CFC (Chlorofluorocarbon), PCBs (Polychlorinated Biphenyls)."
+          >
+            <div class="symbol-icon">
+              <img
+                src="berbahaya bagi lingkungan.png"
+                alt="Bahaya Lingkungan"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-tree\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Bahaya Lingkungan</h3>
+            <p class="symbol-description">
+              Bahan yang dapat merusak/menyebabkan kematian pada ikan dan
+              organisme akuatik lainnya, merusak lapisan ozon, serta bersifat
+              persisten di lingkungan.
+            </p>
+            <div class="symbol-category">Environmental</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-carcinogenic"
+            data-category="health hazard"
+            data-examples="Etilen glikol, Diklorometan."
+          >
+            <div class="symbol-icon">
+              <img
+                src="Karsinogenik.png"
+                alt="Karsinogenik"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-lungs-virus\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Health Hazard</h3>
+            <p class="symbol-description">
+              Penyebab sel kanker (Karsinogenik), cacat embrio (Teratogenik),
+              perubahan kromosom/genetik (Mutagenik), serta kerusakan organ
+              spesifik dan saluran pernapasan.
+            </p>
+            <div class="symbol-category">Health Hazard</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-gas"
+            data-category="compressed gas"
+            data-examples="Gas Oksigen bertekanan, Propana dalam tabung."
+          >
+            <div class="symbol-icon">
+              <img
+                src="gas bertekanan.png"
+                alt="Gas Bertekanan"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-wind\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Gas Bertekanan</h3>
+            <p class="symbol-description">
+              Bahan gas bertekanan tinggi yang dapat meledak secara hebat bila
+              tabungnya dipanaskan, terkena benturan, atau pecah sehingga
+              berisiko memicu kebakaran.
+            </p>
+            <div class="symbol-category">Compressed Gas</div>
+          </div>
+
+          <div
+            class="symbol-card symbol-oxidizer"
+            data-category="oxidizer"
+            data-examples="Hidrogen peroksida, Kalium perklorat."
+          >
+            <div class="symbol-icon">
+              <img
+                src="oksidator.png"
+                alt="Oksidator"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.insertAdjacentHTML(
+                    'beforeend',
+                    '<i class=\'fas fa-burn\'></i>',
+                  );
+                "
+              />
+            </div>
+            <h3 class="symbol-name">Oksidator</h3>
+            <p class="symbol-description">
+              Bahan yang dapat melepaskan oksigen secara cepat, sehingga
+              mempercepat proses pembakaran dan dapat memperparah api pada bahan
+              lain.
+            </p>
+            <div class="symbol-category">Oxidizer</div>
+          </div>
+        </div>
+
+        <div class="educational-section reveal" id="tips-b3">
+          <div class="educational-content">
+            <h2>Tips keselamatan B3</h2>
+            <p>
+              Melihat simbol hanyalah langkah awal. Bekerja aman dengan bahan B3
+              berarti membaca label dengan benar, memahami LDKB/MSDS, memilih
+              APD yang sesuai, dan menjaga disiplin kerja dari awal sampai akhir
+              proses.
+            </p>
+
+            <div class="educational-tips">
+              <div class="tip-card">
+                <h3><i class="fas fa-eye"></i> Cek Label</h3>
+                <p>
+                  Jangan gunakan bahan dari wadah tanpa label jelas. Nama,
+                  simbol bahaya, dan konsentrasi bahan wajib dipastikan.
+                </p>
+              </div>
+              <div class="tip-card">
+                <h3><i class="fas fa-shield-alt"></i> Gunakan APD</h3>
+                <p>
+                  Sesuaikan APD pelindung (sarung tangan, masker/respirator,
+                  kacamata) dengan simbol yang tertera.
+                </p>
+              </div>
+              <div class="tip-card">
+                <h3><i class="fas fa-book"></i> Baca MSDS</h3>
+                <p>
+                  MSDS memberi instruksi mutlak mengenai sifat bahan,
+                  reaktivitas, serta cara penanganan jika terjadi keadaan
+                  darurat.
+                </p>
+              </div>
+              <div class="tip-card">
+                <h3><i class="fas fa-box-open"></i> Simpan Benar</h3>
+                <p>
+                  Bahan dengan simbol reaktif, mudah menyala, dan oksidator
+                  tidak boleh disimpan bercampur dalam satu lemari yang sama.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <div class="symbol-modal" id="symbolModal">
+      <div class="modal-content">
+        <div class="modal-badge" id="modalBadge">
+          <i class="bi bi-exclamation-triangle"></i>
+        </div>
+        <h3 id="modalTitle">Judul Simbol</h3>
+        <div class="modal-category" id="modalCategory">Kategori</div>
+        <p id="modalDesc">Deskripsi simbol akan tampil di sini.</p>
+
+        <div class="modal-examples-container" id="modalExamplesContainer">
+          <strong>Contoh Bahan:</strong>
+          <span class="modal-examples-text" id="modalExamples"></span>
+        </div>
+
+        <div class="modal-actions">
+          <button class="modal-primary" type="button" onclick="closeModal()">
+            Saya Paham
+          </button>
+          <button class="modal-secondary" type="button" onclick="closeModal()">
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+      const scrollProgress = document.getElementById("scrollProgress");
+      const backToTop = document.getElementById("backToTop");
+      const reveals = document.querySelectorAll(".reveal");
+      const cards = document.querySelectorAll(".symbol-card");
+      const searchInput = document.getElementById("searchSymbol");
+      const filterCategory = document.getElementById("filterCategory");
+
+      const modal = document.getElementById("symbolModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalDesc = document.getElementById("modalDesc");
+      const modalCategory = document.getElementById("modalCategory");
+      const modalBadge = document.getElementById("modalBadge");
+      const modalExamplesContainer = document.getElementById(
+        "modalExamplesContainer",
+      );
+      const modalExamples = document.getElementById("modalExamples");
+
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = progress + "%";
+
+        if (scrollTop > 320) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      }
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      reveals.forEach((el) => revealObserver.observe(el));
+
+      function openModal(card) {
+        const name = card.querySelector(".symbol-name").textContent;
+        const desc = card.querySelector(".symbol-description").textContent;
+        const category = card.querySelector(".symbol-category").textContent;
+        const color = getComputedStyle(card)
+          .getPropertyValue("--symbol-color")
+          .trim();
+        const iconEl = card.querySelector(".symbol-icon i");
+        const iconHtml = iconEl
+          ? iconEl.outerHTML
+          : '<i class="bi bi-exclamation-triangle"></i>';
+        const examples = card.getAttribute("data-examples");
+
+        modalTitle.textContent = name;
+        modalDesc.textContent =
+          desc +
+          " Selalu cocokkan piktogram ini dengan label bahan dan Lembar Data Keselamatan Bahan (MSDS) sebelum penanganan.";
+        modalCategory.textContent = category;
+        modalCategory.style.background = color;
+        modalBadge.style.borderColor = color;
+        modalBadge.style.color = color;
+        modalBadge.innerHTML = iconHtml;
+
+        if (examples) {
+          modalExamples.textContent = examples;
+          modalExamplesContainer.style.display = "block";
+        } else {
+          modalExamplesContainer.style.display = "none";
+        }
+
+        modal.classList.add("active");
+      }
+
+      function closeModal() {
+        modal.classList.remove("active");
+      }
+
+      window.closeModal = closeModal;
+
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeModal();
+      });
+
+      cards.forEach((card) => {
+        card.addEventListener("click", function () {
+          openModal(this);
+        });
+      });
+
+      function filterSymbols() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const selectedCategory = filterCategory.value.toLowerCase();
+
+        cards.forEach((card) => {
+          const name = card
+            .querySelector(".symbol-name")
+            .textContent.toLowerCase();
+          const desc = card
+            .querySelector(".symbol-description")
+            .textContent.toLowerCase();
+          const category = card.dataset.category.toLowerCase();
+
+          const matchesSearch =
+            name.includes(searchTerm) || desc.includes(searchTerm);
+          const matchesCategory =
+            selectedCategory === "all" || category === selectedCategory;
+
+          card.style.display =
+            matchesSearch && matchesCategory ? "flex" : "none";
+        });
+      }
+
+      searchInput.addEventListener("input", filterSymbols);
+      filterCategory.addEventListener("change", filterSymbols);
+
+      window.addEventListener("scroll", updateScrollProgress);
+      window.addEventListener("load", updateScrollProgress);
+    </script>
+  </body>
+</html>

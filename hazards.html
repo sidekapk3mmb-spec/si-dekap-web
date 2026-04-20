@@ -1,0 +1,1377 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Potensi Bahaya di Laboratorium - SI-DEKAP</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="footer.css" />
+
+    <style>
+      :root {
+        --primary-blue: #bac94a;
+        --teal: #6c8cbf;
+        --bg-grad-start: #eef8d7;
+        --bg-grad-end: #e8f6f0;
+        --dark-blue: #105294;
+
+        --bg: #fbfdf9;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --border: #e9eef2;
+
+        --danger: #ef4444;
+        --danger-light: #fee2e2;
+        --warning: #f59e0b;
+        --warning-light: #fff4d6;
+        --success-light: #e9f8ef;
+        --info-light: #e8f1ff;
+
+        --shadow-sm: 0 8px 20px rgba(16, 82, 148, 0.05);
+        --shadow-md: 0 18px 40px rgba(16, 82, 148, 0.08);
+        --shadow-lg: 0 28px 60px rgba(16, 82, 148, 0.12);
+
+        --radius-lg: 24px;
+        --radius-xl: 30px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(234, 246, 205, 0.48),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(207, 247, 228, 0.36),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #fbfdf9 0%, #f8fbf8 42%, #ffffff 100%);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.72rem 1.1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 25px rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .section-heading {
+        font-size: clamp(2rem, 3.8vw, 3rem);
+        line-height: 1.08;
+        color: var(--dark-blue);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .section-subtitle {
+        color: var(--muted);
+        font-size: 1.02rem;
+        max-width: 720px;
+        margin: 1rem auto 0;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        z-index: 1200;
+        box-shadow: 0 2px 10px rgba(16, 82, 148, 0.18);
+      }
+
+      /* =============================
+         HERO
+         ============================= */
+      .hazards-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 0 5rem;
+        background:
+          radial-gradient(
+            circle at 12% 20%,
+            rgba(186, 201, 74, 0.16),
+            transparent 22%
+          ),
+          radial-gradient(
+            circle at 85% 22%,
+            rgba(108, 140, 191, 0.12),
+            transparent 20%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(238, 248, 215, 0.95) 0%,
+            rgba(232, 246, 240, 0.95) 48%,
+            rgba(255, 255, 255, 1) 100%
+          );
+      }
+
+      .hazards-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.35),
+          transparent 90%
+        );
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 920px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .hero-inner h1 {
+        font-size: clamp(2.6rem, 5vw, 4.4rem);
+        line-height: 1.04;
+        font-weight: 800;
+        margin: 1.2rem 0 1rem;
+        letter-spacing: -0.04em;
+        color: var(--dark-blue);
+      }
+      .hero-inner p {
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 760px;
+        margin: 0 auto 2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 1rem 1.55rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.98rem;
+        cursor: pointer;
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          background 0.28s ease;
+        border: none;
+      }
+      .cta-button.primary {
+        background: linear-gradient(
+          135deg,
+          #c9d95c 0%,
+          #b7cf57 18%,
+          #6c8cbf 100%
+        );
+        color: var(--white);
+        box-shadow: 0 18px 35px rgba(12, 44, 82, 0.2);
+      }
+      .cta-button.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 22px 42px rgba(12, 44, 82, 0.28);
+      }
+      .cta-button.secondary {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--dark-blue);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 22px rgba(16, 82, 148, 0.06);
+      }
+      .cta-button.secondary:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-divider {
+        width: 140px;
+        height: 5px;
+        margin: 2rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        box-shadow: 0 6px 18px rgba(16, 82, 148, 0.12);
+      }
+
+      /* =============================
+         INTRO STRIP
+         ============================= */
+      .content-section {
+        padding: 4rem 0 2rem;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        box-shadow: var(--shadow-md);
+        border-radius: var(--radius-xl);
+        backdrop-filter: blur(16px);
+      }
+      .intro-panel {
+        padding: 1.6rem;
+        margin-top: -1.6rem;
+        position: relative;
+        z-index: 2;
+      }
+      .intro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .intro-card {
+        padding: 1.25rem;
+        border-radius: 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(251, 253, 247, 0.96)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        box-shadow: 0 10px 24px rgba(16, 82, 148, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .intro-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 28px rgba(16, 82, 148, 0.08);
+      }
+      .intro-card .icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.9rem;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.18)
+        );
+        color: var(--dark-blue);
+        font-size: 1.2rem;
+      }
+      .intro-card h3 {
+        color: var(--dark-blue);
+        font-size: 1.02rem;
+        margin-bottom: 0.4rem;
+      }
+      .intro-card p {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      /* =============================
+         INTRO TEXT
+         ============================= */
+      .section-intro {
+        text-align: center;
+        max-width: 880px;
+        margin: 3rem auto 0;
+      }
+      .section-intro .hazard-mark {
+        width: 82px;
+        height: 82px;
+        border-radius: 26px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.18)
+        );
+        color: var(--dark-blue);
+        font-size: 2rem;
+        box-shadow: 0 12px 24px rgba(16, 82, 148, 0.08);
+      }
+      .section-intro h2 {
+        color: var(--dark-blue);
+        font-size: clamp(2rem, 3vw, 2.7rem);
+        margin-bottom: 1rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .section-intro p {
+        color: var(--muted);
+        font-size: 1.04rem;
+        max-width: 780px;
+        margin: 0 auto;
+        line-height: 1.9;
+      }
+
+      /* =============================
+         HAZARD CARDS
+         ============================= */
+      .hazards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.25rem;
+        margin-top: 2.5rem;
+      }
+      .hazard-card {
+        background: rgba(255, 255, 255, 0.94);
+        border-radius: 28px;
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .hazard-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 4px;
+        opacity: 1;
+      }
+      .hazard-card.physical::before {
+        background: linear-gradient(90deg, var(--dark-blue), #3b82f6);
+      }
+      .hazard-card.chemical::before {
+        background: linear-gradient(90deg, var(--warning), #f97316);
+      }
+      .hazard-card.biological::before {
+        background: linear-gradient(90deg, var(--teal), #14b8a6);
+      }
+      .hazard-card.electrical::before {
+        background: linear-gradient(90deg, #ca8a04, #eab308);
+      }
+      .hazard-card.ergonomic::before {
+        background: linear-gradient(90deg, #6d28d9, #8b5cf6);
+      }
+      .hazard-card.fire::before {
+        background: linear-gradient(90deg, #dc2626, #ef4444);
+      }
+
+      .hazard-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 36px rgba(16, 82, 148, 0.12);
+      }
+
+      .hazard-header {
+        padding: 1.5rem 1.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .hazard-icon {
+        width: 62px;
+        height: 62px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        flex-shrink: 0;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      }
+      .hazard-icon.physical {
+        color: var(--dark-blue);
+        background: var(--info-light);
+      }
+      .hazard-icon.chemical {
+        color: #b45309;
+        background: var(--warning-light);
+      }
+      .hazard-icon.biological {
+        color: var(--teal);
+        background: #dff7ef;
+      }
+      .hazard-icon.electrical {
+        color: #ca8a04;
+        background: #fef08a;
+      }
+      .hazard-icon.ergonomic {
+        color: #6d28d9;
+        background: #ede9fe;
+      }
+      .hazard-icon.fire {
+        color: #dc2626;
+        background: var(--danger-light);
+      }
+
+      .hazard-title-wrapper {
+        flex: 1;
+      }
+      .hazard-type {
+        font-size: 0.74rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.28rem 0.68rem;
+        border-radius: 999px;
+        display: inline-block;
+        margin-bottom: 0.55rem;
+      }
+      .hazard-card.physical .hazard-type {
+        background: #e6f0ff;
+        color: var(--dark-blue);
+      }
+      .hazard-card.chemical .hazard-type {
+        background: #fff2d2;
+        color: #b45309;
+      }
+      .hazard-card.biological .hazard-type {
+        background: #dff7ef;
+        color: var(--teal);
+      }
+      .hazard-card.electrical .hazard-type {
+        background: #fef08a;
+        color: #ca8a04;
+      }
+      .hazard-card.ergonomic .hazard-type {
+        background: #ede9fe;
+        color: #6d28d9;
+      }
+      .hazard-card.fire .hazard-type {
+        background: var(--danger-light);
+        color: #dc2626;
+      }
+
+      .hazard-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0;
+        line-height: 1.35;
+      }
+      .hazard-content {
+        padding: 0 1.5rem 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .hazard-description {
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      .hazard-impact,
+      .prevention-tips {
+        padding: 1rem 1.1rem;
+        border-radius: 18px;
+      }
+      .hazard-impact {
+        background: var(--danger-light);
+        border: 1px solid rgba(239, 68, 68, 0.14);
+        margin-bottom: 0.9rem;
+      }
+      .hazard-impact h4 {
+        color: var(--danger);
+        margin-bottom: 0.55rem;
+        font-size: 0.94rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+      }
+      .hazard-impact ul {
+        margin: 0;
+        padding-left: 1.1rem;
+        color: #7f1d1d;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .prevention-tips {
+        background: linear-gradient(
+          135deg,
+          rgba(234, 246, 205, 0.8),
+          rgba(207, 247, 228, 0.5)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        margin-top: auto;
+      }
+      .prevention-tips h4 {
+        color: var(--dark-blue);
+        margin-bottom: 0.55rem;
+        font-size: 0.94rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+      }
+      .prevention-tips ul {
+        margin: 0;
+        padding-left: 1.1rem;
+        color: var(--dark-blue);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* =============================
+         CONTROL STEPS
+         ============================= */
+      .steps-section {
+        padding: 3rem 0 1rem;
+      }
+      .steps-shell {
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(186, 201, 74, 0.14),
+            transparent 26%
+          ),
+          linear-gradient(180deg, #ffffff 0%, #f8fbf4 100%);
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        border-radius: 34px;
+        padding: 2.4rem 2rem;
+        box-shadow: var(--shadow-md);
+      }
+      .steps-header {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto 2.2rem;
+      }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .step-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 24px;
+        padding: 1.3rem;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .step-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 32px rgba(16, 82, 148, 0.1);
+      }
+      .step-number {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: var(--dark-blue);
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.18)
+        );
+        margin-bottom: 0.9rem;
+      }
+      .step-card h3 {
+        color: var(--dark-blue);
+        font-size: 1.02rem;
+        margin-bottom: 0.45rem;
+      }
+      .step-card p {
+        color: var(--muted);
+        font-size: 0.93rem;
+        line-height: 1.7;
+      }
+
+      /* =============================
+         WARNING BANNER
+         ============================= */
+      .warning-banner {
+        margin-top: 3rem;
+        background: linear-gradient(135deg, #ef4444, #b91c1c);
+        color: white;
+        padding: 2.2rem 1.6rem;
+        border-radius: 28px;
+        text-align: center;
+        box-shadow: 0 18px 32px rgba(239, 68, 68, 0.22);
+      }
+      .warning-banner h3 {
+        font-size: 1.45rem;
+        margin-bottom: 0.9rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+      }
+      .warning-banner p {
+        font-size: 1.02rem;
+        opacity: 0.94;
+        margin: 0;
+        color: white;
+        max-width: 860px;
+        margin-inline: auto;
+        line-height: 1.8;
+      }
+
+      /* =============================
+         BACK TO TOP
+         ============================= */
+      .back-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #c9d95c 0%, #6c8cbf 100%);
+        color: var(--white);
+        box-shadow: 0 18px 34px rgba(16, 82, 148, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.28s ease;
+        z-index: 1100;
+      }
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .back-to-top:hover {
+        transform: translateY(-4px);
+      }
+
+      /* =============================
+         RESPONSIVE
+         ============================= */
+      @media (max-width: 1100px) {
+        .intro-grid,
+        .steps-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 768px) {
+        .hazards-hero {
+          padding: 5.8rem 0 4.4rem;
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .cta-button {
+          width: 100%;
+        }
+        .intro-grid,
+        .steps-grid,
+        .hazards-grid {
+          grid-template-columns: 1fr;
+        }
+        .hazard-header {
+          align-items: flex-start;
+        }
+        .steps-shell,
+        .warning-banner {
+          padding: 2rem 1.2rem;
+          border-radius: 26px;
+        }
+        .back-to-top {
+          width: 48px;
+          height: 48px;
+          right: 14px;
+          bottom: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div id="header-placeholder"></div>
+
+    <section class="hazards-hero">
+      <div class="container">
+        <div class="hero-inner reveal">
+          <span class="section-label">
+            <i class="bi bi-exclamation-triangle"></i>
+            Identifikasi dan Pengendalian Risiko
+          </span>
+          <h1>Potensi bahaya di laboratorium wajib dikenali sejak awal</h1>
+          <p>
+            Laboratorium adalah lingkungan kerja yang menuntut kewaspadaan
+            tinggi. Pemahaman mengenai jenis bahaya, dampaknya, dan langkah
+            pencegahan merupakan fondasi agar seluruh aktivitas berlangsung
+            aman, tertib, dan bebas dari insiden yang seharusnya dapat dicegah.
+          </p>
+          <div class="hero-actions">
+            <a href="#daftar-bahaya" class="cta-button primary">
+              <i class="bi bi-arrow-right-circle"></i> Lihat Potensi Bahaya
+            </a>
+            <a href="#pengendalian" class="cta-button secondary">
+              <i class="bi bi-shield-check"></i> Langkah Pengendalian
+            </a>
+          </div>
+          <div class="hero-divider"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="daftar-bahaya">
+      <div class="container">
+        <div class="intro-panel glass-panel reveal">
+          <div class="intro-grid">
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-search"></i></div>
+              <h3>Identifikasi Dini</h3>
+              <p>
+                Mengenali sumber bahaya sejak awal membantu mencegah insiden
+                yang tidak perlu.
+              </p>
+            </div>
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-cone-striped"></i></div>
+              <h3>Pengendalian Risiko</h3>
+              <p>
+                Risiko harus dikelola melalui prosedur kerja, APD, dan disiplin
+                operasional.
+              </p>
+            </div>
+            <div class="intro-card">
+              <div class="icon"><i class="bi bi-clipboard2-pulse"></i></div>
+              <h3>Respons Cepat</h3>
+              <p>
+                Saat bahaya terjadi, respons yang cepat dan tepat menentukan
+                dampak akhirnya.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-intro reveal">
+          <div class="hazard-mark"><i class="fas fa-radiation-alt"></i></div>
+          <h2>Identifikasi dini mencegah tragedi</h2>
+          <p>
+            Lingkungan laboratorium memiliki risiko fisik, kimia, biologis,
+            listrik, hingga mekanis yang tidak boleh diremehkan. Pemahaman yang
+            komprehensif mengenai jenis bahaya dan cara pencegahannya akan
+            membantu membangun budaya kerja yang lebih aman dan profesional
+            sesuai kaidah K3.
+          </p>
+        </div>
+
+        <div class="hazards-grid reveal">
+          <div class="hazard-card physical">
+            <div class="hazard-header">
+              <div class="hazard-icon physical">
+                <i class="fas fa-volume-up"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Fisik</span>
+                <h3 class="hazard-title">Kebisingan Mesin</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Suara bising berintensitas tinggi dari peralatan seperti
+                centrifuge, vacuum pump, atau sonikator dapat mengganggu
+                kenyamanan dan keselamatan kerja.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Gangguan pendengaran parsial/permanen</li>
+                  <li>Stres dan sakit kepala kronis</li>
+                  <li>Penurunan tingkat konsentrasi</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Gunakan earplug atau earmuff</li>
+                  <li>Batasi waktu rotasi paparan mesin</li>
+                  <li>Lakukan perawatan alat secara berkala</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card physical">
+            <div class="hazard-header">
+              <div class="hazard-icon physical">
+                <i class="fas fa-walking"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Fisik</span>
+                <h3 class="hazard-title">Tergelincir / Tersandung</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Tumpahan cairan, genangan air, kabel instrumen yang berserakan,
+                atau lorong kerja yang tidak rapi dapat memicu kecelakaan jatuh.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Luka memar atau lecet</li>
+                  <li>Fraktur tulang atau cedera sendi</li>
+                  <li>Risiko menjatuhkan bahan berbahaya (efek domino)</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Segera pel/bersihkan tumpahan di lantai</li>
+                  <li>Rapikan jalur kabel dan area lintasan kerja</li>
+                  <li>Wajib gunakan sepatu lab anti-slip tertutup</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card fire">
+            <div class="hazard-header">
+              <div class="hazard-icon fire">
+                <i class="fas fa-thermometer-full"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Fisik / Termal</span>
+                <h3 class="hazard-title">Temperatur Ekstrem</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Paparan panas tinggi dari oven, hot plate, furnace, autoclave,
+                atau bahkan nitrogen cair pembeku (suhu ekstrem rendah).
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Luka bakar termal (ringan hingga berat)</li>
+                  <li>
+                    Kerusakan jaringan atau frostbite (untuk nitrogen cair)
+                  </li>
+                  <li>Potensi bahaya kebakaran ruangan</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Gunakan sarung tangan insulasi tahan panas/dingin</li>
+                  <li>Gunakan penjepit krus atau alat bantu yang tepat</li>
+                  <li>Beri label peringatan "AWAS PANAS" pada alat</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card physical">
+            <div class="hazard-header">
+              <div class="hazard-icon physical"><i class="fas fa-cut"></i></div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Mekanis</span>
+                <h3 class="hazard-title">Glassware Pecah</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Peralatan kaca (beaker, tabung reaksi, erlenmeyer) yang retak,
+                pecah karena tekanan/suhu, atau tidak layak pakai.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Luka sayat dalam pada tangan atau tubuh</li>
+                  <li>Perdarahan hebat akibat terpotong kaca</li>
+                  <li>Tersuntiknya bahan kimia ke aliran darah (injeksi)</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Inspeksi alat kaca sebelum mulai mereaksikan bahan</li>
+                  <li>Jangan memungut serpihan kaca dengan tangan kosong</li>
+                  <li>
+                    Buang pecahan di wadah limbah tajam (Sharps Container)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card electrical">
+            <div class="hazard-header">
+              <div class="hazard-icon electrical">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Elektrikal</span>
+                <h3 class="hazard-title">Sengatan & Korsleting Listrik</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Penggunaan instrumen listrik dengan instalasi kabel terkelupas,
+                stopkontak kelebihan beban, atau alat yang beroperasi di dekat
+                sumber tumpahan air/kimia cair.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Sengatan arus listrik (shock) berakibat fatal</li>
+                  <li>Luka bakar akibat percikan listrik</li>
+                  <li>Pemicu kebakaran hebat di dalam fasilitas</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>
+                    Jauhkan semua stopkontak dan alat listrik dari genangan
+                    cairan
+                  </li>
+                  <li>
+                    Jangan sentuh steker dengan sarung tangan/tangan basah
+                  </li>
+                  <li>
+                    Cabut steker (unplug) instrumen saat tidak dipakai lama
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card ergonomic">
+            <div class="hazard-header">
+              <div class="hazard-icon ergonomic">
+                <i class="fas fa-people-carry"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Ergonomis</span>
+                <h3 class="hazard-title">Postur & Repetisi Kerja</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Beraktivitas dengan posisi tubuh janggal, seperti menunduk
+                melihat mikroskop terlalu lama, memipet sampel ribuan kali, atau
+                mengangkat galon reagen dengan posisi salah.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Nyeri punggung bawah (Low Back Pain)</li>
+                  <li>Carpal Tunnel Syndrome (nyeri pergelangan tangan)</li>
+                  <li>Kelelahan otot ekstrem kronis (MSDs)</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Gunakan kursi lab yang bisa diatur ketinggiannya</li>
+                  <li>Lakukan peregangan (stretching) setiap 45 menit kerja</li>
+                  <li>
+                    Gunakan teknik jongkok saat mengangkat beban berat di lantai
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card physical">
+            <div class="hazard-header">
+              <div class="hazard-icon physical">
+                <i class="fas fa-wind"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Mekanis/Fisik</span>
+                <h3 class="hazard-title">Gas Bertekanan Tinggi</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Penggunaan tabung silinder berisi gas bertekanan tinggi
+                (Oksigen, Nitrogen, Helium) yang jatuh, terbentur, atau
+                mengalami kebocoran pada katup.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Ledakan tabung bak proyektil roket bila katup patah</li>
+                  <li>
+                    Risiko asfiksia (mati lemas) jika gas mendesak oksigen ruang
+                  </li>
+                  <li>Cedera remuk jika tertimpa silinder yang sangat berat</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>
+                    Rantai tabung gas ke dinding secara vertikal dan kokoh
+                  </li>
+                  <li>Selalu pasang penutup katup logam saat dipindahkan</li>
+                  <li>Gunakan troli khusus saat mengangkut tabung silinder</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card fire">
+            <div class="hazard-header">
+              <div class="hazard-icon fire"><i class="fas fa-fire"></i></div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Kimia/Fisik</span>
+                <h3 class="hazard-title">Potensi Kebakaran</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Manipulasi bahan pelarut organik mudah menyala (flammable) atau
+                gas mudah terbakar di dekat api terbuka, bunsen, atau sumber
+                percikan statis.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Luka bakar derajat tinggi dan trauma paparan panas</li>
+                  <li>Kehilangan dan kerusakan fatal aset laboratorium</li>
+                  <li>
+                    Ledakan sekunder jika api menyambar simpanan bahan kimia
+                    lain
+                  </li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>
+                    Ganti api terbuka (bunsen) dengan heating mantle tertutup
+                  </li>
+                  <li>
+                    Dilarang meletakkan botol aseton/etanol di dekat pemanas
+                  </li>
+                  <li>Ketahui persis letak Fire Blanket dan APAR di ruangan</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card chemical">
+            <div class="hazard-header">
+              <div class="hazard-icon chemical">
+                <i class="fas fa-flask"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Kimia</span>
+                <h3 class="hazard-title">Paparan Uap Beracun</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Menghirup, menyentuh, atau tidak sengaja menelan reagen kimia
+                yang bersifat toksik, karsinogenik, atau mutagenik selama proses
+                preparasi sampel.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Keracunan akut hingga kegagalan fungsi organ</li>
+                  <li>Iritasi berat pada membran mukosa saluran napas</li>
+                  <li>Efek kumulatif jangka panjang penyebab kanker</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>
+                    Wajib membuka botol bahan volatil (menguap) di Lemari Asam
+                  </li>
+                  <li>
+                    Pakai goggles, masker respirator, dan sarung tangan nitril
+                  </li>
+                  <li>Wajib pelajari spesifikasi MSDS sebelum memegang zat</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card chemical">
+            <div class="hazard-header">
+              <div class="hazard-icon chemical">
+                <i class="fas fa-tint-slash"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Kimia</span>
+                <h3 class="hazard-title">Tumpahan Bahan Korosif</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Tumpahnya cairan asam kuat (Asam Sulfat, Asam Nitrat) atau basa
+                pekat (Natrium Hidroksida) ke atas meja kerja, mengenai lantai,
+                atau memercik ke tubuh praktikan.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>
+                    Luka bakar kimia seketika yang merusak jaringan kulit dalam
+                  </li>
+                  <li>Kebutaan permanen bila mengenai kornea mata</li>
+                  <li>
+                    Merusak/melelehkan permukaan meja, lantai, dan mesin lab
+                  </li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Bawa botol reagen menggunakan wadah sekunder pembawa</li>
+                  <li>
+                    Buka botol reagen perlahan dan selalu gunakan corong/pipet
+                  </li>
+                  <li>
+                    Segera netralisir tumpahan menggunakan material Spill Kit
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card biological">
+            <div class="hazard-header">
+              <div class="hazard-icon biological">
+                <i class="fas fa-biohazard"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Biologis</span>
+                <h3 class="hazard-title">Kontaminasi Mikroba</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Paparan bakteri, virus, jamur, atau sampel biologis patogen
+                selama proses kultur atau pengujian mikrobiologi akibat teknik
+                aseptik yang buruk.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>
+                    Infeksi silang pada jaringan kulit dan saluran pernapasan
+                  </li>
+                  <li>Menyebarkan wabah atau penyakit zoonosis dari sampel</li>
+                  <li>Kontaminasi merusak hasil kultur bakteri yang diuji</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Wajib beroperasi di dalam Biosafety Cabinet (BSC)</li>
+                  <li>
+                    Dekontaminasi dan sterilisasi alat sebelum & sesudah
+                    digunakan
+                  </li>
+                  <li>
+                    Cuci tangan higienis dengan sabun segera setelah melepas
+                    sarung tangan
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps-section" id="pengendalian">
+      <div class="container">
+        <div class="steps-shell reveal">
+          <div class="steps-header">
+            <span class="section-label"
+              ><i class="bi bi-diagram-3"></i> Langkah Pengendalian</span
+            >
+            <h2 class="section-heading">
+              Empat langkah sederhana agar risiko tidak berkembang jadi insiden
+            </h2>
+            <p class="section-subtitle">
+              Bahaya tidak selalu bisa dihilangkan total, tapi selalu bisa
+              dikendalikan dengan pendekatan mitigasi hierarkis yang benar.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h3>Kenali sumber bahaya</h3>
+              <p>
+                Identifikasi potensi fisik, kimia, biologis, elektrikal, dan
+                mekanis dari observasi area sebelum aktivitas dimulai.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h3>Nilai tingkat risiko</h3>
+              <p>
+                Tentukan tahapan atau bahan mana yang probabilitas bahayanya
+                paling tinggi serta paling fatal dampaknya.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h3>Terapkan pengendalian</h3>
+              <p>
+                Aplikasikan hierarki pengendalian: perbaikan prosedur,
+                modifikasi teknis (pakai BSC/Fume Hood), kewajiban APD, dan tata
+                tertib kerja.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <h3>Siapkan respons darurat</h3>
+              <p>
+                Pastikan semua personel tahu lokasi APAR, Eyewash, Spill kit,
+                rute evakuasi, dan pelaporan awal saat insiden terjadi.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-banner reveal">
+          <h3>
+            <i class="fas fa-exclamation-triangle"></i> Tanggap Darurat K3
+          </h3>
+          <p>
+            Jika terjadi kecelakaan kerja, tumpahan bahan kimia masif, atau
+            paparan korosif/toksik, segera menjauh dari area sumber bahaya,
+            aktifkan prosedur isolasi penanganan, hubungi petugas K3 terkait,
+            dan laporkan kepada supervisor.
+            <strong>
+              Jangan pernah menunda respons darurat atau membereskan tumpahan
+              berbahaya sendirian jika tidak kompeten.</strong
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+      const scrollProgress = document.getElementById("scrollProgress");
+      const backToTop = document.getElementById("backToTop");
+      const reveals = document.querySelectorAll(".reveal");
+
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = progress + "%";
+
+        if (scrollTop > 320) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      }
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      reveals.forEach((el) => revealObserver.observe(el));
+
+      window.addEventListener("scroll", updateScrollProgress);
+      window.addEventListener("load", updateScrollProgress);
+    </script>
+  </body>
+</html>

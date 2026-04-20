@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SI-DEKAP K3 - Sistem Digitalisasi dan Edukasi K3 Laboratorium</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="footer.css" />
+
+    <style>
+      /* Hover specific untuk mempercantik search card */
+      .search-card:hover .search-icon {
+        background: var(--primary-blue);
+        color: white;
+      }
+
+      /* Emergency Section khusus Beranda */
+      .emergency-section {
+        padding: 4.5rem 0;
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.03), rgba(245, 158, 11, 0.03));
+        border-top: 1px dashed rgba(239, 68, 68, 0.15);
+        border-bottom: 1px dashed rgba(239, 68, 68, 0.15);
+      }
+      .emergency-shell {
+        text-align: center;
+      }
+      .emergency-header p {
+        color: var(--muted);
+        max-width: 650px;
+        margin: 1rem auto 2.5rem;
+        line-height: 1.7;
+      }
+      .emergency-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .emergency-card {
+        background: var(--white);
+        padding: 2.2rem 1.8rem;
+        border-radius: 20px;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid rgba(239, 68, 68, 0.08);
+        box-shadow: 0 10px 30px rgba(239, 68, 68, 0.03);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .emergency-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(239, 68, 68, 0.12);
+        border-color: rgba(239, 68, 68, 0.3);
+      }
+      .emergency-card .e-icon {
+        width: 64px;
+        height: 64px;
+        background: rgba(239, 68, 68, 0.08);
+        color: #ef4444;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        margin: 0 auto 1.2rem;
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+      .emergency-card:hover .e-icon {
+        background: #ef4444;
+        color: var(--white);
+      }
+      .emergency-card.warning-style:hover .e-icon {
+        background: #f59e0b;
+      }
+      .emergency-card.warning-style {
+        border-color: rgba(245, 158, 11, 0.15);
+      }
+      .emergency-card.warning-style .e-icon {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.1);
+      }
+      .emergency-card h3 {
+        color: var(--dark-blue);
+        margin-bottom: 0.8rem;
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+      .emergency-card p {
+        color: var(--gray-600);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div id="header-placeholder"></div>
+
+    <section class="hero" id="beranda">
+      <div class="hero-bg-layer active" id="heroBgA"></div>
+      <div class="hero-bg-layer" id="heroBgB"></div>
+
+      <div class="floating-icons" aria-hidden="true">
+        <i class="floating-icon i1 bi bi-shield-check"></i>
+        <i class="floating-icon i2 bi bi-exclamation-triangle"></i>
+        <i class="floating-icon i3 bi bi-eyedropper"></i>
+        <i class="floating-icon i4 bi bi-clipboard2-pulse"></i>
+        <i class="floating-icon i5 bi bi-radioactive"></i>
+        <i class="floating-icon i6 bi bi-bandaid"></i>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-copy">
+          <div class="hero-badge">
+            <i class="bi bi-shield-check"></i> SI-DEKAP K3· Sistem Informasi
+            Edukasi dan Pelaporan Risiko K3 Laboratorium
+          </div>
+
+          <h1 class="hero-title">
+            SI-DEKAP K3
+            <span class="accent-text">Portal Edukasi K3</span> Laboratorium
+          </h1>
+
+          <p
+            class="hero-subtitle"
+            style="
+              text-align: center;
+              margin: 0 auto;
+              padding-left: 0;
+              padding-right: 0;
+              width: 100%;
+            "
+          >
+            Beranda digital untuk membantu personel memahami panduan K3,<br />mengenali
+            risiko bahan, dan menjaga ketertiban kerja laboratorium.
+          </p>
+
+          <div class="hero-actions">
+            <a href="k3.html" class="cta-button">
+              <i class="bi bi-arrow-right-circle"></i> Buka Panduan Dasar
+            </a>
+            <a href="#smart-search" class="cta-button secondary">
+              <i class="bi bi-grid"></i> Eksplor Fitur Utama
+            </a>
+          </div>
+
+          <div class="scroll-hint">
+            <i class="bi bi-mouse"></i>
+            <span>Scroll untuk melihat fitur</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-wave" aria-hidden="true">
+        <svg
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill="#ffffff"
+            d="M0,96L60,90.7C120,85,240,75,360,69.3C480,64,600,64,720,69.3C840,75,960,85,1080,85.3C1200,85,1320,75,1380,69.3L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="slider-controls">
+        <button class="slider-btn" id="prevBtn" title="Gambar Sebelumnya">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <span style="color: var(--white); font-weight: 700" id="slideIndicator"
+          >1 / 3</span
+        >
+        <button class="slider-btn" id="nextBtn" title="Gambar Selanjutnya">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION KONDISI DARURAT -->
+    <section class="emergency-section" style="margin-top: -3.5rem; position: relative; z-index: 10;">
+      <div class="container">
+        <div class="emergency-shell reveal">
+          <div class="emergency-header">
+            <span class="section-label" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.05); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.1);">
+              <i class="bi bi-exclamation-triangle-fill"></i>
+              Kondisi Darurat
+            </span>
+            <h2 class="section-heading" style="margin-top: 1rem;">Respons Keadaan Darurat</h2>
+            <p>
+              Akses cepat panduan penanganan apabila terjadi situasi kritis. 
+              Kesigapan bertindak sangat menentukan keselamatan personel dan meminimalkan kerusakan.
+            </p>
+          </div>
+          <div class="emergency-grid">
+            <a href="p3k.html" class="emergency-card">
+              <div class="e-icon"><i class="fas fa-briefcase-medical"></i></div>
+              <h3>Pertolongan Pertama (P3K)</h3>
+              <p>Langkah penanganan medis awal saat terjadi paparan bahan kimia, luka bakar, atau cedera fisik.</p>
+            </a>
+            <a href="bencana.html" class="emergency-card">
+              <div class="e-icon"><i class="fas fa-fire-extinguisher"></i></div>
+              <h3>Penanganan Bencana</h3>
+              <p>Prosedur evakuasi dan respons darurat terhadap kebakaran, gempa bumi, maupun tumpahan B3 skala besar.</p>
+            </a>
+            <a href="form-lapor.html" class="emergency-card warning-style">
+              <div class="e-icon"><i class="fas fa-clipboard-list"></i></div>
+              <h3>Lapor Insiden Kerja</h3>
+              <p>Formulir resmi pelaporan kecelakaan kerja untuk dokumentasi dan dasar investigasi K3.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="smart-search-section" id="smart-search" style="margin-top: 2rem;">
+      <div class="smart-search-shell">
+
+        <div class="smart-search-top">
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              id="smartSearch"
+              placeholder="Cari halaman: bahaya fisik, MSDS etanol, p3k luka bakar, limbah..."
+            />
+          </div>
+          <div class="search-meta">
+            <span class="meta-pill"
+              ><i class="bi bi-lightning-charge"></i> Smart Search</span
+            >
+            <span class="meta-pill"
+              ><i class="bi bi-file-earmark-medical"></i> Dokumen MSDS</span
+            >
+            <span class="meta-pill"
+              ><i class="bi bi-exclamation-octagon"></i> Identifikasi
+              Hazard</span
+            >
+          </div>
+        </div>
+
+        <div class="search-results" id="searchResults">
+          <a
+            class="search-card"
+            href="k3.html"
+            data-search="panduan dasar k3 laboratorium aturan dasar apd keselamatan kerja tata tertib sepatu jas lab fasilitas lemari asam apar"
+          >
+            <span class="search-icon"><i class="bi bi-journal-text"></i></span>
+            <div class="search-body">
+              <strong>Panduan Dasar K3</strong>
+              <p>
+                Materi tata tertib dasar, kewajiban APD, dan pengenalan
+                fasilitas keselamatan.
+              </p>
+              <span class="search-tag"><i class="bi bi-book"></i> Panduan</span>
+            </div>
+          </a>
+
+          <a
+            class="search-card"
+            href="peraturan.html"
+            data-search="peraturan regulasi hukum uu permenaker bpom iso 17025 dasar hukum k3 pp limbah"
+          >
+            <span class="search-icon"
+              ><i class="bi bi-file-earmark-ruled"></i
+            ></span>
+            <div class="search-body">
+              <strong>Regulasi & Hukum K3</strong>
+              <p>Acuan dasar hukum operasional dan regulasi keselamatan lab.</p>
+              <span class="search-tag"><i class="bi bi-bank"></i> Hukum</span>
+            </div>
+          </a>
+
+          <a
+            class="search-card"
+            href="hazards.html"
+            data-search="potensi bahaya hazard fisik kimia biologis panas kebisingan pecahan kaca tumpahan listrik"
+          >
+            <span class="search-icon"
+              ><i class="bi bi-exclamation-triangle"></i
+            ></span>
+            <div class="search-body">
+              <strong>Potensi Bahaya (Hazard)</strong>
+              <p>
+                Identifikasi bahaya fisik, kimiawi, biologis, dan cara
+                pencegahannya.
+              </p>
+              <span class="search-tag"><i class="bi bi-fire"></i> Hazard</span>
+            </div>
+          </a>
+
+          <a
+            class="search-card"
+            href="simbol-b3.html"
+            data-search="simbol b3 ghs toksik beracun korosif mudah menyala terbakar iritan oksidator gas bertekanan reaktif meledak"
+          >
+            <span class="search-icon"><i class="bi bi-radioactive"></i></span>
+            <div class="search-body">
+              <strong>Klasifikasi & Simbol B3</strong>
+              <p>Mengenal piktogram GHS untuk bahan berbahaya dan beracun.</p>
+              <span class="search-tag"
+                ><i class="bi bi-droplet-half"></i> Bahan Kimia</span
+              >
+            </div>
+          </a>
+
+          <a
+            class="search-card"
+            href="limbah.html"
+            data-search="limbah pembuangan cair padat tps organik anorganik jerigen penyimpanan pemisahan"
+          >
+            <span class="search-icon"><i class="bi bi-recycle"></i></span>
+            <div class="search-body">
+              <strong>Pengelolaan Limbah</strong>
+              <p>
+                Alur pemisahan bahan, batas pengisian wadah, dan tata cara
+                pembuangan.
+              </p>
+              <span class="search-tag"
+                ><i class="bi bi-trash"></i> Lingkungan</span
+              >
+            </div>
+          </a>
+
+          <a
+            class="search-card"
+            href="msds.html"
+            data-search="msds material safety data sheet ldkb reagen padat cair mikrobiologi baku standar cari informasi bahan"
+          >
+            <span class="search-icon"
+              ><i class="bi bi-file-earmark-medical"></i
+            ></span>
+            <div class="search-body">
+              <strong>Dokumen MSDS (LDKB)</strong>
+              <p>
+                Pusat data dokumen keselamatan bahan kimia sesuai format 16 GHS.
+              </p>
+              <span class="search-tag"
+                ><i class="bi bi-folder2-open"></i> Dokumen</span
+              >
+            </div>
+          </a>
+
+          <a
+            class="search-card"
+            href="p3k.html"
+            data-search="p3k pertolongan pertama pingsan luka bakar perdarahan pajanan bahan kimia rjp nafas buatan sengatan listrik patah tulang"
+          >
+            <span class="search-icon"><i class="bi bi-hospital"></i></span>
+            <div class="search-body">
+              <strong>Pertolongan Pertama P3K</strong>
+              <p>
+                Langkah taktis penanganan medis saat terjadi insiden di
+                laboratorium.
+              </p>
+              <span class="search-tag"
+                ><i class="bi bi-heart-pulse"></i> Darurat</span
+              >
+            </div>
+          </a>
+
+          <a
+            class="search-card"
+            href="form-lapor.html"
+            data-search="form pelaporan kecelakaan kerja laporan insiden berita acara form online hardcopy cetak saksi"
+          >
+            <span class="search-icon"
+              ><i class="bi bi-clipboard-check"></i
+            ></span>
+            <div class="search-body">
+              <strong>Formulir Pelaporan</strong>
+              <p>
+                Input data pelaporan insiden online dan format berita acara
+                kecelakaan.
+              </p>
+              <span class="search-tag"
+                ><i class="bi bi-pencil-square"></i> Administrasi</span
+              >
+            </div>
+          </a>
+        </div>
+        <div class="no-results" id="noResults">
+          Tidak ada hasil yang cocok. Coba gunakan kata kunci yang lebih umum.
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <div class="quote-container">
+        <blockquote class="quote">
+          "Pencegahan lebih baik daripada penyesalan. Keselamatan adalah
+          prioritas utama sebelum hasil pengujian didapatkan."
+        </blockquote>
+        <p class="quote-author">— Prinsip K3 Laboratorium Terpadu</p>
+      </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

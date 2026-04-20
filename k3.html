@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan K3 - SI-DEKAP Laboratorium</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="footer.css" />
+
+    <style>
+      :root {
+        --primary-blue: #bac94a;
+        --teal: #6c8cbf;
+        --bg-grad-start: #eef8d7;
+        --bg-grad-end: #e8f6f0;
+        --dark-blue: #105294;
+
+        --gray-50: #fbfdf9;
+        --gray-100: #f3f6ee;
+        --gray-200: #e4ebdf;
+        --gray-300: #d7dfd1;
+        --gray-500: #6b7280;
+        --gray-600: #4b5563;
+        --gray-700: #374151;
+        --white: #ffffff;
+
+        --footer-bg: #fbfcf4;
+        --footer-bottom: #d9ded5;
+        --footer-text: #374836;
+        --footer-heading: #105294;
+        --footer-hover: #bac94a;
+
+        --shadow-sm: 0 8px 20px rgba(16, 82, 148, 0.05);
+        --shadow-md: 0 18px 40px rgba(16, 82, 148, 0.08);
+        --shadow-lg: 0 28px 60px rgba(16, 82, 148, 0.12);
+
+        --radius-lg: 24px;
+        --radius-xl: 30px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        overflow-x: hidden;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(234, 246, 205, 0.48),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(207, 247, 228, 0.36),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #fbfdf9 0%, #f8fbf8 42%, #ffffff 100%);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.72rem 1.1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 25px rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .section-heading {
+        font-size: clamp(2rem, 3.8vw, 3rem);
+        line-height: 1.08;
+        color: var(--dark-blue);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      .section-subtitle {
+        color: var(--gray-600);
+        font-size: 1.02rem;
+        max-width: 720px;
+        margin: 1rem auto 0;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        z-index: 1200;
+        box-shadow: 0 2px 10px rgba(16, 82, 148, 0.18);
+      }
+
+      /* =============================
+         HERO CLEAN PREMIUM
+         ============================= */
+      .k3-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 0 5rem;
+        background:
+          radial-gradient(
+            circle at 12% 20%,
+            rgba(186, 201, 74, 0.16),
+            transparent 22%
+          ),
+          radial-gradient(
+            circle at 85% 22%,
+            rgba(108, 140, 191, 0.12),
+            transparent 20%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(238, 248, 215, 0.95) 0%,
+            rgba(232, 246, 240, 0.95) 48%,
+            rgba(255, 255, 255, 1) 100%
+          );
+      }
+
+      .k3-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.35),
+          transparent 90%
+        );
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.6rem, 5vw, 4.6rem);
+        line-height: 1.04;
+        font-weight: 800;
+        margin: 1.2rem 0 1rem;
+        letter-spacing: -0.04em;
+        color: var(--dark-blue);
+      }
+
+      .hero-copy h1 .accent {
+        color: #8ca127;
+      }
+
+      .hero-copy p {
+        font-size: 1.08rem;
+        color: var(--gray-600);
+        max-width: 720px;
+        margin: 0 auto 2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 1rem 1.55rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.98rem;
+        cursor: pointer;
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          background 0.28s ease;
+        border: none;
+      }
+
+      .cta-button.primary {
+        background: linear-gradient(
+          135deg,
+          #c9d95c 0%,
+          #b7cf57 18%,
+          #6c8cbf 100%
+        );
+        color: var(--white);
+        box-shadow: 0 18px 35px rgba(12, 44, 82, 0.2);
+      }
+
+      .cta-button.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 22px 42px rgba(12, 44, 82, 0.28);
+      }
+
+      .cta-button.secondary {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--dark-blue);
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        box-shadow: 0 10px 22px rgba(16, 82, 148, 0.06);
+      }
+
+      .cta-button.secondary:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-divider {
+        width: 140px;
+        height: 5px;
+        margin: 2rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        box-shadow: 0 6px 18px rgba(16, 82, 148, 0.12);
+      }
+
+      /* =============================
+         INTRO CARDS
+         ============================= */
+      .content-section {
+        padding: 4rem 0 2rem;
+      }
+
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        box-shadow: var(--shadow-md);
+        border-radius: var(--radius-xl);
+        backdrop-filter: blur(16px);
+      }
+
+      .intro-panel {
+        padding: 1.6rem;
+        margin-top: -1.6rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .intro-card {
+        padding: 1.25rem;
+        border-radius: 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(251, 253, 247, 0.96)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        box-shadow: 0 10px 24px rgba(16, 82, 148, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .intro-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 28px rgba(16, 82, 148, 0.08);
+      }
+
+      .intro-card .icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.9rem;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.18)
+        );
+        color: var(--dark-blue);
+        font-size: 1.2rem;
+      }
+
+      .intro-card h3 {
+        color: var(--dark-blue);
+        font-size: 1.02rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .intro-card p {
+        color: var(--gray-600);
+        font-size: 0.94rem;
+      }
+
+      /* =============================
+         MAIN CONTENT
+         ============================= */
+      .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+        max-width: 1100px;
+        margin: 4rem auto 0;
+      }
+
+      .text-content h2 {
+        color: var(--dark-blue);
+        font-size: clamp(1.85rem, 3vw, 2.5rem);
+        margin-bottom: 1.2rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .text-content p {
+        color: var(--gray-600);
+        line-height: 1.9;
+        margin-bottom: 1.2rem;
+        font-size: 1.02rem;
+      }
+
+      .accent-note {
+        margin-top: 1.4rem;
+        padding: 1.1rem 1.2rem;
+        border-radius: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.12),
+          rgba(108, 140, 191, 0.08)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        font-weight: 600;
+      }
+
+      .illustration-box {
+        position: relative;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbf4 100%);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 28px;
+        min-height: 390px;
+        padding: 2rem;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+      }
+
+      .illustration-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(186, 201, 74, 0.18),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at bottom left,
+            rgba(108, 140, 191, 0.14),
+            transparent 28%
+          );
+        pointer-events: none;
+      }
+
+      .illustration-content {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .lab-icon-large {
+        font-size: 6.6rem;
+        background: -webkit-linear-gradient(
+          135deg,
+          var(--primary-blue),
+          var(--teal)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+        filter: drop-shadow(2px 10px 18px rgba(16, 82, 148, 0.12));
+      }
+
+      .illustration-content h3 {
+        color: var(--dark-blue);
+        font-size: 1.35rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .illustration-content p {
+        color: var(--gray-600);
+        max-width: 420px;
+      }
+
+      .mini-points {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+        width: 100%;
+        margin-top: 1.4rem;
+      }
+
+      .mini-point {
+        padding: 0.92rem 1rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        font-size: 0.9rem;
+        color: var(--dark-blue);
+        font-weight: 600;
+      }
+
+      .benefits-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .benefits-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.15rem 1.2rem;
+        background: linear-gradient(180deg, #ffffff, #fbfdf8);
+        border-radius: 18px;
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        color: var(--dark-blue);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        box-shadow: 0 8px 20px rgba(16, 82, 148, 0.04);
+      }
+
+      .benefits-list li:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 30px rgba(16, 82, 148, 0.08);
+        border-color: rgba(16, 82, 148, 0.12);
+      }
+
+      .benefits-list i {
+        flex-shrink: 0;
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dark-blue);
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.18),
+          rgba(108, 140, 191, 0.14)
+        );
+        font-size: 1.08rem;
+      }
+
+      .benefits-list span {
+        color: var(--gray-700);
+        font-weight: 500;
+        line-height: 1.6;
+      }
+
+      /* =============================
+         STEPS
+         ============================= */
+      .steps-section {
+        padding: 3rem 0 1rem;
+      }
+
+      .steps-shell {
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(186, 201, 74, 0.14),
+            transparent 26%
+          ),
+          linear-gradient(180deg, #ffffff 0%, #f8fbf4 100%);
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        border-radius: 34px;
+        padding: 2.4rem 2rem;
+        box-shadow: var(--shadow-md);
+      }
+
+      .steps-header {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto 2.2rem;
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .step-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(16, 82, 148, 0.07);
+        border-radius: 24px;
+        padding: 1.3rem;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .step-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 32px rgba(16, 82, 148, 0.1);
+      }
+
+      .step-number {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: var(--dark-blue);
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.2),
+          rgba(108, 140, 191, 0.18)
+        );
+        margin-bottom: 0.9rem;
+      }
+
+      .step-card h3 {
+        color: var(--dark-blue);
+        font-size: 1.02rem;
+        margin-bottom: 0.45rem;
+      }
+
+      .step-card p {
+        color: var(--gray-600);
+        font-size: 0.93rem;
+        line-height: 1.7;
+      }
+
+      /* =============================
+         RULES & OBLIGATIONS
+         ============================= */
+      .obligations-section {
+        padding: 3rem 0 3rem;
+      }
+
+      .obligations-shell {
+        background:
+          radial-gradient(
+            circle at top center,
+            rgba(207, 247, 228, 0.45),
+            transparent 34%
+          ),
+          linear-gradient(180deg, #ffffff 0%, #f8fbf4 100%);
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        border-radius: 34px;
+        padding: 3rem 2rem;
+        box-shadow: var(--shadow-md);
+      }
+
+      .obligations-header {
+        text-align: center;
+        max-width: 780px;
+        margin: 0 auto 2.4rem;
+      }
+
+      .obligations-header .section-label {
+        margin-bottom: 1rem;
+      }
+
+      .obligations-header p {
+        color: var(--gray-600);
+        margin-top: 1rem;
+      }
+
+      .obligations-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(240px, 1fr));
+        gap: 1.2rem;
+      }
+
+      .obligation-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 1.55rem;
+        border-radius: 24px;
+        box-shadow: 0 16px 30px rgba(16, 82, 148, 0.06);
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          border-color 0.28s ease;
+        border: 1px solid rgba(16, 82, 148, 0.06);
+        overflow: hidden;
+      }
+
+      .obligation-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--teal));
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
+      .obligation-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 24px 46px rgba(16, 82, 148, 0.1);
+        border-color: rgba(16, 82, 148, 0.12);
+      }
+
+      .obligation-card:hover::before {
+        opacity: 1;
+      }
+
+      .obligation-icon {
+        width: 68px;
+        height: 68px;
+        border-radius: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.1rem;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.22),
+          rgba(108, 140, 191, 0.2)
+        );
+        color: var(--dark-blue);
+        font-size: 1.55rem;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+
+      .icon-red {
+        background: linear-gradient(
+          135deg,
+          rgba(239, 68, 68, 0.15),
+          rgba(220, 38, 38, 0.1)
+        );
+        color: #dc2626;
+      }
+
+      .icon-blue {
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.15),
+          rgba(37, 99, 235, 0.1)
+        );
+        color: #2563eb;
+      }
+
+      .obligation-card h3 {
+        color: var(--dark-blue);
+        margin-bottom: 0.65rem;
+        font-weight: 700;
+        font-size: 1.08rem;
+      }
+
+      .obligation-card p {
+        color: var(--gray-600);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .closing-banner {
+        margin-top: 2rem;
+        padding: 1.4rem 1.5rem;
+        border-radius: 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(186, 201, 74, 0.12),
+          rgba(108, 140, 191, 0.12)
+        );
+        border: 1px solid rgba(16, 82, 148, 0.08);
+        color: var(--dark-blue);
+        text-align: center;
+        font-weight: 600;
+      }
+
+      /* =============================
+         FACILITIES
+         ============================= */
+      .facility-section {
+        padding: 1rem 0 5rem;
+      }
+
+      /* =============================
+         BACK TO TOP
+         ============================= */
+      .back-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #c9d95c 0%, #6c8cbf 100%);
+        color: var(--white);
+        box-shadow: 0 18px 34px rgba(16, 82, 148, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.28s ease;
+        z-index: 1100;
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-4px);
+      }
+
+      /* =============================
+         RESPONSIVE
+         ============================= */
+      @media (max-width: 1100px) {
+        .two-column {
+          grid-template-columns: 1fr;
+        }
+
+        .intro-grid,
+        .steps-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .obligations-grid {
+          grid-template-columns: repeat(2, minmax(240px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .k3-hero {
+          padding: 5.8rem 0 4.4rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .cta-button {
+          width: 100%;
+        }
+
+        .intro-grid,
+        .steps-grid,
+        .obligations-grid,
+        .mini-points {
+          grid-template-columns: 1fr;
+        }
+
+        .steps-shell,
+        .obligations-shell {
+          padding: 2rem 1.2rem;
+          border-radius: 26px;
+        }
+
+        .back-to-top {
+          width: 48px;
+          height: 48px;
+          right: 14px;
+          bottom: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div id="header-placeholder"></div>
+
+    <section class="k3-hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-copy reveal">
+            <span class="section-label">
+              <i class="bi bi-shield-check"></i>
+              Panduan Dasar Keselamatan Laboratorium
+            </span>
+
+            <h1>
+              Mewujudkan Budaya Kerja
+              <span class="accent">Aman, Tertib,</span>
+              dan Profesional
+            </h1>
+
+            <p>
+              Halaman ini menyajikan panduan prinsip dasar Keselamatan dan Kesehatan
+              Kerja (K3), tata tertib operasional, serta pengenalan fasilitas
+              keselamatan yang wajib dipatuhi oleh seluruh personel laboratorium.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#prinsip-k3" class="cta-button primary">
+                <i class="bi bi-arrow-right-circle"></i>
+                Pelajari Panduan
+              </a>
+              <a href="#kewajiban" class="cta-button secondary">
+                <i class="bi bi-grid"></i>
+                Lihat Kewajiban
+              </a>
+            </div>
+
+            <div class="hero-divider"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="prinsip-k3">
+      <div class="container">
+        <div class="intro-panel glass-panel reveal">
+          <div class="intro-grid">
+            <div class="intro-card">
+              <div class="icon">
+                <i class="bi bi-heart-pulse"></i>
+              </div>
+              <h3>Melindungi Personel</h3>
+              <p>
+                K3 memastikan setiap aktivitas kerja dilakukan dengan tingkat
+                perlindungan yang memadai.
+              </p>
+            </div>
+
+            <div class="intro-card">
+              <div class="icon">
+                <i class="bi bi-building-check"></i>
+              </div>
+              <h3>Menjaga Operasional</h3>
+              <p>
+                Lingkungan kerja yang tertib membuat proses laboratorium lebih
+                stabil, rapi, dan minim gangguan.
+              </p>
+            </div>
+
+            <div class="intro-card">
+              <div class="icon">
+                <i class="bi bi-patch-check"></i>
+              </div>
+              <h3>Mendorong Kepatuhan</h3>
+              <p>
+                Memastikan seluruh aktivitas kerja memenuhi standar teknis dan etika
+                profesi sesuai dengan prinsip <i>Good Laboratory Practice</i>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-column reveal">
+          <div class="text-content">
+            <span class="section-label">
+              <i class="bi bi-journal-medical"></i>
+              Prinsip Dasar
+            </span>
+            <h2>Memahami fondasi K3 laboratorium secara utuh</h2>
+            <p>
+              Kesehatan dan Keselamatan Kerja (K3) di laboratorium merupakan
+              sistem perlindungan yang dirancang untuk menjaga keselamatan,
+              kesehatan, serta ketertiban seluruh personel di area kerja,
+              termasuk peneliti, teknisi, mahasiswa, maupun pengunjung.
+            </p>
+            <p>
+              K3 merupakan sistem perlindungan yang mengatur perilaku operasional,
+              penggunaan alat pelindung diri, serta mekanisme penanganan risiko
+              sebelum berkembang menjadi insiden. Penerapan K3 yang konsisten
+              menjadi pilar dalam mendukung validitas pengujian berstandar ISO/IEC 17025.
+            </p>
+            <div class="accent-note">
+              Laboratorium yang aman adalah laboratorium yang menerapkan sistem
+              validasi, kontrol, dan tindakan pencegahan secara berkesinambungan
+              sebelum timbulnya permasalahan.
+            </div>
+          </div>
+
+          <div class="illustration-box">
+            <div class="illustration-content">
+              <i class="fas fa-microscope lab-icon-large"></i>
+              <h3>Laboratorium Aman dan Produktif</h3>
+              <p>
+                Penerapan K3 yang baik mendukung konsistensi proses kerja,
+                kualitas hasil uji, dan kepercayaan terhadap lingkungan
+                laboratorium.
+              </p>
+
+              <div class="mini-points">
+                <div class="mini-point">APD sesuai standar</div>
+                <div class="mini-point">Prosedur lebih tertib</div>
+                <div class="mini-point">Risiko terkendali</div>
+                <div class="mini-point">Kerja profesional</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-column reveal" id="manfaat-k3">
+          <div class="illustration-box">
+            <div class="illustration-content">
+              <i class="fas fa-shield-alt lab-icon-large"></i>
+              <h3>Perlindungan Optimal</h3>
+              <p>
+                K3 menghadirkan perlindungan secara menyeluruh, meliputi aspek
+                fisik, operasional, dan administratif guna memastikan keamanan
+                personel dan keberlangsungan proses kerja laboratorium.
+              </p>
+
+              <div class="mini-points">
+                <div class="mini-point">Cegah kecelakaan</div>
+                <div class="mini-point">Tekan kerugian</div>
+                <div class="mini-point">Jaga mutu sampel</div>
+                <div class="mini-point">Patuh regulasi</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-content">
+            <span class="section-label">
+              <i class="bi bi-stars"></i>
+              Manfaat Penerapan
+            </span>
+            <h2>Urgensi Penerapan K3 di Lingkungan Laboratorium</h2>
+
+            <ul class="benefits-list">
+              <li>
+                <i class="fas fa-heart"></i>
+                <span
+                  >Melindungi kesehatan fisik dan mental personel laboratorium
+                  dari paparan bahaya kerja.</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-chart-line"></i>
+                <span
+                  >Meningkatkan produktivitas karena pekerjaan dilakukan dengan
+                  prosedur yang terstruktur.</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-vial"></i>
+                <span
+                  >Menjaga integritas dan kemurnian sampel dari kontaminasi
+                  silang akibat kecerobohan.</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-balance-scale"></i>
+                <span
+                  >Mendukung kepatuhan penuh terhadap peraturan dan standar
+                  keselamatan yang berlaku.</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-sack-dollar"></i>
+                <span
+                  >Mengurangi beban biaya akibat kecelakaan, kerusakan alat,
+                  maupun gangguan operasional.</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps-section" id="alur-k3">
+      <div class="container">
+        <div class="steps-shell reveal">
+          <div class="steps-header">
+            <span class="section-label">
+              <i class="bi bi-diagram-3"></i>
+              Alur Disiplin Dasar
+            </span>
+            <h2 class="section-heading">
+              Empat Tahapan Wajib Sebelum Memulai Aktivitas Laboratorium
+            </h2>
+            <p class="section-subtitle">
+              Personel laboratorium diwajibkan mengikuti alur disiplin dasar ini
+              secara konsisten guna memastikan keselamatan di setiap tahapan kerja.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h3>Cek area kerja</h3>
+              <p>
+                Pastikan meja kerja, alat ukur, dan lingkungan sekitar aman
+                serta siap digunakan tanpa sisa zat sebelumnya.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h3>Pakai APD lengkap</h3>
+              <p>
+                Gunakan jas lab, sarung tangan, masker, sepatu tertutup, dan
+                goggles sesuai kebutuhan pengujian.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h3>Pahami bahan</h3>
+              <p>
+                Selalu baca spesifikasi MSDS; kenali sifat, risiko, serta
+                tindakan darurat dari reagen yang akan direaksikan.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <h3>Kerja sesuai prosedur</h3>
+              <p>
+                Laksanakan aktivitas secara tertib, disiplin, dan hindari
+                improvisasi langkah kerja sembarangan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="obligations-section" id="tata-tertib">
+      <div class="container">
+        <div class="obligations-shell reveal">
+          <div class="obligations-header">
+            <span class="section-label">
+              <i class="bi bi-list-check"></i>
+              Tata Tertib Perilaku
+            </span>
+            <h2 class="section-heading">
+              Aturan Emas <i>(Golden Rules)</i> Laboratorium
+            </h2>
+            <p>
+              Penggunaan Alat Pelindung Diri tidak memberikan perlindungan optimal
+              apabila tidak disertai kepatuhan terhadap tata tertib operasional.
+              Seluruh personel wajib menaati ketentuan berikut tanpa pengecualian.
+            </p>
+          </div>
+
+          <div class="obligations-grid">
+            <div class="obligation-card">
+              <div class="obligation-icon icon-red">
+                <i class="fas fa-ban"></i>
+              </div>
+              <h3>Dilarang Makan & Minum</h3>
+              <p>
+                Sangat dilarang membawa, menyimpan, atau mengonsumsi makanan dan
+                minuman di area laboratorium untuk mencegah kontaminasi toksik.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon icon-red">
+                <i class="fas fa-user-slash"></i>
+              </div>
+              <h3>Dilarang Bekerja Sendirian</h3>
+              <p>
+                Dilarang melakukan pengujian atau aktivitas laboratorium secara
+                mandiri tanpa kehadiran rekan kerja, terutama di luar jam operasional
+                resmi yang telah ditetapkan.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-cut"></i>
+              </div>
+              <h3>Ikat Rambut & Aksesoris</h3>
+              <p>
+                Bagi yang berambut panjang, wajib diikat ke belakang. Lepaskan
+                perhiasan atau aksesoris berlebih yang rentan tersangkut
+                alat/bahan.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon icon-blue">
+                <i class="fas fa-hands-wash"></i>
+              </div>
+              <h3>Cuci Tangan</h3>
+              <p>
+                Wajib mencuci tangan dengan sabun dan air mengalir setelah
+                melepas sarung tangan dan sebelum meninggalkan ruang
+                laboratorium.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-broom"></i>
+              </div>
+              <h3>Bersihkan Area Kerja</h3>
+              <p>
+                Seluruh peralatan wajib dibersihkan dan dikembalikan ke tempat
+                semula. Tumpahan bahan wajib segera ditangani setelah selesai
+                melaksanakan kegiatan di laboratorium.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon icon-red">
+                <i class="fas fa-play"></i>
+              </div>
+              <h3>Dilarang Bercanda</h3>
+              <p>
+                Dilarang berlarian, bermain-main, atau melakukan gurauan fisik
+                di dalam laboratorium. Setiap gerakan harus diperhitungkan
+                dengan aman.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="obligations-section" id="kewajiban" style="padding-top: 0">
+      <div class="container">
+        <div class="obligations-shell reveal">
+          <div class="obligations-header">
+            <span class="section-label">
+              <i class="bi bi-person-badge"></i>
+              Perlengkapan Wajib
+            </span>
+            <h2 class="section-heading">Standar Alat Pelindung Diri (APD)</h2>
+            <p>
+              Setiap personel laboratorium wajib menggunakan perlindungan dasar
+              berikut agar tubuh tidak terpapar bahaya kimiawi atau biologis.
+            </p>
+          </div>
+
+          <div class="obligations-grid">
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-flask"></i>
+              </div>
+              <h3>Memakai Jas Lab</h3>
+              <p>
+                Gunakan jas laboratorium yang bersih, tertutup, dan sesuai
+                ukuran untuk melindungi pakaian dan kulit dari percikan bahan.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-hand-paper"></i>
+              </div>
+              <h3>Gunakan Sarung Tangan</h3>
+              <p>
+                Pilih sarung tangan sesuai karakter bahan yang digunakan (misal:
+                nitril atau lateks) dan segera buang jika terkontaminasi.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-head-side-mask"></i>
+              </div>
+              <h3>Gunakan Masker</h3>
+              <p>
+                Lindungi saluran pernapasan saat bekerja dengan reagen serbuk
+                atau bahan yang berpotensi menghasilkan uap/aerosol.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-shoe-prints"></i>
+              </div>
+              <h3>Sepatu Tertutup</h3>
+              <p>
+                Gunakan sepatu tertutup agar kaki terlindungi dari tumpahan
+                bahan korosif, pecahan alat gelas, maupun benda berat.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <h3>Kacamata Pelindung</h3>
+              <p>
+                Gunakan <i>goggles</i> atau kacamata safety untuk meminimalkan
+                risiko percikan zat asam/basa masuk langsung ke area mata.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon icon-blue">
+                <i class="fas fa-book"></i>
+              </div>
+              <h3>Membaca MSDS</h3>
+              <p>
+                Pahami Lembar Data Keselamatan Bahan (MSDS) sebelum bekerja agar
+                proses penanganan, penyimpanan, dan respons darurat dilakukan
+                akurat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="facility-section obligations-section"
+      id="fasilitas"
+      style="padding-top: 0"
+    >
+      <div class="container">
+        <div class="obligations-shell reveal">
+          <div class="obligations-header">
+            <span class="section-label">
+              <i class="bi bi-box-seam"></i>
+              Infrastruktur K3
+            </span>
+            <h2 class="section-heading">Mengenal Fasilitas Keselamatan Lab</h2>
+            <p>
+              Seluruh personel laboratorium wajib mengetahui lokasi dan cara
+              penggunaan fasilitas keselamatan berikut sebelum memulai aktivitas kerja.
+            </p>
+          </div>
+
+          <div class="obligations-grid">
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-тя"></i> <i class="fas fa-fan"></i>
+              </div>
+              <h3>Lemari Asam (Fume Hood)</h3>
+              <p>
+                Fasilitas wajib saat mereaksikan bahan kimia mudah menguap, gas
+                beracun, dan berbau menyengat agar uapnya langsung tersedot
+                keluar area kerja.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon icon-red">
+                <i class="fas fa-fire-extinguisher"></i>
+              </div>
+              <h3>APAR & Fire Blanket</h3>
+              <p>
+                Alat Pemadam Api Ringan dan selimut api untuk memadamkan kobaran
+                api awal di meja kerja maupun yang mengenai baju personel.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon icon-blue">
+                <i class="fas fa-shower"></i>
+              </div>
+              <h3>Eyewash & Safety Shower</h3>
+              <p>
+                Fasilitas pertolongan pertama untuk membilas mata atau seluruh
+                tubuh dengan air mengalir deras saat terkena tumpahan zat
+                kimia/korosif parah.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon">
+                <i class="fas fa-briefcase-medical"></i>
+              </div>
+              <h3>Kotak P3K</h3>
+              <p>
+                Wadah yang berisi kelengkapan medis dasar (kasa, perban,
+                povidone iodine) untuk penanganan luka ringan, teriris, atau
+                perdarahan awal.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon icon-red">
+                <i class="fas fa-pump-soap"></i>
+              </div>
+              <h3>Spill Kit (Kit Tumpahan)</h3>
+              <p>
+                Peralatan penanganan tumpahan B3 yang mencakup adsorben/pasir
+                penyerap, kantong limbah medis, dan penetral untuk bahan
+                spesifik.
+              </p>
+            </div>
+
+            <div class="obligation-card">
+              <div class="obligation-icon icon-blue">
+                <i class="fas fa-trash-alt"></i>
+              </div>
+              <h3>Wadah Limbah Spesifik</h3>
+              <p>
+                Tempat pembuangan yang sudah dikategorikan (Organik, Anorganik,
+                B3) untuk memisahkan sisa bahan agar tidak terjadi reaksi silang
+                berbahaya.
+              </p>
+            </div>
+          </div>
+
+          <div class="closing-banner">
+            Penerapan disiplin K3 secara konsisten merupakan langkah preventif
+            yang efektif dalam mencegah kecelakaan kerja dan menjaga keselamatan
+            seluruh personel laboratorium.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+      const scrollProgress = document.getElementById("scrollProgress");
+      const backToTop = document.getElementById("backToTop");
+      const reveals = document.querySelectorAll(".reveal");
+
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = progress + "%";
+
+        if (scrollTop > 320) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      }
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      reveals.forEach((el) => revealObserver.observe(el));
+
+      window.addEventListener("scroll", updateScrollProgress);
+      window.addEventListener("load", updateScrollProgress);
+    </script>
+  </body>
+</html>
