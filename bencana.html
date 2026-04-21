@@ -374,6 +374,11 @@
         gap: 1rem;
         margin-top: 1.5rem;
       }
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
       .eq-step {
         background: rgba(255, 255, 255, 0.9);
         border: 1px solid rgba(16, 82, 148, 0.06);
@@ -838,6 +843,34 @@
           bottom: 14px;
         }
       }
+      @media (max-width: 480px) {
+        .eq-steps,
+        .video-grid {
+          grid-template-columns: 1fr;
+        }
+        .class-card {
+          flex-direction: column;
+        }
+        .class-badge {
+          width: 100%;
+          flex-direction: row;
+          padding: 0.8rem;
+          justify-content: flex-start;
+          gap: 1rem;
+        }
+        .class-badge i {
+          margin-bottom: 0;
+        }
+        .pass-step {
+          padding: 1rem;
+        }
+        .fire-triangle-card {
+          padding: 1.5rem 1rem;
+        }
+        .triangle-wrapper {
+          transform: scale(0.9);
+        }
+      }
     </style>
   </head>
   <body>
@@ -1203,7 +1236,7 @@
         <!-- VIDEO EDUKASI K3 -->
         <div class="video-section reveal" id="video-edukasi" style="margin-top: 5rem; margin-bottom: 2rem;">
           <h2 class="fire-title" style="text-align: center; margin-bottom: 2.5rem;">Video Edukasi Praktikal K3</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+          <div class="video-grid">
             
             <!-- Video Spill Kit -->
             <div class="glass-panel" style="padding: 1.8rem;">
