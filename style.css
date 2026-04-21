@@ -248,15 +248,22 @@ button, input { font-family: inherit; }
 @media (max-width: 768px) {
   .hero { min-height: auto; }
   .hero-content { padding: 6.4rem 1.25rem 8rem; }
-  .hero-title { font-size: 2.5rem; }
+  .hero-title { font-size: 2.2rem; }
   .hero-subtitle { font-size: 1rem; }
-  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 380px; }
+  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 380px; margin-left: auto; margin-right: auto; }
   .cta-button { width: 100%; }
   .hero-wave svg { height: 72px; }
   .slider-controls { bottom: 18px; padding: 0.45rem 0.75rem; }
   .feature-section { padding: 4rem 1.25rem 4rem; }
   .feature-grid { grid-template-columns: 1fr; }
+  .feature-layout { grid-template-columns: 1fr; }
+  .smart-search-top { grid-template-columns: 1fr; }
+  .search-meta { justify-content: flex-start; flex-wrap: wrap; }
+  .search-results { grid-template-columns: 1fr; }
   .checklist-shell { padding: 1.5rem; }
   .status-row { flex-direction: column; align-items: stretch; }
   .floating-icons { display: none; }
+  .quote { font-size: 1.25rem; }
+  .smart-search-shell { padding: 1rem; border-radius: 22px; }
+  .preview-panel { position: static; }
 }

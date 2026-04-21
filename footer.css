@@ -211,14 +211,14 @@ footer {
     left: 16px;
   }
   .sos-btn {
-    width: 52px;
-    height: 52px;
+    width: 58px;
+    height: 58px;
   }
   .sos-btn i {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
   .sos-btn .sos-text {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
   }
   .sos-menu {
     width: 250px;
@@ -400,4 +400,29 @@ footer {
 .sos-number {
   color: #64748b;
   font-size: 0.85rem;
+}
+
+/* =========================================
+   EXTRA SMALL SCREENS (≤400px)
+   ========================================= */
+@media (max-width: 400px) {
+  .footer-container {
+    padding: 2.5rem 1rem 2rem;
+  }
+  .footer-topbar {
+    padding: 1rem 1rem 0;
+  }
+  .footer-highlight {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.9rem 1rem;
+  }
+  .sos-menu {
+    width: calc(100vw - 2rem);
+    max-width: 270px;
+  }
+  .contact-inline {
+    flex-direction: column;
+  }
 }

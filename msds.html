@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -701,6 +701,9 @@
         .hero-actions {
           flex-direction: column;
           align-items: stretch;
+          max-width: 380px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .cta-button {
           width: 100%;
@@ -713,6 +716,21 @@
         .card {
           padding: 1.4rem;
           border-radius: 24px;
+        }
+        /* Override inline grid-column untuk kolom tunggal di HP */
+        .main-grid > * {
+          grid-column: 1 / -1 !important;
+        }
+        .accordion-wrap {
+          margin-top: 1.5rem;
+        }
+        .accordion-title {
+          text-align: center !important;
+          font-size: 1.35rem !important;
+        }
+        /* Toolbar filter & search satu kolom */
+        .toolbar {
+          grid-template-columns: 1fr;
         }
         .back-to-top {
           width: 48px;
@@ -841,7 +859,7 @@
                 </div>
               </li>
               <li>
-                <span class="format-icon"><i class="bi bi-beaker"></i></span>
+                <span class="format-icon"><i class="fas fa-flask"></i></span>
                 <div>
                   <span class="format-title">3. Komposisi Bahan</span>
                   <span class="format-desc"

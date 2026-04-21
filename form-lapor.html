@@ -623,15 +623,17 @@
       }
 
       /* =============================
-         CTA + FAQ
+         FAQ
          ============================= */
       .extra-grid {
         margin-top: 3rem;
         display: grid;
-        grid-template-columns: 0.95fr 1.05fr;
+        grid-template-columns: 1fr;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
         gap: 1rem;
       }
-      .cta-section,
       .faq-section {
         background: rgba(255, 255, 255, 0.96);
         border: 1px solid rgba(16, 82, 148, 0.07);
@@ -639,16 +641,11 @@
         box-shadow: var(--shadow-md);
         padding: 1.6rem;
       }
-      .cta-title,
       .faq-title {
         color: var(--dark-blue);
         font-size: 1.55rem;
         margin-bottom: 1rem;
         font-weight: 800;
-      }
-      .cta-text {
-        color: var(--muted);
-        margin-bottom: 1.3rem;
       }
       .cta-buttons {
         display: flex;
@@ -818,20 +815,40 @@
         .reporting-hero {
           padding: 5.8rem 0 4.4rem;
         }
-        .hero-actions,
-        .flow-progress {
+        .hero-actions {
           flex-direction: column;
           align-items: stretch;
+          max-width: 380px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .flow-progress {
+          flex-direction: column;
+          align-items: center;
+        }
+        .flow-progress .pill {
+          width: 100%;
+          justify-content: center;
+        }
+        .flow-progress .arrow {
+          transform: rotate(90deg);
+          margin: 0.5rem 0;
         }
         .cta-button {
           width: 100%;
         }
+        .intro-grid,
+        .report-tools,
+        .extra-grid,
         .flow-grid,
         .notice-grid {
           grid-template-columns: 1fr;
         }
-        .countdown-box {
-          grid-template-columns: 1fr;
+        .flow-section,
+        .faq-section,
+        .notice-section {
+          padding: 1.4rem 1rem;
+          border-radius: 22px;
         }
         .back-to-top {
           width: 48px;
@@ -1117,33 +1134,6 @@
         </div>
 
         <div class="extra-grid">
-          <div class="cta-section reveal">
-            <h2 class="cta-title">Mulai pelaporan sekarang</h2>
-            <p class="cta-text">
-              Pilih jalur pelaporan yang sesuai. Online untuk input cepat, hard
-              copy untuk dokumentasi resmi lanjutan.
-            </p>
-
-            <div class="cta-buttons">
-              <a
-                href="https://forms.gle/6RkYwN71xJCRzFDq9"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-btn cta-btn-primary"
-              >
-                <i class="fas fa-edit"></i> Isi Form Online Sekarang
-              </a>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScbwEwDIc6xm4iMQgIm47XfhNZJADf9QVNgbtTBXP-KTZSshg/viewform?usp=sharing&ouid=115279150732859247950"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-btn cta-btn-secondary"
-              >
-                <i class="fas fa-eye"></i> Buka Format Hard Copy
-              </a>
-            </div>
-          </div>
-
           <div class="faq-section reveal">
             <h2 class="faq-title">FAQ singkat</h2>
 

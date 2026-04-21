@@ -331,6 +331,11 @@
         max-width: 860px;
         margin: 3rem auto 0;
       }
+      .section-intro .legal-icon-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+      }
       .section-intro .legal-icon {
         width: 82px;
         height: 82px;
@@ -338,7 +343,6 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 1.2rem;
         background: linear-gradient(
           135deg,
           rgba(186, 201, 74, 0.2),
@@ -635,6 +639,9 @@
         .hero-actions {
           flex-direction: column;
           align-items: stretch;
+          max-width: 380px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .cta-button {
           width: 100%;
@@ -737,7 +744,9 @@
         </div>
 
         <div class="section-intro reveal">
-          <div class="legal-icon"><i class="fas fa-balance-scale"></i></div>
+          <div class="legal-icon-wrap">
+            <div class="legal-icon"><i class="fas fa-balance-scale"></i></div>
+          </div>
           <h2>Dasar hukum K3 laboratorium</h2>
           <p>
             Penerapan K3 di laboratorium didasarkan pada sejumlah peraturan dan
@@ -858,7 +867,7 @@
                   rel="noopener noreferrer"
                   class="download-btn"
                 >
-                  <i class="fas fa-search"></i> Unduh PDF
+                  <i class="fas fa-download"></i> Unduh PDF
                 </a>
                 <div class="download-note">Sumber Dokumen Eksternal</div>
               </div>

@@ -803,6 +803,9 @@
         .hero-actions {
           flex-direction: column;
           align-items: stretch;
+          max-width: 380px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .cta-button {
           width: 100%;
@@ -810,14 +813,23 @@
         .intro-grid {
           grid-template-columns: 1fr;
         }
+        .fire-grid,
         .eq-steps,
         .pass-grid,
         .class-grid {
           grid-template-columns: 1fr;
         }
+        .class-badge {
+          width: 72px;
+        }
         .earthquake-card,
         .apar-card {
-          padding: 1.5rem;
+          padding: 1.5rem 1rem;
+          border-radius: 22px;
+        }
+        .fire-triangle-card,
+        .fire-steps-card {
+          height: auto;
         }
         .back-to-top {
           width: 48px;
@@ -1037,8 +1049,8 @@
             <div class="apar-header">
               <h2>Cara Penggunaan APAR</h2>
               <p>
-                Ingat selalu teknik <strong>T A S S</strong> (Tarik, Arahkan,
-                Sapukan, Semprot) atau standar PASS.
+                Ingat selalu teknik <strong>T A T S</strong> (Tarik, Arahkan,
+                Tekan, Sapukan) atau standar PASS.
               </p>
             </div>
 
@@ -1191,7 +1203,7 @@
         <!-- VIDEO EDUKASI K3 -->
         <div class="video-section reveal" id="video-edukasi" style="margin-top: 5rem; margin-bottom: 2rem;">
           <h2 class="fire-title" style="text-align: center; margin-bottom: 2.5rem;">Video Edukasi Praktikal K3</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
             
             <!-- Video Spill Kit -->
             <div class="glass-panel" style="padding: 1.8rem;">
@@ -1201,7 +1213,7 @@
               </h3>
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 14px; box-shadow: var(--shadow-sm); border: 1px solid rgba(16, 82, 148, 0.1);">
                 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-                  src="https://www.youtube.com/embed/_wq1QfL4sb0?si=4VQacR0CZGBDl4zV" 
+                  src="https://www.youtube.com/embed/WqN7CT_rvDE?si=21rC1xN4YOAgOWF4" 
                   title="Chemical Spill Kit Tutorial" 
                   frameborder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -1286,7 +1298,7 @@
             }
           });
         },
-        { threshold: 0.15 },
+        { threshold: 0.05 },
       );
 
       reveals.forEach((el) => revealObserver.observe(el));

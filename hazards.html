@@ -376,7 +376,7 @@
          ============================= */
       .hazards-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 1.25rem;
         margin-top: 2.5rem;
       }
@@ -726,6 +726,9 @@
         .hero-actions {
           flex-direction: column;
           align-items: stretch;
+          max-width: 380px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .cta-button {
           width: 100%;
@@ -737,6 +740,13 @@
         }
         .hazard-header {
           align-items: flex-start;
+        }
+        .hazard-card {
+          border-radius: 22px;
+        }
+        .hazard-impact,
+        .prevention-tips {
+          border-radius: 14px;
         }
         .steps-shell,
         .warning-banner {
@@ -827,37 +837,117 @@
           </p>
         </div>
 
-        <div class="hazards-grid reveal">
-          <div class="hazard-card physical">
+        <div class="hazards-grid reveal"><div class="hazard-card physical">
             <div class="hazard-header">
-              <div class="hazard-icon physical">
-                <i class="fas fa-volume-up"></i>
-              </div>
+              <div class="hazard-icon physical"><i class="fas fa-cut"></i></div>
               <div class="hazard-title-wrapper">
-                <span class="hazard-type">Bahaya Fisik</span>
-                <h3 class="hazard-title">Kebisingan Mesin</h3>
+                <span class="hazard-type">Bahaya Mekanis</span>
+                <h3 class="hazard-title">Glassware Pecah</h3>
               </div>
             </div>
             <div class="hazard-content">
               <p class="hazard-description">
-                Suara bising berintensitas tinggi dari peralatan seperti
-                centrifuge, vacuum pump, atau sonikator dapat mengganggu
-                kenyamanan dan keselamatan kerja.
+                Peralatan kaca (beaker, tabung reaksi, erlenmeyer) yang retak,
+                pecah karena tekanan/suhu, atau tidak layak pakai.
               </p>
               <div class="hazard-impact">
                 <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
                 <ul>
-                  <li>Gangguan pendengaran parsial/permanen</li>
-                  <li>Stres dan sakit kepala kronis</li>
-                  <li>Penurunan tingkat konsentrasi</li>
+                  <li>Luka sayat dalam pada tangan atau tubuh</li>
+                  <li>Perdarahan hebat akibat terpotong kaca</li>
+                  <li>Tersuntiknya bahan kimia ke aliran darah (injeksi)</li>
                 </ul>
               </div>
               <div class="prevention-tips">
                 <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
                 <ul>
-                  <li>Gunakan earplug atau earmuff</li>
-                  <li>Batasi waktu rotasi paparan mesin</li>
-                  <li>Lakukan perawatan alat secara berkala</li>
+                  <li>Inspeksi alat kaca sebelum mulai mereaksikan bahan</li>
+                  <li>Jangan memungut serpihan kaca dengan tangan kosong</li>
+                  <li>
+                    Buang pecahan di wadah limbah tajam (Sharps Container)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card chemical">
+            <div class="hazard-header">
+              <div class="hazard-icon chemical">
+                <i class="fas fa-tint-slash"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Kimia</span>
+                <h3 class="hazard-title">Tumpahan Bahan Korosif</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Tumpahnya cairan asam kuat (Asam Sulfat, Asam Nitrat) atau basa
+                pekat (Natrium Hidroksida) ke atas meja kerja, mengenai lantai,
+                atau memercik ke tubuh praktikan.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>
+                    Luka bakar kimia seketika yang merusak jaringan kulit dalam
+                  </li>
+                  <li>Kebutaan permanen bila mengenai kornea mata</li>
+                  <li>
+                    Merusak/melelehkan permukaan meja, lantai, dan mesin lab
+                  </li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Bawa botol reagen menggunakan wadah sekunder pembawa</li>
+                  <li>
+                    Buka botol reagen perlahan dan selalu gunakan corong/pipet
+                  </li>
+                  <li>
+                    Segera netralisir tumpahan menggunakan material Spill Kit
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card chemical">
+            <div class="hazard-header">
+              <div class="hazard-icon chemical">
+                <i class="fas fa-flask"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Kimia</span>
+                <h3 class="hazard-title">Paparan Uap Beracun</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Menghirup, menyentuh, atau tidak sengaja menelan reagen kimia
+                yang bersifat toksik, karsinogenik, atau mutagenik selama proses
+                preparasi sampel.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Keracunan akut hingga kegagalan fungsi organ</li>
+                  <li>Iritasi berat pada membran mukosa saluran napas</li>
+                  <li>Efek kumulatif jangka panjang penyebab kanker</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>
+                    Wajib membuka botol bahan volatil (menguap) di Lemari Asam
+                  </li>
+                  <li>
+                    Pakai goggles, masker respirator, dan sarung tangan nitril
+                  </li>
+                  <li>Wajib pelajari spesifikasi MSDS sebelum memegang zat</li>
                 </ul>
               </div>
             </div>
@@ -897,7 +987,87 @@
             </div>
           </div>
 
-          <div class="hazard-card fire">
+          <div class="hazard-card ergonomic">
+            <div class="hazard-header">
+              <div class="hazard-icon ergonomic">
+                <i class="fas fa-people-carry"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Ergonomis</span>
+                <h3 class="hazard-title">Postur & Repetisi Kerja</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Beraktivitas dengan posisi tubuh janggal, seperti menunduk
+                melihat mikroskop terlalu lama, memipet sampel ribuan kali, atau
+                mengangkat galon reagen dengan posisi salah.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>Nyeri punggung bawah (Low Back Pain)</li>
+                  <li>Carpal Tunnel Syndrome (nyeri pergelangan tangan)</li>
+                  <li>Kelelahan otot ekstrem kronis (MSDs)</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Gunakan kursi lab yang bisa diatur ketinggiannya</li>
+                  <li>Lakukan peregangan (stretching) setiap 45 menit kerja</li>
+                  <li>
+                    Gunakan teknik jongkok saat mengangkat beban berat di lantai
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hazard-card biological">
+            <div class="hazard-header">
+              <div class="hazard-icon biological">
+                <i class="fas fa-biohazard"></i>
+              </div>
+              <div class="hazard-title-wrapper">
+                <span class="hazard-type">Bahaya Biologis</span>
+                <h3 class="hazard-title">Kontaminasi Mikroba</h3>
+              </div>
+            </div>
+            <div class="hazard-content">
+              <p class="hazard-description">
+                Paparan bakteri, virus, jamur, atau sampel biologis patogen
+                selama proses kultur atau pengujian mikrobiologi akibat teknik
+                aseptik yang buruk.
+              </p>
+              <div class="hazard-impact">
+                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
+                <ul>
+                  <li>
+                    Infeksi silang pada jaringan kulit dan saluran pernapasan
+                  </li>
+                  <li>Menyebarkan wabah atau penyakit zoonosis dari sampel</li>
+                  <li>Kontaminasi merusak hasil kultur bakteri yang diuji</li>
+                </ul>
+              </div>
+              <div class="prevention-tips">
+                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
+                <ul>
+                  <li>Wajib beroperasi di dalam Biosafety Cabinet (BSC)</li>
+                  <li>
+                    Dekontaminasi dan sterilisasi alat sebelum & sesudah
+                    digunakan
+                  </li>
+                  <li>
+                    Cuci tangan higienis dengan sabun segera setelah melepas
+                    sarung tangan
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="hazard-card fire">
             <div class="hazard-header">
               <div class="hazard-icon fire">
                 <i class="fas fa-thermometer-full"></i>
@@ -935,33 +1105,34 @@
 
           <div class="hazard-card physical">
             <div class="hazard-header">
-              <div class="hazard-icon physical"><i class="fas fa-cut"></i></div>
+              <div class="hazard-icon physical">
+                <i class="fas fa-volume-up"></i>
+              </div>
               <div class="hazard-title-wrapper">
-                <span class="hazard-type">Bahaya Mekanis</span>
-                <h3 class="hazard-title">Glassware Pecah</h3>
+                <span class="hazard-type">Bahaya Fisik</span>
+                <h3 class="hazard-title">Kebisingan Mesin</h3>
               </div>
             </div>
             <div class="hazard-content">
               <p class="hazard-description">
-                Peralatan kaca (beaker, tabung reaksi, erlenmeyer) yang retak,
-                pecah karena tekanan/suhu, atau tidak layak pakai.
+                Suara bising berintensitas tinggi dari peralatan seperti
+                centrifuge, vacuum pump, atau sonikator dapat mengganggu
+                kenyamanan dan keselamatan kerja.
               </p>
               <div class="hazard-impact">
                 <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
                 <ul>
-                  <li>Luka sayat dalam pada tangan atau tubuh</li>
-                  <li>Perdarahan hebat akibat terpotong kaca</li>
-                  <li>Tersuntiknya bahan kimia ke aliran darah (injeksi)</li>
+                  <li>Gangguan pendengaran parsial/permanen</li>
+                  <li>Stres dan sakit kepala kronis</li>
+                  <li>Penurunan tingkat konsentrasi</li>
                 </ul>
               </div>
               <div class="prevention-tips">
                 <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
                 <ul>
-                  <li>Inspeksi alat kaca sebelum mulai mereaksikan bahan</li>
-                  <li>Jangan memungut serpihan kaca dengan tangan kosong</li>
-                  <li>
-                    Buang pecahan di wadah limbah tajam (Sharps Container)
-                  </li>
+                  <li>Gunakan earplug atau earmuff</li>
+                  <li>Batasi waktu rotasi paparan mesin</li>
+                  <li>Lakukan perawatan alat secara berkala</li>
                 </ul>
               </div>
             </div>
@@ -1003,43 +1174,6 @@
                   </li>
                   <li>
                     Cabut steker (unplug) instrumen saat tidak dipakai lama
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="hazard-card ergonomic">
-            <div class="hazard-header">
-              <div class="hazard-icon ergonomic">
-                <i class="fas fa-people-carry"></i>
-              </div>
-              <div class="hazard-title-wrapper">
-                <span class="hazard-type">Bahaya Ergonomis</span>
-                <h3 class="hazard-title">Postur & Repetisi Kerja</h3>
-              </div>
-            </div>
-            <div class="hazard-content">
-              <p class="hazard-description">
-                Beraktivitas dengan posisi tubuh janggal, seperti menunduk
-                melihat mikroskop terlalu lama, memipet sampel ribuan kali, atau
-                mengangkat galon reagen dengan posisi salah.
-              </p>
-              <div class="hazard-impact">
-                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
-                <ul>
-                  <li>Nyeri punggung bawah (Low Back Pain)</li>
-                  <li>Carpal Tunnel Syndrome (nyeri pergelangan tangan)</li>
-                  <li>Kelelahan otot ekstrem kronis (MSDs)</li>
-                </ul>
-              </div>
-              <div class="prevention-tips">
-                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
-                <ul>
-                  <li>Gunakan kursi lab yang bisa diatur ketinggiannya</li>
-                  <li>Lakukan peregangan (stretching) setiap 45 menit kerja</li>
-                  <li>
-                    Gunakan teknik jongkok saat mengangkat beban berat di lantai
                   </li>
                 </ul>
               </div>
@@ -1125,132 +1259,7 @@
             </div>
           </div>
 
-          <div class="hazard-card chemical">
-            <div class="hazard-header">
-              <div class="hazard-icon chemical">
-                <i class="fas fa-flask"></i>
-              </div>
-              <div class="hazard-title-wrapper">
-                <span class="hazard-type">Bahaya Kimia</span>
-                <h3 class="hazard-title">Paparan Uap Beracun</h3>
-              </div>
-            </div>
-            <div class="hazard-content">
-              <p class="hazard-description">
-                Menghirup, menyentuh, atau tidak sengaja menelan reagen kimia
-                yang bersifat toksik, karsinogenik, atau mutagenik selama proses
-                preparasi sampel.
-              </p>
-              <div class="hazard-impact">
-                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
-                <ul>
-                  <li>Keracunan akut hingga kegagalan fungsi organ</li>
-                  <li>Iritasi berat pada membran mukosa saluran napas</li>
-                  <li>Efek kumulatif jangka panjang penyebab kanker</li>
-                </ul>
-              </div>
-              <div class="prevention-tips">
-                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
-                <ul>
-                  <li>
-                    Wajib membuka botol bahan volatil (menguap) di Lemari Asam
-                  </li>
-                  <li>
-                    Pakai goggles, masker respirator, dan sarung tangan nitril
-                  </li>
-                  <li>Wajib pelajari spesifikasi MSDS sebelum memegang zat</li>
-                </ul>
-              </div>
-            </div>
           </div>
-
-          <div class="hazard-card chemical">
-            <div class="hazard-header">
-              <div class="hazard-icon chemical">
-                <i class="fas fa-tint-slash"></i>
-              </div>
-              <div class="hazard-title-wrapper">
-                <span class="hazard-type">Bahaya Kimia</span>
-                <h3 class="hazard-title">Tumpahan Bahan Korosif</h3>
-              </div>
-            </div>
-            <div class="hazard-content">
-              <p class="hazard-description">
-                Tumpahnya cairan asam kuat (Asam Sulfat, Asam Nitrat) atau basa
-                pekat (Natrium Hidroksida) ke atas meja kerja, mengenai lantai,
-                atau memercik ke tubuh praktikan.
-              </p>
-              <div class="hazard-impact">
-                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
-                <ul>
-                  <li>
-                    Luka bakar kimia seketika yang merusak jaringan kulit dalam
-                  </li>
-                  <li>Kebutaan permanen bila mengenai kornea mata</li>
-                  <li>
-                    Merusak/melelehkan permukaan meja, lantai, dan mesin lab
-                  </li>
-                </ul>
-              </div>
-              <div class="prevention-tips">
-                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
-                <ul>
-                  <li>Bawa botol reagen menggunakan wadah sekunder pembawa</li>
-                  <li>
-                    Buka botol reagen perlahan dan selalu gunakan corong/pipet
-                  </li>
-                  <li>
-                    Segera netralisir tumpahan menggunakan material Spill Kit
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="hazard-card biological">
-            <div class="hazard-header">
-              <div class="hazard-icon biological">
-                <i class="fas fa-biohazard"></i>
-              </div>
-              <div class="hazard-title-wrapper">
-                <span class="hazard-type">Bahaya Biologis</span>
-                <h3 class="hazard-title">Kontaminasi Mikroba</h3>
-              </div>
-            </div>
-            <div class="hazard-content">
-              <p class="hazard-description">
-                Paparan bakteri, virus, jamur, atau sampel biologis patogen
-                selama proses kultur atau pengujian mikrobiologi akibat teknik
-                aseptik yang buruk.
-              </p>
-              <div class="hazard-impact">
-                <h4><i class="fas fa-heartbeat"></i> Dampak</h4>
-                <ul>
-                  <li>
-                    Infeksi silang pada jaringan kulit dan saluran pernapasan
-                  </li>
-                  <li>Menyebarkan wabah atau penyakit zoonosis dari sampel</li>
-                  <li>Kontaminasi merusak hasil kultur bakteri yang diuji</li>
-                </ul>
-              </div>
-              <div class="prevention-tips">
-                <h4><i class="fas fa-shield-alt"></i> Pencegahan</h4>
-                <ul>
-                  <li>Wajib beroperasi di dalam Biosafety Cabinet (BSC)</li>
-                  <li>
-                    Dekontaminasi dan sterilisasi alat sebelum & sesudah
-                    digunakan
-                  </li>
-                  <li>
-                    Cuci tangan higienis dengan sabun segera setelah melepas
-                    sarung tangan
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section class="steps-section" id="pengendalian">
@@ -1365,7 +1374,7 @@
             }
           });
         },
-        { threshold: 0.15 },
+        { threshold: 0.05 },
       );
 
       reveals.forEach((el) => revealObserver.observe(el));
