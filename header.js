@@ -37,6 +37,7 @@ function setupUnifiedMobileNav() {
     "simbol-b3.html": "bahaya",
     "limbah.html": "limbah",
     "msds.html": "msds",
+    "bencana.html": "bantuan",
     "p3k.html": "bantuan",
     "form-lapor.html": "bantuan",
   };
@@ -61,13 +62,24 @@ function setupUnifiedMobileNav() {
   navItems.forEach((item) => {
     const trigger = item.querySelector(".nav-trigger");
     if (!trigger) return;
+    
     trigger.addEventListener("click", (e) => {
       if (window.innerWidth <= 992) {
         e.preventDefault();
+        e.stopPropagation();
+        
+        // Cek apakah item ini sudah aktif
+        const isActive = item.classList.contains("active");
+        
+        // Tutup SEMUA dropdown lain
         navItems.forEach((other) => {
-          if (other !== item) other.classList.remove("active");
+          other.classList.remove("active");
         });
-        item.classList.toggle("active");
+        
+        // Toggle item yang diklik
+        if (!isActive) {
+          item.classList.add("active");
+        }
       }
     });
   });

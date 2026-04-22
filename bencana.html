@@ -849,6 +849,21 @@
         }
       }
       @media (max-width: 480px) {
+        .eq-header {
+          flex-direction: column;
+          text-align: center;
+          gap: 0.5rem;
+        }
+        .eq-header h2 {
+          font-size: 1.5rem;
+          word-wrap: break-word;
+          hyphens: auto;
+        }
+        .fire-title, .apar-header h2 {
+          font-size: 1.6rem;
+          word-wrap: break-word;
+          hyphens: auto;
+        }
         .eq-steps,
         .video-grid {
           grid-template-columns: 1fr;
@@ -991,8 +1006,10 @@
                 style="
                   grid-column: 1 / -1;
                   display: flex;
+                  flex-wrap: wrap;
                   align-items: center;
                   justify-content: center;
+                  text-align: center;
                   gap: 1rem;
                   background: var(--info-light);
                 "
